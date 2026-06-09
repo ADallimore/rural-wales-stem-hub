@@ -91,6 +91,21 @@
     <footer class="bg-slate-900 text-slate-400 py-12 text-center mt-auto">
         <p>&copy; 2026 Rural Wales STEM Pathways Hub • Created by Austin Dallimore</p>
     </footer>
+<script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
 
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        if (mobileMenu.classList.contains('hidden')) {
+            menuIcon.classList.remove('fa-xmark');
+            menuIcon.classList.add('fa-bars');
+        } else {
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-xmark');
+        }
+    });
+</script>
 </body>
 </html>
