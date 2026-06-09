@@ -3,96 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Rural Wales STEM Hub</title>
+    <title>About Us - Rural Wales STEM Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
+<body class="bg-slate-50 min-h-screen flex flex-col font-sans text-slate-900">
 
-  <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-3 h-20 items-center">
-            <div class="flex items-center justify-start">
-                <a href="index.html" class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
-                    <i class="fa-solid fa-atom text-emerald-600 animate-pulse"></i>
-                    <span>Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 h-20 items-center">
+                <div class="flex items-center justify-start">
+                    <a href="index.html" class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
+                        <i class="fa-solid fa-atom text-emerald-600 animate-pulse"></i>
+                        <span>Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center justify-center space-x-6 lg:space-x-8 h-full pt-1">
+                    <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
+                    <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Opportunities</a>
+                    <a href="resources.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Resources</a>
+                    <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Guides</a>
+                    <a href="suggest.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Suggest</a>
+                    <a href="about.html" class="text-emerald-600 font-bold text-base h-full flex items-center border-b-2 border-emerald-600">About</a>
+                </div>
+                <div class="flex items-center justify-end gap-4">
+                    <a href="contact.html" class="hidden md:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition">Contact</a>
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition md:hidden">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner">
+            <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
+            <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Opportunities</a>
+            <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Resources</a>
+            <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
+            <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Suggest</a>
+            <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">About</a>
+            <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            
+            <div class="lg:col-span-8 space-y-8">
+                
+                <div>
+                    <span class="text-sm font-bold text-emerald-600 uppercase tracking-widest">Our Story & Goal</span>
+                    <h1 class="text-4xl font-black text-slate-900 tracking-tight mt-2 mb-4">Bridging the Regional Divide</h1>
+                    <p class="text-lg text-slate-600 leading-relaxed font-medium">
+                        Welcome to the Rural Wales STEM Hub. This platform was built out of a direct need to simplify and accelerate how high-achieving student cohorts discover highly competitive, debt-free engineering, software, and industrial pathways.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">The Problem</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Fantastic regional programs, hidden corporate bursaries, and incredible degree apprenticeships are often scattered across dozens of unorganized government directories and obscure job boards.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">The Solution</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            We track them down so you don't have to. By consolidating live opportunities into a single dashboard, geography no longer limits ambition.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-4 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm lg:sticky lg:top-28 text-center">
+                
+                <div class="w-24 h-24 bg-gradient-to-tr from-slate-800 to-slate-900 rounded-full flex items-center justify-center text-white text-3xl font-black mx-auto mb-5 shadow-lg border-4 border-white ring-2 ring-slate-100">
+                    AD
+                </div>
+                
+                <h2 class="text-2xl font-bold text-slate-900">Austin Dallimore</h2>
+                <div class="inline-block bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mt-2 mb-5">
+                    Platform Developer
+                </div>
+                
+                <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                    Designing database tools to connect ambitious Welsh students with leading global tech & engineering enterprises.
+                </p>
+                
+                <hr class="border-slate-100 mb-6">
+                
+                <a href="https://linkedin.com" target="_blank" class="w-full flex items-center justify-center bg-[#0A66C2] hover:bg-[#004182] text-white font-bold py-3 px-4 rounded-xl text-sm transition gap-2 shadow-sm">
+                    <i class="fa-brands fa-linkedin text-lg"></i> Connect on LinkedIn
+                </a>
+                
+                <a href="contact.html" class="w-full flex items-center justify-center bg-slate-50 hover:bg-slate-100 text-slate-900 font-bold py-3 px-4 rounded-xl text-sm transition gap-2 mt-3 border border-slate-200">
+                    <i class="fa-regular fa-envelope text-lg"></i> Message Me
                 </a>
             </div>
-            <div class="hidden md:flex items-center justify-center space-x-6 lg:space-x-8 h-full pt-1">
-                <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
-                <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Opportunities</a>
-                <a href="resources.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Resources</a>
-                <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Guides</a>
-                <a href="suggest.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Suggest</a>
-                <a href="about.html" class="text-emerald-600 font-bold text-base h-full flex items-center border-b-2 border-emerald-600">About</a>
-            </div>
-            <div class="flex items-center justify-end gap-4">
-                <a href="contact.html" class="hidden md:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition">Contact</a>
-                <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition md:hidden">
-                    <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner">
-        <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
-        <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Opportunities</a>
-        <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Resources</a>
-        <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
-        <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Suggest</a>
-        <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">About</a>
-        <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
-    </div>
-</nav>
 
-   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 font-sans">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-        
-        <div class="md:col-span-2 space-y-6 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-            <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Our Story</span>
-            <h1 class="text-3xl font-black text-slate-900 tracking-tight mt-1">Platform Mission</h1>
-            
-            <p class="text-slate-600 leading-relaxed">
-                Welcome to the Rural Wales STEM Hub! This platform was built out of a direct need to simplify and accelerate how high-achieving student cohorts discover highly competitive, debt-free engineering, software, and industrial pathways.
-            </p>
-            
-            <p class="text-slate-600 leading-relaxed">
-                Fantastic regional programs, hidden corporate bursaries, and incredible degree apprenticeships are often scattered across dozens of unorganized government directories and obscure job boards. We track them down so you don't have to.
-            </p>
-            
-            <hr class="border-slate-100 my-6">
-            
-            <h3 class="text-xl font-bold text-slate-900">Bridging the Regional Divide</h3>
-            <p class="text-slate-600 leading-relaxed">
-                Our objective is to ensure that geography never limits ambition. By consolidating live opportunities into a single, lightning-fast dashboard, students across rural and industrial communities can access the exact same network infrastructure as those in major metropolitan hubs.
-            </p>
         </div>
-
-        <div class="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm md:sticky md:top-28 text-center">
-            <div class="w-20 h-20 bg-gradient-to-tr from-emerald-600 to-teal-500 rounded-2xl flex items-center justify-center text-white text-2xl font-black mx-auto mb-4 shadow-md">
-                AD
-            </div>
-            
-            <h2 class="text-xl font-bold text-slate-900">Austin Dallimore</h2>
-            <p class="text-emerald-600 text-xs font-semibold uppercase tracking-wider mb-4">Platform Developer</p>
-            
-            <p class="text-slate-500 text-sm leading-relaxed mb-6">
-                Designing database tools to connect ambitious Welsh students with leading global tech & engineering enterprises.
-            </p>
-            
-            <a href="https://linkedin.com" target="_blank" class="w-full inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl text-sm transition gap-2 shadow-sm">
-                <i class="fa-brands fa-linkedin text-base"></i> Connect on LinkedIn
-            </a>
-        </div>
-
-    </div>
-</main>
-
-    <footer class="bg-white border-t border-slate-100 py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-500">
-            <p>&copy; 2026 Rural Wales STEM Hub. Designed and managed by <span class="font-semibold text-slate-800">Austin Dallimore</span>.</p>
-        </div>
-    </footer>
+    </main>
 
     <script>
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -110,21 +127,6 @@
             }
         });
     </script>
-<script>
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        if (mobileMenu.classList.contains('hidden')) {
-            menuIcon.classList.remove('fa-xmark');
-            menuIcon.classList.add('fa-bars');
-        } else {
-            menuIcon.classList.remove('fa-bars');
-            menuIcon.classList.add('fa-xmark');
-        }
-    });
-</script>
 </body>
 </html>
