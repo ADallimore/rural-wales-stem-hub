@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STEM Timeline - Rural Wales STEM Hub</title>
+    <title>My Timeline - Rural Wales STEM Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -58,103 +58,171 @@
 
     <main class="flex-grow max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <div class="mb-16 text-center">
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-4">Your STEM Action Plan</h1>
-            <p class="text-slate-600 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">Don't miss a deadline. Follow this step-by-step roadmap for Year 11 & Year 12 to secure the best apprenticeships and bursaries.</p>
+        <div class="mb-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-4">Your Action Plan</h1>
+            <p class="text-slate-600 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">Track your saved opportunities below, and follow the master STEM roadmap to ensure you never miss a milestone.</p>
         </div>
 
-        <div class="relative border-l-4 border-slate-200 ml-4 md:ml-8">
+        <section class="mb-20">
+            <div class="flex items-center gap-3 mb-6">
+                <i class="fa-solid fa-bookmark text-emerald-500 text-2xl"></i>
+                <h2 class="text-2xl font-bold text-slate-900">My Saved Schedule</h2>
+            </div>
+            
+            <div id="personal-timeline-container">
+                <p class="text-slate-500 italic">Checking your saved items...</p>
+            </div>
+        </section>
 
-            <div class="mb-10 relative">
-                <div class="absolute -left-5 md:-left-9 mt-1 w-10 h-10 md:w-14 md:h-14 bg-emerald-600 text-white rounded-full flex items-center justify-center font-black text-lg md:text-xl border-4 border-slate-50 shadow-sm z-10">
-                    Y11
-                </div>
-                <div class="ml-10 md:ml-12 pt-2 md:pt-3">
-                    <h2 class="text-2xl md:text-3xl font-black text-slate-900">Year 11 / GCSE Level</h2>
-                    <p class="text-slate-500 font-semibold mt-1">Laying the foundation and exploring your options.</p>
-                </div>
+        <div class="w-full h-px bg-slate-200 mb-16"></div>
+
+        <section>
+            <div class="flex items-center gap-3 mb-10">
+                <i class="fa-solid fa-map-location-dot text-slate-900 text-2xl"></i>
+                <h2 class="text-2xl font-bold text-slate-900">The Master STEM Roadmap</h2>
             </div>
 
-            <div class="mb-10 relative group">
-                <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-emerald-500 transition-colors z-10"></div>
-                <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Autumn Term (Sep - Dec)</span>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Research & Discovery</h3>
-                    <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Start attending virtual open days for companies like GE Aerospace, Aston Martin, or local engineering hubs.</li>
-                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Look into post-16 options: Sixth Form vs. College vs. Level 3 Apprenticeships.</li>
-                    </ul>
+            <div class="relative border-l-4 border-slate-200 ml-4 md:ml-8">
+
+                <div class="mb-10 relative">
+                    <div class="absolute -left-5 md:-left-9 mt-1 w-10 h-10 md:w-14 md:h-14 bg-emerald-600 text-white rounded-full flex items-center justify-center font-black text-lg md:text-xl border-4 border-slate-50 shadow-sm z-10">
+                        Y11
+                    </div>
+                    <div class="ml-10 md:ml-12 pt-2 md:pt-3">
+                        <h2 class="text-2xl md:text-3xl font-black text-slate-900">Year 11 / GCSE Level</h2>
+                        <p class="text-slate-500 font-semibold mt-1">Laying the foundation and exploring your options.</p>
+                    </div>
                 </div>
+
+                <div class="mb-10 relative group">
+                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-emerald-500 transition-colors z-10"></div>
+                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Autumn Term (Sep - Dec)</span>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Research & Discovery</h3>
+                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
+                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Start attending virtual open days for major engineering hubs and universities.</li>
+                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Look into post-16 options: Sixth Form vs. College vs. Level 3 Apprenticeships.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-16 relative group">
+                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-emerald-500 transition-colors z-10"></div>
+                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="bg-amber-50 text-amber-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Spring Term (Jan - Apr)</span>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Apply for Summer Insights</h3>
+                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
+                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Corporate "Insight Weeks" for 15-16 year olds often close applications in February/March.</li>
+                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Draft your first basic CV. Focus on school projects, UKMT scores, and personal skills.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-10 relative">
+                    <div class="absolute -left-5 md:-left-9 mt-1 w-10 h-10 md:w-14 md:h-14 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-lg md:text-xl border-4 border-slate-50 shadow-sm z-10">
+                        Y12
+                    </div>
+                    <div class="ml-10 md:ml-12 pt-2 md:pt-3">
+                        <h2 class="text-2xl md:text-3xl font-black text-slate-900">Year 12 / First Year A-Level</h2>
+                        <p class="text-slate-500 font-semibold mt-1">The critical year for Degree Apprenticeships, Exams, & Bursaries.</p>
+                    </div>
+                </div>
+
+                <div class="mb-10 relative group">
+                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
+                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="bg-purple-50 text-purple-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Autumn Term (Sep - Dec)</span>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Early Applications & Olympiads</h3>
+                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
+                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Top-tier Degree Apprenticeships (like BBC, Airbus) open now.</li>
+                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Keep an eye on registration dates for Senior Maths Challenges and Olympiads.</li>
+                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Register for Nuffield Research Placements (crucial for Welsh students).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-10 relative group">
+                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
+                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-red-500">
+                        <span class="bg-red-50 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Winter (Jan - Feb)</span>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">The Deadline Crunch</h3>
+                        <p class="text-slate-600 text-sm md:text-base mb-3">This is when 80% of major corporate schemes close. Do not leave applications to the last minute!</p>
+                        <a href="opportunities.html" class="inline-flex items-center text-sm font-bold text-emerald-600 hover:text-emerald-700 transition">
+                            Save Live Deadlines to your Dashboard <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mb-4 relative group">
+                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
+                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="bg-teal-50 text-teal-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Summer Term (May - Jul)</span>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">University Admissions Tests</h3>
+                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
+                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Book your spot for specific university admissions tests (like ESAT or MAT) if required.</li>
+                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Secure your Year 12 summer work experience placement.</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="mb-16 relative group">
-                <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-emerald-500 transition-colors z-10"></div>
-                <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <span class="bg-amber-50 text-amber-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Spring Term (Jan - Apr)</span>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Apply for Summer Insights</h3>
-                    <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Many corporate "Insight Weeks" for 15-16 year olds close applications in February/March.</li>
-                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Draft your first basic CV. You don't need work experience—focus on school projects and skills.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="mb-10 relative">
-                <div class="absolute -left-5 md:-left-9 mt-1 w-10 h-10 md:w-14 md:h-14 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-lg md:text-xl border-4 border-slate-50 shadow-sm z-10">
-                    Y12
-                </div>
-                <div class="ml-10 md:ml-12 pt-2 md:pt-3">
-                    <h2 class="text-2xl md:text-3xl font-black text-slate-900">Year 12 / First Year A-Level</h2>
-                    <p class="text-slate-500 font-semibold mt-1">The critical year for Degree Apprenticeships & Bursaries.</p>
-                </div>
-            </div>
-
-            <div class="mb-10 relative group">
-                <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
-                <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <span class="bg-purple-50 text-purple-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Autumn Term (Sep - Dec)</span>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Early Applications Open</h3>
-                    <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                        <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Top-tier Degree Apprenticeships (like BBC, Airbus, Network Rail) open now.</li>
-                        <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Register for the Nuffield Research Placements (crucial for Welsh students).</li>
-                        <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Start prepping for Psychometric Tests (companies use these to filter candidates).</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="mb-10 relative group">
-                <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
-                <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-red-500">
-                    <span class="bg-red-50 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Winter (Jan - Feb)</span>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">The Deadline Crunch</h3>
-                    <p class="text-slate-600 text-sm md:text-base mb-3">This is when 80% of major corporate schemes close. Do not leave applications to the last minute!</p>
-                    <a href="opportunities.html" class="inline-flex items-center text-sm font-bold text-emerald-600 hover:text-emerald-700 transition">
-                        Check Live Deadlines <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="mb-4 relative group">
-                <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
-                <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <span class="bg-teal-50 text-teal-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Summer Term (May - Jul)</span>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Interviews & Assessment Centres</h3>
-                    <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                        <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Companies will invite successful applicants to Assessment Centres.</li>
-                        <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Secure your Year 12 summer work experience placement.</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="mt-16 text-center">
-            <a href="resources.html" class="inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-3.5 rounded-xl text-base transition shadow-sm items-center gap-2">
-                <i class="fa-solid fa-book-open"></i> Browse Study Resources
-            </a>
-        </div>
+        </section>
 
     </main>
+
+    <script>
+        function renderPersonalTimeline() {
+            const container = document.getElementById('personal-timeline-container');
+            // Pull data from browser storage
+            const savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
+
+            // If empty, show a nice empty state
+            if (savedItems.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 px-6 bg-white rounded-3xl border border-slate-200 border-dashed">
+                        <div class="text-4xl mb-4 text-slate-300"><i class="fa-regular fa-calendar-xmark"></i></div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Your schedule is empty</h3>
+                        <p class="text-slate-500 mb-6 max-w-md mx-auto">Head over to the Opportunities page and click "Save" on exams, bursaries, or apprenticeships to build your custom timeline.</p>
+                        <a href="opportunities.html" class="inline-flex bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm hover:bg-emerald-700 transition shadow-sm">Browse Opportunities</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // If populated, build the cards
+            let html = '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">';
+            savedItems.forEach((item, index) => {
+                html += `
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <span class="text-[10px] font-extrabold text-emerald-600 uppercase tracking-widest mb-2 block bg-emerald-50 inline-block px-2 py-1 rounded-md">${item.category}</span>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 leading-tight">${item.title}</h4>
+                            <p class="text-sm font-semibold text-slate-600 mb-5"><i class="fa-regular fa-clock mr-1.5 text-slate-400"></i> Deadline: <span class="text-slate-800">${item.deadline}</span></p>
+                        </div>
+                        <div class="flex items-center gap-3 mt-auto pt-4 border-t border-slate-100">
+                            <a href="${item.link}" target="_blank" class="flex-1 text-center bg-slate-50 hover:bg-slate-900 text-slate-700 hover:text-white border border-slate-200 hover:border-slate-900 text-xs font-bold py-2 rounded-lg transition">View Details</a>
+                            <button onclick="removeSavedItem(${index})" class="text-slate-400 hover:text-red-500 transition px-3 py-2 rounded-lg hover:bg-red-50" title="Remove from timeline">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Function to remove an item and re-render instantly
+        function removeSavedItem(index) {
+            let savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
+            savedItems.splice(index, 1);
+            localStorage.setItem('mySTEMTimeline', JSON.stringify(savedItems));
+            renderPersonalTimeline(); 
+        }
+
+        // Run the render function as soon as the page loads
+        document.addEventListener("DOMContentLoaded", renderPersonalTimeline);
+    </script>
 
     <script>
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
