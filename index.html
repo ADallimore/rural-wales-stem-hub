@@ -11,14 +11,16 @@
 
     <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
+            <div class="grid grid-cols-2 md:grid-cols-3 h-16 items-center">
+                
+                <div class="flex items-center justify-start">
                     <a href="index.html" class="text-xl font-bold text-slate-900 flex items-center gap-2">
                         <i class="fa-solid fa-atom text-emerald-600 animate-pulse"></i>
                         <span>Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
                     </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
+                
+                <div class="hidden md:flex items-center justify-center space-x-8">
                     <a href="index.html" class="text-emerald-600 font-semibold text-sm">Home</a>
                     <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-medium text-sm transition">Opportunities</a>
                     <a href="resources.html" class="text-slate-600 hover:text-slate-900 font-medium text-sm transition">Resources</a>
@@ -26,7 +28,24 @@
                     <a href="suggest.html" class="text-slate-600 hover:text-slate-900 font-medium text-sm transition">Suggest</a>
                     <a href="about.html" class="text-slate-600 hover:text-slate-900 font-medium text-sm transition">About</a>
                 </div>
+
+                <div class="flex items-center justify-end">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition md:hidden">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                    <div class="hidden md:block w-6"></div>
+                </div>
+                
             </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner">
+            <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700 transition">Home</a>
+            <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">Opportunities</a>
+            <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">Resources</a>
+            <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">Guides</a>
+            <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">Suggest</a>
+            <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">About</a>
         </div>
     </nav>
 
@@ -104,6 +123,23 @@
             <p>&copy; 2026 Rural Wales STEM Hub. Designed and managed by <span class="font-semibold text-slate-800">Austin Dallimore</span>.</p>
         </div>
     </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+    </script>
 
 </body>
 </html>
