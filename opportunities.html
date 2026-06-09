@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
+        .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
         .loader {
             border: 4px solid #f8fafc;
             border-top: 4px solid #059669;
@@ -21,9 +22,18 @@
             100% { transform: rotate(360deg); }
         }
         .hidden-card { display: none !important; }
+        
+        /* Smooth fade-in animation for new cards */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-card-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex flex-col font-sans text-slate-900">
+<body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
 
     <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,6 +63,7 @@
                         <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
                     </button>
                 </div>
+                
             </div>
         </div>
 
@@ -67,51 +78,53 @@
         </div>
     </nav>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <div class="mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-            <div class="max-w-2xl text-center md:text-left">
-                <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-3">Live Opportunities</h1>
-                <p class="text-slate-600 text-lg">Browse curated apprenticeships, bursaries, and insight days dynamically loaded from our live database.</p>
+        <div class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+            <div class="max-w-2xl text-center md:text-left mx-auto md:mx-0">
+                <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-3">Live Opportunities</h1>
+                <p class="text-slate-600 text-lg md:text-xl font-medium leading-relaxed">Discover elite apprenticeships, scholarships, and bursaries curated for ambitious students in Wales.</p>
             </div>
-            <a href="suggest.html" class="shrink-0 bg-emerald-600 text-white px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-emerald-700 transition shadow-sm mx-auto md:mx-0">
-                <i class="fa-solid fa-lightbulb"></i> Suggest Opportunity
+            <a href="suggest.html" class="shrink-0 bg-emerald-600 text-white px-7 py-3.5 rounded-2xl text-base font-bold flex items-center gap-2.5 hover:bg-emerald-700 transition shadow-lg shadow-emerald-600/10 mx-auto md:mx-0">
+                <i class="fa-solid fa-lightbulb text-emerald-300"></i> Suggest an Opportunity
             </a>
         </div>
 
-        <div id="filter-container" class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm mb-10 hidden">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="relative md:col-span-2">
-                    <i class="fa-solid fa-search absolute left-4 top-3.5 text-slate-400"></i>
-                    <input type="text" id="search-input" placeholder="Search by role, company, or keyword..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-slate-50 font-medium transition">
+        <div id="filter-container" class="bg-white border border-slate-100 rounded-3xl p-5 shadow-sm mb-12 hidden">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="relative md:col-span-3">
+                    <i class="fa-solid fa-search absolute left-4.5 top-4 text-slate-400"></i>
+                    <input type="text" id="search-input" placeholder="Search by role, company, location, or keyword..." class="w-full pl-12 pr-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm md:text-base bg-slate-50 font-semibold placeholder-slate-400 transition">
                 </div>
                 <div>
-                    <select id="category-filter" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-slate-50 font-medium transition text-slate-600 cursor-pointer">
-                        <option value="All">All Categories</option>
+                    <select id="category-filter" class="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm md:text-base bg-slate-50 font-semibold transition text-slate-700 cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23475569%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:20px_20px] bg-[right_1rem_center] bg-no-repeat">
+                        <option value="All">All Classifications</option>
                         </select>
                 </div>
             </div>
         </div>
 
-        <div id="loading-state" class="flex flex-col items-center justify-center py-20">
-            <div class="loader mb-4"></div>
-            <p class="text-slate-500 font-bold uppercase tracking-widest text-sm">Syncing Database...</p>
+        <div id="loading-state" class="flex flex-col items-center justify-center py-24 text-center">
+            <div class="loader mb-5"></div>
+            <p class="text-slate-900 font-bold text-lg">Syncing with Live Database...</p>
+            <p class="text-slate-500 mt-1">Fetching the latest STEM opportunities across Wales.</p>
         </div>
 
-        <div id="error-state" class="hidden text-center py-20">
-            <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+        <div id="error-state" class="hidden text-center py-24 px-6 bg-white rounded-3xl border border-red-100 shadow-sm">
+            <div class="w-16 h-16 bg-red-100 text-red-700 rounded-full flex items-center justify-center text-3xl mx-auto mb-6 border-4 border-red-50">
                 <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
-            <p class="text-slate-900 font-bold text-lg mb-1">Failed to connect to spreadsheet</p>
-            <p class="text-slate-500">Please check your Google Sheet link or try again later.</p>
+            <p class="text-slate-950 font-black text-xl mb-2 tracking-tight">Database Connection Failed</p>
+            <p class="text-slate-600 max-w-md mx-auto leading-relaxed">We couldn't connect to the opportunities spreadsheet. Please check your network connection or the Google Sheet link in the code.</p>
         </div>
 
-        <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden"></div>
+        <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
+            </div>
 
     </main>
 
     <script>
-        // Your existing Google Sheet link
+        // Your existing live Google Sheet link
         const sheetCSVUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSyvn7qSCsr734NAvG_1QTR1rP6Cb_WwJfE5UW1hXAEhG99a8LHygnKwAYaL2Q0EiOeUkGpdbZKWKN/pub?output=csv";
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -131,65 +144,77 @@
                     
                     if (data.length === 0) {
                         grid.classList.remove('hidden');
-                        grid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-500 font-medium">No live opportunities found right now.</div>`;
+                        grid.innerHTML = `<div class="col-span-full text-center py-20 px-8 bg-white rounded-3xl border border-slate-100 shadow-sm"><div class="text-5xl mb-4">📭</div><p class="text-slate-900 font-bold text-lg mb-1">No live opportunities found right now.</p><p class="text-slate-500">Check back soon for new listings.</p></div>`;
                         return;
                     }
 
                     grid.classList.remove('hidden');
                     filterContainer.classList.remove('hidden');
 
-                    // 1. Build Category Dropdown Dynamically
-                    const categories = [...new Set(data.map(item => item.Category).filter(Boolean))];
-                    categories.forEach(category => {
+                    // 1. DYNAMIC DROPDOWN: Extract categories and build options
+                    const rawCategories = data.map(item => item.Category).filter(Boolean);
+                    const uniqueCategories = [...new Set(rawCategories)].sort();
+                    uniqueCategories.forEach(category => {
                         const option = document.createElement('option');
                         option.value = category;
                         option.innerText = category;
                         categoryDropdown.appendChild(option);
                     });
 
-                    // 2. Build the New Professional Cards
-                    data.forEach(item => {
-                        if(!item.Title) return; 
+                    // 2. DYNAMIC CARD GENERATION: Injecting the new premium card design
+                    data.forEach((item, index) => {
+                        if(!item.Title || item.Title.trim() === "") return; // Skip invalid entries
 
-                        const categorySafe = item.Category || 'General';
+                        const categorySafe = item.Category || 'STEM';
+                        const companySafe = item.Colour ? item.Colour.trim().toLowerCase() : 'emerald'; // Use color data from sheet
                         const firstLetter = item.Title.charAt(0).toUpperCase();
                         
-                        // Handle Deadline Badges based on your old logic
+                        // Deadline Handling: Create nice badges and logic based on old data
                         let deadlineBadge = '';
-                        let deadlineText = `<i class="fa-regular fa-clock mr-1"></i> ${item.Deadline || 'TBC'}`;
+                        let footerText = `<i class="fa-regular fa-calendar-days mr-1.5 text-slate-400"></i> Closes: ${item.Deadline || 'TBC'}`;
+                        
+                        // Default Status Badges (If 'Colour' column exists in sheet, we use that for coloring themeColor)
+                        let themeColor = companySafe; // E.g., 'blue', 'emerald', 'teal', 'red'
                         
                         if (item.Deadline && item.Deadline.toLowerCase() !== 'rolling') {
-                            deadlineBadge = `<span class="bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-100">Live</span>`;
+                            deadlineBadge = `<span class="bg-${themeColor}-50 text-${themeColor}-700 text-xs font-bold px-3 py-1 rounded-full border border-${themeColor}-100 uppercase tracking-wider">Active</span>`;
                         } else if (item.Deadline && item.Deadline.toLowerCase() === 'rolling') {
-                            deadlineBadge = `<span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full border border-blue-100"><i class="fa-solid fa-rotate mr-1"></i>Rolling</span>`;
-                            deadlineText = `Open Year-Round`;
+                            themeColor = 'emerald'; // Override to emerald for rolling selection
+                            deadlineBadge = `<span class="bg-${themeColor}-50 text-${themeColor}-700 text-xs font-bold px-3 py-1 rounded-full border border-${themeColor}-100 uppercase tracking-wider"><i class="fa-solid fa-rotate-right mr-1.5 text-${themeColor}-400"></i>Rolling</span>`;
+                            footerText = `<i class="fa-solid fa-hourglass-start mr-1.5 text-${themeColor}-400"></i>Open Selection`;
+                        } else {
+                            // No explicit deadline = Pre-register state
+                            themeColor = 'slate';
+                            deadlineBadge = `<span class="bg-slate-50 text-slate-600 text-xs font-bold px-3 py-1 rounded-full border border-slate-200uppercase tracking-wider">TBC</span>`;
                         }
 
-                        // Inject card into grid (Search text hidden in data attributes for filtering)
+                        // THE NEW PREMIUM CARD HTML INJECTION
                         const cardHTML = `
-                            <div class="opp-card bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 relative flex flex-col h-full" 
+                            <div class="opp-card group animate-card-in bg-white rounded-3xl p-7 shadow-sm border border-slate-100/70 hover:shadow-2xl hover:border-emerald-100 hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full" 
                                  data-category="${categorySafe}" 
-                                 data-searchtext="${item.Title.toLowerCase()} ${item.Description.toLowerCase()}">
+                                 data-searchtext="${item.Title.toLowerCase()} ${item.Description.toLowerCase()} ${categorySafe.toLowerCase()}"
+                                 style="animation-delay: ${index * 50}ms;">
                                 
-                                <div class="flex justify-between items-start mb-4">
-                                    <div class="w-12 h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center text-xl font-bold border border-slate-800 shadow-inner">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="w-16 h-16 bg-gradient-to-tr from-${themeColor}-600 to-${themeColor}-400 text-white rounded-2xl flex items-center justify-center text-3xl font-extrabold shadow-md border-4 border-white ring-1 ring-slate-100 shadow-${themeColor}-500/10">
                                         ${firstLetter}
                                     </div>
                                     ${deadlineBadge}
                                 </div>
                                 
-                                <div class="mb-4 flex-grow">
-                                    <h3 class="text-xl font-bold text-slate-900 leading-tight mb-1">${item.Title}</h3>
-                                    <p class="text-emerald-600 text-xs font-bold uppercase tracking-wider mb-3">${categorySafe}</p>
-                                    <p class="text-slate-600 text-sm leading-relaxed">${item.Description}</p>
+                                <div class="mb-6 flex-grow">
+                                    <p class="text-emerald-600 text-xs font-bold uppercase tracking-widest mb-1.5">${categorySafe}</p>
+                                    <h3 class="text-2xl font-black text-slate-950 leading-tight mb-3 group-hover:text-${themeColor}-700 transition-colors">${item.Title}</h3>
+                                    <p class="text-slate-600 text-base leading-relaxed flex-grow">${item.Description}</p>
                                 </div>
                                 
-                                <div class="mt-auto border-t border-slate-100 pt-4 flex items-center justify-between">
-                                    <div class="text-xs font-bold text-slate-500">
-                                        ${deadlineText}
+                                <div class="mt-auto border-t border-slate-100 pt-5 flex items-center justify-between gap-4">
+                                    <div class="text-sm font-semibold text-slate-600 flex items-center">
+                                        ${footerText}
                                     </div>
-                                    <a href="${item.Link || '#'}" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-emerald-600 font-bold text-sm flex items-center gap-1 transition">
-                                        View <i class="fa-solid fa-arrow-right text-xs"></i>
+                                    <a href="${item.Link || '#'}" target="_blank" rel="noopener noreferrer" 
+                                       class="shrink-0 bg-slate-950 text-white px-5 py-3 rounded-xl text-sm font-bold flex items-center gap-2.5 hover:bg-${themeColor}-600 transition shadow-md shadow-slate-950/10">
+                                        View Details <i class="fa-solid fa-arrow-right text-xs"></i>
                                     </a>
                                 </div>
                             </div>
@@ -197,9 +222,9 @@
                         grid.insertAdjacentHTML('beforeend', cardHTML);
                     });
 
-                    // 3. Live Filtering Logic (Runs as you type or select)
+                    // 3. LIVE FILTERING ENGINE: Instant searching and dropdown selection logic
                     function filterGrid() {
-                        const searchValue = searchInput.value.toLowerCase();
+                        const searchValue = searchInput.value.toLowerCase().trim();
                         const categoryValue = categoryDropdown.value;
                         const cards = document.querySelectorAll('.opp-card');
 
@@ -208,7 +233,7 @@
                             const cardText = card.getAttribute('data-searchtext');
                             
                             const matchesCategory = categoryValue === 'All' || cardCategory === categoryValue;
-                            const matchesSearch = cardText.includes(searchValue);
+                            const matchesSearch = searchValue === "" || cardText.includes(searchValue);
 
                             if (matchesCategory && matchesSearch) {
                                 card.classList.remove('hidden-card');
@@ -218,12 +243,13 @@
                         });
                     }
 
+                    // Attach event listeners for real-time interaction
                     searchInput.addEventListener('input', filterGrid);
                     categoryDropdown.addEventListener('change', filterGrid);
 
                 },
                 error: function(error) {
-                    console.error("Error fetching data:", error);
+                    console.error("Error fetching PapaParse data:", error);
                     document.getElementById('loading-state').classList.add('hidden');
                     document.getElementById('error-state').classList.remove('hidden');
                 }
