@@ -3,31 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opportunities - Rural Wales STEM Hub</title>
+    <title>STEM Opportunities - Rural Wales STEM Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
         .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-        .loader {
-            border: 4px solid #f8fafc;
-            border-top: 4px solid #059669;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .hidden-card { display: none !important; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-card-in { animation: fadeIn 0.4s ease-out forwards; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
@@ -35,16 +17,14 @@
     <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20 relative">
-                
                 <div class="flex items-center justify-start z-20">
                     <a href="index.html" class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
                         <i class="fa-solid fa-atom text-emerald-600 animate-pulse"></i>
                         <span class="whitespace-nowrap">Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
                     </a>
                 </div>
-                
                 <div class="hidden lg:flex absolute inset-x-0 top-0 h-full justify-center pointer-events-none z-10">
-                    <div class="flex items-center space-x-6 xl:space-x-8 h-full pointer-events-auto">
+                    <div class="flex items-center space-x-5 xl:space-x-7 h-full pointer-events-auto">
                         <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
                         <a href="opportunities.html" class="text-emerald-600 font-bold text-base h-full flex items-center border-b-2 border-emerald-600">Opportunities</a>
                         <a href="timeline.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Timeline</a>
@@ -54,7 +34,6 @@
                         <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">About</a>
                     </div>
                 </div>
-
                 <div class="flex items-center justify-end gap-4 z-20">
                     <a href="contact.html" class="hidden lg:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Contact</a>
                     <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition lg:hidden pointer-events-auto z-30">
@@ -63,7 +42,6 @@
                 </div>
             </div>
         </div>
-
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner">
             <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
             <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">Opportunities</a>
@@ -75,204 +53,148 @@
         </div>
     </nav>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         
-        <div class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-            <div class="max-w-2xl text-center md:text-left mx-auto md:mx-0">
-                <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-3">Live Opportunities</h1>
-                <p class="text-slate-600 text-lg md:text-xl font-medium leading-relaxed">Discover elite apprenticeships, scholarships, and exams curated for ambitious students in Wales.</p>
-            </div>
-            <a href="timeline.html" class="shrink-0 bg-slate-900 text-white px-7 py-3.5 rounded-2xl text-base font-bold flex items-center gap-2.5 hover:bg-slate-800 transition shadow-lg mx-auto md:mx-0">
-                <i class="fa-regular fa-calendar-check text-emerald-400"></i> View My Timeline
-            </a>
+        <div class="mb-8 md:mb-12 text-center lg:text-left bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 md:p-12 shadow-xl text-white">
+            <h1 class="text-3xl md:text-5xl font-black tracking-tighter mb-4">STEM Opportunities Finder</h1>
+            <p class="text-slate-300 text-base md:text-xl font-medium max-w-2xl leading-relaxed">Find work experience, summer camps, and degree apprenticeships near you or online.</p>
         </div>
 
-        <div id="filter-container" class="bg-white border border-slate-100 rounded-3xl p-5 shadow-sm mb-12 hidden">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="relative md:col-span-3">
-                    <i class="fa-solid fa-search absolute left-4.5 top-4 text-slate-400"></i>
-                    <input type="text" id="search-input" placeholder="Search by role, company, location, or keyword..." class="w-full pl-12 pr-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm md:text-base bg-slate-50 font-semibold placeholder-slate-400 transition">
-                </div>
+        <div class="sticky top-20 z-40 bg-slate-50/95 backdrop-blur-md py-4 border-b border-slate-200 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
+            <div id="filter-container" class="flex whitespace-nowrap gap-2 sm:justify-center lg:justify-start min-w-max">
+                <button data-filter="all" class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-slate-900 text-white transition shadow-sm flex items-center gap-2">
+                    All Regions
+                </button>
+                <button data-filter="north" class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-map-pin text-emerald-500"></i> North Wales
+                </button>
+                <button data-filter="south" class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-map-pin text-blue-500"></i> South Wales
+                </button>
+                <button data-filter="west-mid" class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-map-pin text-amber-500"></i> West & Mid Wales
+                </button>
+                <button data-filter="remote" class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-globe text-purple-500"></i> Remote / Online
+                </button>
+            </div>
+        </div>
+
+        <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div data-region="north" class="op-card bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition duration-200">
                 <div>
-                    <select id="category-filter" class="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm md:text-base bg-slate-50 font-semibold transition text-slate-700 cursor-pointer appearance-none">
-                        <option value="All">All Classifications</option>
-                    </select>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase tracking-widest">Work Experience</span>
+                        <span class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-location-dot mr-1 text-emerald-600"></i> North Wales</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-2">Airbus Aerospace Insight Day</h3>
+                    <p class="text-slate-600 text-sm mb-6">Spend a day shadowing industrial engineers at the Broughton facility learning structural aircraft manufacturing metrics.</p>
                 </div>
+                <a href="#" class="w-full text-center bg-slate-950 text-white font-bold py-3 rounded-xl text-sm hover:bg-emerald-600 transition-colors">Apply Now</a>
             </div>
-        </div>
 
-        <div id="loading-state" class="flex flex-col items-center justify-center py-24 text-center">
-            <div class="loader mb-5"></div>
-            <p class="text-slate-900 font-bold text-lg">Syncing with Live Database...</p>
-        </div>
-
-        <div id="error-state" class="hidden text-center py-24 px-6 bg-white rounded-3xl border border-red-100 shadow-sm">
-            <p class="text-slate-950 font-black text-xl mb-2 tracking-tight">Database Connection Failed</p>
-        </div>
-
-        <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
+            <div data-region="south" class="op-card bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition duration-200">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 rounded-lg bg-blue-50 text-blue-700 text-[10px] font-black uppercase tracking-widest">Apprenticeship</span>
+                        <span class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-location-dot mr-1 text-blue-600"></i> South Wales</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-2">GE Aerospace Systems Placement</h3>
+                    <p class="text-slate-600 text-sm mb-6">Advanced technical software engineering track focused on propulsion mechanics base platforms in Nantgarw.</p>
+                </div>
+                <a href="#" class="w-full text-center bg-slate-950 text-white font-bold py-3 rounded-xl text-sm hover:bg-blue-600 transition-colors">Apply Now</a>
             </div>
+
+            <div data-region="west-mid" class="op-card bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition duration-200">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 rounded-lg bg-amber-50 text-amber-700 text-[10px] font-black uppercase tracking-widest">Summer School</span>
+                        <span class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-location-dot mr-1 text-amber-600"></i> West & Mid</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-2">Aberystwyth Robotics Bootcamp</h3>
+                    <p class="text-slate-600 text-sm mb-6">A hands-on residential week building autonomous rovers using computational algorithms and sensory diagnostics.</p>
+                </div>
+                <a href="#" class="w-full text-center bg-slate-950 text-white font-bold py-3 rounded-xl text-sm hover:bg-amber-600 transition-colors">Apply Now</a>
+            </div>
+
+            <div data-region="remote" class="op-card bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition duration-200">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 rounded-lg bg-purple-50 text-purple-700 text-[10px] font-black uppercase tracking-widest">Virtual Event</span>
+                        <span class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-globe mr-1 text-purple-600"></i> Online</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-2">NCSC Virtual Cyber Exploration</h3>
+                    <p class="text-slate-600 text-sm mb-6">A fully online, interactive introduction to threat vector analysis and network defense architecture frameworks.</p>
+                </div>
+                <a href="#" class="w-full text-center bg-slate-950 text-white font-bold py-3 rounded-xl text-sm hover:bg-purple-600 transition-colors">Apply Now</a>
+            </div>
+
+        </div>
+
+        <div id="no-results" class="hidden text-center py-12 bg-white border border-slate-200 rounded-3xl mt-6">
+            <i class="fa-regular fa-folder-open text-slate-300 text-4xl mb-3"></i>
+            <p class="text-slate-500 font-medium">No active opportunities found for this region at the moment.</p>
+        </div>
 
     </main>
 
     <script>
-        const sheetCSVUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSyvn7qSCsr734NAvG_1QTR1rP6Cb_WwJfE5UW1hXAEhG99a8LHygnKwAYaL2Q0EiOeUkGpdbZKWKN/pub?output=csv";
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.op-card');
+        const noResults = document.getElementById('no-results');
 
-        // LocalStorage logic for saving items
-        function getSavedItems() {
-            return JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
-        }
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const activeFilter = button.getAttribute('data-filter');
 
-        function toggleSave(btn, title, deadline, category, link) {
-            let savedItems = getSavedItems();
-            const existsIndex = savedItems.findIndex(item => item.title === title);
+                // 1. Reset visual classes for all navigation filter pills
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-slate-900', 'text-white');
+                    btn.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
+                });
 
-            if (existsIndex > -1) {
-                // Remove it
-                savedItems.splice(existsIndex, 1);
-                btn.innerHTML = `<i class="fa-regular fa-bookmark"></i> Save`;
-                btn.classList.remove('bg-emerald-100', 'text-emerald-700', 'border-emerald-200');
-                btn.classList.add('bg-slate-50', 'text-slate-600', 'border-slate-200', 'hover:bg-slate-100');
-            } else {
-                // Add it
-                savedItems.push({ title, deadline, category, link });
-                btn.innerHTML = `<i class="fa-solid fa-bookmark"></i> Saved`;
-                btn.classList.remove('bg-slate-50', 'text-slate-600', 'border-slate-200', 'hover:bg-slate-100');
-                btn.classList.add('bg-emerald-100', 'text-emerald-700', 'border-emerald-200');
-            }
-            
-            localStorage.setItem('mySTEMTimeline', JSON.stringify(savedItems));
-        }
+                // Highlight currently clicked active filter button
+                button.classList.add('bg-slate-900', 'text-white');
+                button.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
 
-        document.addEventListener("DOMContentLoaded", () => {
-            Papa.parse(sheetCSVUrl, {
-                download: true,
-                header: true,
-                skipEmptyLines: true,
-                complete: function(results) {
-                    const data = results.data;
-                    const grid = document.getElementById('opportunities-grid');
-                    const filterContainer = document.getElementById('filter-container');
-                    const loader = document.getElementById('loading-state');
-                    const categoryDropdown = document.getElementById('category-filter');
-                    const searchInput = document.getElementById('search-input');
+                // 2. Structural filtering execution logic
+                let visibleCount = 0;
 
-                    loader.classList.add('hidden');
-                    if (data.length === 0) return;
-
-                    grid.classList.remove('hidden');
-                    filterContainer.classList.remove('hidden');
-
-                    const rawCategories = data.map(item => item.Category).filter(Boolean);
-                    const uniqueCategories = [...new Set(rawCategories)].sort();
-                    uniqueCategories.forEach(category => {
-                        const option = document.createElement('option');
-                        option.value = category;
-                        option.innerText = category;
-                        categoryDropdown.appendChild(option);
-                    });
-
-                    const savedItems = getSavedItems();
-
-                    data.forEach((item, index) => {
-                        if(!item.Title || item.Title.trim() === "") return;
-
-                        const categorySafe = item.Category || 'STEM';
-                        const companySafe = item.Colour ? item.Colour.trim().toLowerCase() : 'emerald'; 
-                        const firstLetter = item.Title.charAt(0).toUpperCase();
-                        
-                        let deadlineBadge = '';
-                        let footerText = `<i class="fa-regular fa-calendar-days mr-1.5 text-slate-400"></i> Closes: ${item.Deadline || 'TBC'}`;
-                        let themeColor = companySafe; 
-                        
-                        if (item.Deadline && item.Deadline.toLowerCase() !== 'rolling') {
-                            deadlineBadge = `<span class="bg-${themeColor}-50 text-${themeColor}-700 text-xs font-bold px-3 py-1 rounded-full border border-${themeColor}-100 uppercase tracking-wider">Active</span>`;
-                        } else if (item.Deadline && item.Deadline.toLowerCase() === 'rolling') {
-                            themeColor = 'emerald';
-                            deadlineBadge = `<span class="bg-${themeColor}-50 text-${themeColor}-700 text-xs font-bold px-3 py-1 rounded-full border border-${themeColor}-100 uppercase tracking-wider"><i class="fa-solid fa-rotate-right mr-1.5 text-${themeColor}-400"></i>Rolling</span>`;
-                            footerText = `<i class="fa-solid fa-hourglass-start mr-1.5 text-${themeColor}-400"></i>Open Selection`;
-                        }
-
-                        // Check if this card is already saved by the user
-                        const isSaved = savedItems.some(saved => saved.title === item.Title);
-                        const btnClass = isSaved 
-                            ? "bg-emerald-100 text-emerald-700 border-emerald-200" 
-                            : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100";
-                        const btnIcon = isSaved ? `<i class="fa-solid fa-bookmark"></i> Saved` : `<i class="fa-regular fa-bookmark"></i> Save`;
-
-                        // Escaping quotes for the onClick function
-                        const safeTitle = item.Title.replace(/'/g, "\\'");
-                        const safeDeadline = item.Deadline ? item.Deadline.replace(/'/g, "\\'") : 'TBC';
-                        const safeCategory = categorySafe.replace(/'/g, "\\'");
-                        const safeLink = item.Link ? item.Link.replace(/'/g, "\\'") : '#';
-
-                        const cardHTML = `
-                            <div class="opp-card group animate-card-in bg-white rounded-3xl p-7 shadow-sm border border-slate-100/70 hover:shadow-2xl hover:border-emerald-100 hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full" 
-                                 data-category="${categorySafe}" 
-                                 data-searchtext="${item.Title.toLowerCase()} ${item.Description.toLowerCase()} ${categorySafe.toLowerCase()}"
-                                 style="animation-delay: ${index * 50}ms;">
-                                
-                                <div class="flex justify-between items-start mb-6">
-                                    <div class="w-16 h-16 bg-gradient-to-tr from-${themeColor}-600 to-${themeColor}-400 text-white rounded-2xl flex items-center justify-center text-3xl font-extrabold shadow-md border-4 border-white ring-1 ring-slate-100 shadow-${themeColor}-500/10">
-                                        ${firstLetter}
-                                    </div>
-                                    <div class="flex flex-col items-end gap-2">
-                                        ${deadlineBadge}
-                                        <button onclick="toggleSave(this, '${safeTitle}', '${safeDeadline}', '${safeCategory}', '${safeLink}')" class="text-xs font-bold px-3 py-1.5 rounded-lg border transition-colors flex items-center gap-1.5 shadow-sm ${btnClass}">
-                                            ${btnIcon}
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-6 flex-grow">
-                                    <p class="text-emerald-600 text-xs font-bold uppercase tracking-widest mb-1.5">${categorySafe}</p>
-                                    <h3 class="text-2xl font-black text-slate-950 leading-tight mb-3 group-hover:text-${themeColor}-700 transition-colors">${item.Title}</h3>
-                                    <p class="text-slate-600 text-base leading-relaxed flex-grow">${item.Description}</p>
-                                </div>
-                                
-                                <div class="mt-auto border-t border-slate-100 pt-5 flex items-center justify-between gap-4">
-                                    <div class="text-sm font-semibold text-slate-600 flex items-center">
-                                        ${footerText}
-                                    </div>
-                                    <a href="${item.Link || '#'}" target="_blank" rel="noopener noreferrer" 
-                                       class="shrink-0 bg-slate-950 text-white px-5 py-3 rounded-xl text-sm font-bold flex items-center gap-2.5 hover:bg-${themeColor}-600 transition shadow-md shadow-slate-950/10">
-                                        Details <i class="fa-solid fa-arrow-right text-xs"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        `;
-                        grid.insertAdjacentHTML('beforeend', cardHTML);
-                    });
-
-                    function filterGrid() {
-                        const searchValue = searchInput.value.toLowerCase().trim();
-                        const categoryValue = categoryDropdown.value;
-                        const cards = document.querySelectorAll('.opp-card');
-
-                        cards.forEach(card => {
-                            const cardCategory = card.getAttribute('data-category');
-                            const cardText = card.getAttribute('data-searchtext');
-                            const matchesCategory = categoryValue === 'All' || cardCategory === categoryValue;
-                            const matchesSearch = searchValue === "" || cardText.includes(searchValue);
-                            if (matchesCategory && matchesSearch) card.classList.remove('hidden-card');
-                            else card.classList.add('hidden-card');
-                        });
+                cards.forEach(card => {
+                    const cardRegion = card.getAttribute('data-region');
+                    
+                    if (activeFilter === 'all' || cardRegion === activeFilter) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
                     }
+                });
 
-                    searchInput.addEventListener('input', filterGrid);
-                    categoryDropdown.addEventListener('change', filterGrid);
+                // Display fallback alert if no metrics match filter selections
+                if (visibleCount === 0) {
+                    noResults.classList.remove('hidden');
+                } else {
+                    noResults.classList.add('hidden');
                 }
             });
         });
-    </script>
-    <script>
+
+        // Mobile Menu Logic
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
+
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            menuIcon.classList.toggle('fa-bars');
-            menuIcon.classList.toggle('fa-xmark');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
         });
     </script>
 </body>
