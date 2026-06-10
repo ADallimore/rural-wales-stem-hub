@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rural Wales STEM Hub</title>
+    <title>Rural Wales STEM Hub - Your Career Starts Here</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
         .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-        .bg-grid-pattern {
-            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-            background-size: 32px 32px;
+        .hero-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#10b981 0.75px, transparent 0.75px), radial-gradient(#10b981 0.75px, #f8fafc 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            opacity: 0.4;
         }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900 relative">
+<body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
 
     <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,104 +59,84 @@
             <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
             <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Suggest</a>
             <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">About</a>
+            <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
         </div>
     </nav>
 
-    <main class="flex-grow w-full">
-        
-        <section class="relative pt-20 pb-24 md:pt-32 md:pb-32 overflow-hidden">
-            <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-full bg-emerald-400/10 blur-[100px] rounded-full pointer-events-none"></div>
-            
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                <span class="inline-block bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-6 shadow-md shadow-slate-900/20">The Premier Welsh Student Network</span>
-                <h1 class="text-5xl md:text-7xl font-black text-slate-950 tracking-tighter mb-6 leading-[1.1]">
-                    Leveling the playing field for <span class="text-emerald-600">ambitious</span> rural students.
+    <header class="relative bg-white overflow-hidden border-b border-slate-200">
+        <div class="absolute inset-0 hero-pattern z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <span class="inline-block py-1.5 px-4 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-bold text-sm mb-6 tracking-wide shadow-sm">
+                    <i class="fa-solid fa-rocket mr-2"></i> Elevating Welsh Talent
+                </span>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 tracking-tighter mb-6 leading-tight">
+                    Level the playing field in <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">STEM.</span>
                 </h1>
-                <p class="text-lg md:text-2xl text-slate-600 font-medium max-w-3xl mx-auto mb-10 leading-relaxed">
-                    Discover elite Degree Apprenticeships, university access schemes, and crucial STEM exams all in one centralized, live-updating dashboard.
+                <p class="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+                    We connect ambitious students in rural Wales with elite degree apprenticeships, bursaries, and work experience placements. Don't let geography limit your potential.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="opportunities.html" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-bold px-8 py-4 rounded-2xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
-                        Browse Live Database <i class="fa-solid fa-arrow-right"></i>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="opportunities.html" class="w-full sm:w-auto bg-slate-900 text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-slate-800 transition shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2">
+                        Browse Opportunities <i class="fa-solid fa-arrow-right text-sm"></i>
                     </a>
-                    <a href="guides.html" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 text-lg font-bold px-8 py-4 rounded-2xl transition-all shadow-sm flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-book-open text-slate-400"></i> Read Strategy Guides
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-white border-y border-slate-200 py-8">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Featuring pathways & exams connected to</p>
-                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-slate-300 font-black text-xl md:text-2xl tracking-tight">
-                    <span class="hover:text-slate-800 transition-colors cursor-default">Russell Group</span>
-                    <span class="hover:text-slate-800 transition-colors cursor-default">UKMT</span>
-                    <span class="hover:text-slate-800 transition-colors cursor-default">Nuffield Foundation</span>
-                    <span class="hover:text-slate-800 transition-colors cursor-default">Airbus</span>
-                    <span class="hover:text-slate-800 transition-colors cursor-default">BBC Tech</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-24 bg-slate-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">How the Hub Works</h2>
-                    <p class="text-lg text-slate-600 font-medium">Your personalized engine for securing top-tier STEM opportunities.</p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm text-center">
-                        <div class="w-16 h-16 mx-auto bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-black mb-6">1</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Discover Options</h3>
-                        <p class="text-slate-600">Our live database aggregates hidden bursaries, apprenticeships, and summer schools that rural students often miss.</p>
-                    </div>
-                    <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm text-center">
-                        <div class="w-16 h-16 mx-auto bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl font-black mb-6">2</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Build Your Timeline</h3>
-                        <p class="text-slate-600">Save specific deadlines directly to your browser to create a customized roadmap for Year 11 and Year 12.</p>
-                    </div>
-                    <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm text-center">
-                        <div class="w-16 h-16 mx-auto bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl font-black mb-6">3</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Learn the Strategy</h3>
-                        <p class="text-slate-600">Read our expert guides on how to write a zero-experience CV and survive corporate assessment centres.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-24 bg-white border-t border-slate-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-end mb-10">
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-2">Live Right Now</h2>
-                        <p class="text-lg text-slate-600 font-medium">The latest additions to our database.</p>
-                    </div>
-                    <a href="opportunities.html" class="hidden md:inline-flex font-bold text-emerald-600 hover:text-emerald-700 transition items-center gap-1">
-                        View All <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <div id="home-opportunities-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="col-span-3 text-center py-10 text-slate-500 font-medium"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Fetching live data...</div>
-                </div>
-                
-                <div class="mt-8 text-center md:hidden">
-                    <a href="opportunities.html" class="inline-flex font-bold text-emerald-600 hover:text-emerald-700 transition items-center gap-1">
-                        View All Opportunities <i class="fa-solid fa-arrow-right"></i>
+                    <a href="timeline.html" class="w-full sm:w-auto bg-white text-slate-900 border-2 border-slate-200 px-8 py-4 rounded-xl text-lg font-bold hover:border-slate-900 hover:bg-slate-50 transition flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-calendar-check text-emerald-600"></i> My Timeline
                     </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </header>
 
-    </main>
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Everything you need to succeed</h2>
+                <p class="text-slate-600 text-lg font-medium max-w-2xl mx-auto">Stop searching through confusing university websites. We've built the ultimate toolkit for your STEM applications.</p>
+            </div>
 
-    <footer class="bg-slate-950 text-slate-400 py-10 text-center text-sm border-t-4 border-emerald-600">
-        <div class="max-w-7xl mx-auto px-4">
-            <p class="font-bold text-white text-lg mb-2"><i class="fa-solid fa-atom text-emerald-500 mr-2"></i>Rural Wales STEM Hub</p>
-            <p>Built for ambitious students. Aggregating paths to success.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition duration-300 group">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">Live Database</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">A constantly updated feed of the best work experience, degree apprenticeships, and summer schools available.</p>
+                    <a href="opportunities.html" class="text-emerald-600 font-bold hover:text-emerald-700 flex items-center gap-1">Explore Database <i class="fa-solid fa-chevron-right text-xs"></i></a>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition duration-300 group">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-regular fa-calendar-days"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">Custom Timeline</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Save opportunities directly to your browser and build a personalized application schedule so you never miss a deadline.</p>
+                    <a href="timeline.html" class="text-blue-600 font-bold hover:text-blue-700 flex items-center gap-1">View Timeline <i class="fa-solid fa-chevron-right text-xs"></i></a>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition duration-300 group">
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-chess-knight"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">Strategy Guides</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Expert articles on how to write a killer CV at 16, ace a corporate assessment centre, and choose the right pathway.</p>
+                    <a href="guides.html" class="text-purple-600 font-bold hover:text-purple-700 flex items-center gap-1">Read Guides <i class="fa-solid fa-chevron-right text-xs"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-400 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-atom text-emerald-500"></i>
+                <span class="text-white font-bold text-lg">Rural Wales STEM Hub</span>
+            </div>
+            <p class="text-sm">Built to empower the next generation of engineers, scientists, and innovators.</p>
+            <div class="flex gap-4">
+                <a href="contact.html" class="hover:text-white transition"><i class="fa-solid fa-envelope"></i></a>
+                <a href="suggest.html" class="hover:text-white transition"><i class="fa-solid fa-lightbulb"></i></a>
+            </div>
         </div>
     </footer>
 
@@ -174,59 +156,6 @@
             }
         });
     </script>
-
-    <script>
-        const sheetCSVUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSyvn7qSCsr734NAvG_1QTR1rP6Cb_WwJfE5UW1hXAEhG99a8LHygnKwAYaL2Q0EiOeUkGpdbZKWKN/pub?output=csv";
-
-        document.addEventListener("DOMContentLoaded", () => {
-            Papa.parse(sheetCSVUrl, {
-                download: true,
-                header: true,
-                skipEmptyLines: true,
-                complete: function(results) {
-                    const data = results.data.filter(item => item.Title && item.Title.trim() !== "");
-                    const grid = document.getElementById('home-opportunities-grid');
-                    grid.innerHTML = ''; // Clear loading spinner
-
-                    // Grab only the first 3 items
-                    const topThree = data.slice(0, 3);
-
-                    topThree.forEach((item) => {
-                        const categorySafe = item.Category || 'STEM';
-                        const firstLetter = item.Title.charAt(0).toUpperCase();
-                        
-                        let footerText = `<i class="fa-regular fa-calendar-days mr-1.5 text-slate-400"></i> Closes: ${item.Deadline || 'TBC'}`;
-                        if (item.Deadline && item.Deadline.toLowerCase() === 'rolling') {
-                            footerText = `<i class="fa-solid fa-rotate-right mr-1.5 text-slate-400"></i> Rolling Deadline`;
-                        }
-
-                        const cardHTML = `
-                            <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-100/70 hover:shadow-xl hover:border-emerald-100 hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                                <div class="flex justify-between items-start mb-5">
-                                    <div class="w-12 h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center text-xl font-black">
-                                        ${firstLetter}
-                                    </div>
-                                </div>
-                                <div class="mb-5 flex-grow">
-                                    <p class="text-emerald-600 text-[10px] font-extrabold uppercase tracking-widest mb-1.5">${categorySafe}</p>
-                                    <h3 class="text-xl font-black text-slate-950 leading-tight mb-2 truncate">${item.Title}</h3>
-                                    <p class="text-slate-600 text-sm line-clamp-2">${item.Description}</p>
-                                </div>
-                                <div class="border-t border-slate-100 pt-4">
-                                    <div class="text-xs font-semibold text-slate-500 mb-3">
-                                        ${footerText}
-                                    </div>
-                                    <a href="opportunities.html" class="block text-center w-full bg-slate-50 hover:bg-slate-100 text-slate-900 border border-slate-200 text-xs font-bold py-2.5 rounded-lg transition">
-                                        View in Database
-                                    </a>
-                                </div>
-                            </div>
-                        `;
-                        grid.insertAdjacentHTML('beforeend', cardHTML);
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
+
