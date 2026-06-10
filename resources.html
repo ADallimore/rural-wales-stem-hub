@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
@@ -58,159 +59,170 @@
 
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <div class="mb-16 text-center lg:text-left">
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-4">The STEM Resource Bank</h1>
-            <p class="text-slate-600 text-lg md:text-xl font-medium max-w-3xl leading-relaxed">Free, hand-picked extension materials, past papers, and study toolkits curated across all core STEM pillars.</p>
+        <div class="mb-12 text-center lg:text-left bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden text-white">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-emerald-500/10 blur-3xl rounded-full"></div>
+            <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-4 relative z-10">The STEM Resource Bank</h1>
+            <p class="text-slate-300 text-lg md:text-xl font-medium max-w-2xl leading-relaxed relative z-10">Free extension masterclasses, past papers, and specialized admissions diagnostic toolkits curated across all core STEM pillars.</p>
         </div>
 
-        <section class="mb-16">
-            <div class="flex items-center gap-3 mb-6 border-b border-slate-200 pb-3">
-                <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-lg">
+        <div class="sticky top-20 z-40 bg-slate-50/90 backdrop-blur-md py-4 border-b border-slate-200 mb-12 hidden sm:block">
+            <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+                <a href="#science" class="px-4 py-2 rounded-xl text-sm font-bold bg-emerald-100 border border-emerald-200 text-emerald-800 hover:bg-emerald-600 hover:text-white transition shadow-sm"><i class="fa-solid fa-flask mr-1.5"></i> Science</a>
+                <a href="#technology" class="px-4 py-2 rounded-xl text-sm font-bold bg-cyan-100 border border-cyan-200 text-cyan-800 hover:bg-cyan-600 hover:text-white transition shadow-sm"><i class="fa-solid fa-code mr-1.5"></i> Technology</a>
+                <a href="#engineering" class="px-4 py-2 rounded-xl text-sm font-bold bg-amber-100 border border-amber-200 text-amber-800 hover:bg-amber-600 hover:text-white transition shadow-sm"><i class="fa-solid fa-gears mr-1.5"></i> Engineering</a>
+                <a href="#math" class="px-4 py-2 rounded-xl text-sm font-bold bg-blue-100 border border-blue-200 text-blue-800 hover:bg-blue-600 hover:text-white transition shadow-sm"><i class="fa-solid fa-calculator mr-1.5"></i> Mathematics</a>
+                <a href="#admissions" class="px-4 py-2 rounded-xl text-sm font-bold bg-purple-100 border border-purple-200 text-purple-800 hover:bg-purple-600 hover:text-white transition shadow-sm"><i class="fa-solid fa-graduation-cap mr-1.5"></i> Admissions</a>
+            </div>
+        </div>
+
+        <section id="science" class="mb-16 scroll-mt-40">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-emerald-600/20">
                     <i class="fa-solid fa-flask"></i>
                 </div>
-                <h2 class="text-2xl font-black text-slate-900">Science Vault (Physics, Chemistry, Biology)</h2>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Science Vault</h2>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div class="bg-white border-t-4 border-t-emerald-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-1">Isaac Physics Deep-Dive</h3>
-                        <p class="text-slate-500 text-xs mb-3">Format: Interactive Platform</p>
-                        <p class="text-slate-600 text-sm mb-4">A massive collection of targeted problem-solving questions backed by the Department for Education and Cambridge University.</p>
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-3">Physics</span>
+                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">Isaac Physics Deep-Dive</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">A massive collection of conceptual problem-solving tasks backed by Cambridge University to build deep mathematical intuition in physics.</p>
                     </div>
-                    <a href="https://isaacphysics.org/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-emerald-600 text-slate-800 hover:text-white border border-slate-200 hover:border-emerald-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                    <a href="https://isaacphysics.org/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
                         Start Practicing <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>
                 </div>
 
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div class="bg-white border-t-4 border-t-emerald-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-1">British Physics Olympiad (BPhO)</h3>
-                        <p class="text-slate-500 text-xs mb-3">Format: Past Papers</p>
-                        <p class="text-slate-600 text-sm mb-4">Extremely high-level conceptual physics problems designed to stretch your critical thinking past normal school curriculum boundaries.</p>
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-3">Olympiad</span>
+                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">British Physics Olympiad</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Extremely rigorous past challenges designed to stretch advanced theoretical understanding far beyond standard syllabus requirements.</p>
                     </div>
-                    <a href="https://www.bpho.org.uk/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-emerald-600 text-slate-800 hover:text-white border border-slate-200 hover:border-emerald-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                    <a href="https://www.bpho.org.uk/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
                         Access Papers <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="mb-16">
-            <div class="flex items-center gap-3 mb-6 border-b border-slate-200 pb-3">
-                <div class="w-10 h-10 bg-cyan-100 text-cyan-700 rounded-xl flex items-center justify-center text-lg">
+        <section id="technology" class="mb-16 scroll-mt-40">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-cyan-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-cyan-600/20">
                     <i class="fa-solid fa-code"></i>
                 </div>
-                <h2 class="text-2xl font-black text-slate-900">Technology & Computer Science</h2>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Technology & Computing</h2>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div class="bg-white border-t-4 border-t-cyan-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-cyan-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-1">NCSC CyberFirst Program</h3>
-                        <p class="text-slate-500 text-xs mb-3">Format: Government Training</p>
-                        <p class="text-slate-600 text-sm mb-4">The National Cyber Security Centre's specialized initiative designed to introduce Welsh students to the world of cyber security.</p>
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-cyan-50 text-cyan-700 text-xs font-bold uppercase tracking-wider mb-3">Cyber Security</span>
+                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-cyan-600 transition-colors">NCSC CyberFirst</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">The National Cyber Security Centre's flagship framework offering interactive student path development and defenses.</p>
                     </div>
-                    <a href="https://www.ncsc.gov.uk/cyberfirst/overview" target="_blank" class="w-full text-center bg-slate-50 hover:bg-cyan-600 text-slate-800 hover:text-white border border-slate-200 hover:border-cyan-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                    <a href="https://www.ncsc.gov.uk/cyberfirst/overview" target="_blank" class="w-full text-center bg-slate-900 hover:bg-cyan-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
                         Explore CyberFirst <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>
                 </div>
 
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div class="bg-white border-t-4 border-t-cyan-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-cyan-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-1">Harvard CS50 Introduction</h3>
-                        <p class="text-slate-500 text-xs mb-3">Format: Free Online Course</p>
-                        <p class="text-slate-600 text-sm mb-4">The gold standard beginner coding course. Learn the intellectual enterprises of computer science and the art of programming completely free.</p>
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-cyan-50 text-cyan-700 text-xs font-bold uppercase tracking-wider mb-3">Software</span>
+                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-cyan-600 transition-colors">Harvard CS50 Course</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">The premier entry-level introduction to the structural engineering of code, algorithmic analysis, and low-level execution languages.</p>
                     </div>
-                    <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank" class="w-full text-center bg-slate-50 hover:bg-cyan-600 text-slate-800 hover:text-white border border-slate-200 hover:border-cyan-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                    <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank" class="w-full text-center bg-slate-900 hover:bg-cyan-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
                         View Course <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="mb-16">
-            <div class="flex items-center gap-3 mb-6 border-b border-slate-200 pb-3">
-                <div class="w-10 h-10 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-lg">
+        <section id="engineering" class="mb-16 scroll-mt-40">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-amber-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-amber-600/20">
                     <i class="fa-solid fa-gears"></i>
                 </div>
-                <h2 class="text-2xl font-black text-slate-900">Engineering & Design</h2>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Engineering & Infrastructure</h2>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div class="bg-white border-t-4 border-t-amber-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-amber-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-1">Tomorrow's Engineers</h3>
-                        <p class="text-slate-500 text-xs mb-3">Format: Career Toolkits</p>
-                        <p class="text-slate-600 text-sm mb-4">A complete hub providing showcase materials, case studies, and engineering path blueprints tailored specifically for high schoolers.</p>
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 text-xs font-bold uppercase tracking-wider mb-3">Careers</span>
+                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">Tomorrow's Engineers</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">An industry network hub mapping out dynamic cross-sector pathways, engineering disciplines, and direct industrial insights.</p>
                     </div>
-                    <a href="https://www.tomorrowsengineers.org.uk/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-amber-600 text-slate-800 hover:text-white border border-slate-200 hover:border-amber-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                    <a href="https://www.tomorrowsengineers.org.uk/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-amber-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
                         Open Hub <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="mb-16">
-            <div class="flex items-center gap-3 mb-6 border-b border-slate-200 pb-3">
-                <div class="w-10 h-10 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center text-lg">
+        <section id="math" class="mb-16 scroll-mt-40">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-blue-600/20">
                     <i class="fa-solid fa-calculator"></i>
                 </div>
-                <h2 class="text-2xl font-black text-slate-900">Advanced Mathematics Vault</h2>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Advanced Mathematics</h2>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div class="bg-white border-t-4 border-t-blue-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-1">UKMT Senior Challenge Papers</h3>
-                        <p class="text-slate-500 text-xs mb-3">Format: PDF Archive</p>
-                        <p class="text-slate-600 text-sm mb-4">Official past papers and full analytical solutions for the UK Senior Mathematical Challenge to practice advanced logic skills.</p>
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">Logic Challenges</span>
+                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">UKMT Challenge Vault</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Past mathematical challenge booklets focused on deep logical deduction, structural geometry patterns, and analytical proofs.</p>
                     </div>
-                    <a href="https://www.ukmt.org.uk/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-blue-600 text-slate-800 hover:text-white border border-slate-200 hover:border-blue-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                    <a href="https://www.ukmt.org.uk/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
                         Access Vault <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>
                 </div>
 
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div class="bg-white border-t-4 border-t-blue-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-1">STEP Support Programme</h3>
-                        <p class="text-slate-500 text-xs mb-3">Format: Cambridge University Portal</p>
-                        <p class="text-slate-600 text-sm mb-4">Cambridge's brilliant, free preparation modules designed to systemically guide students into advanced university-level mathematics.</p>
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">University Prep</span>
+                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">STEP Support Programme</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Cambridge's advanced analytical mathematical problem-solving syllabus to prepare students completely free for step examinations.</p>
                     </div>
-                    <a href="https://www.maths.org/step/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-blue-600 text-slate-800 hover:text-white border border-slate-200 hover:border-blue-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                    <a href="https://www.maths.org/step/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
                         Open Official Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="mb-16">
-            <div class="flex items-center gap-3 mb-6 border-b border-slate-200 pb-3">
-                <div class="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center text-lg">
+        <section id="admissions" class="mb-16 scroll-mt-40">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-purple-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-purple-600/20">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <h2 class="text-2xl font-black text-slate-900">University Entrance Tests & Board Portals</h2>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">University Entrance & Board Portals</h2>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div class="bg-white border-t-4 border-t-purple-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-1">Official ESAT Portal</h3>
-                        <p class="text-slate-500 text-xs mb-3">Format: Test Registration & Specimen Materials</p>
-                        <p class="text-slate-600 text-sm mb-4">The formal, central registration hub for the brand-new Engineering and Science Admissions Test used by top-tier universities.</p>
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-purple-50 text-purple-700 text-xs font-bold uppercase tracking-wider mb-3">Entrance Test</span>
+                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">Official ESAT Portal</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Central guidelines, diagnostic timelines, and specimen tests for the Engineering and Science Admissions Test.</p>
                     </div>
-                    <a href="https://esat-tmua.ac.uk/esat-preparation-materials/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-purple-600 text-slate-800 hover:text-white border border-slate-200 hover:border-purple-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                    <a href="https://esat-test.org/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-purple-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
                         Go to ESAT Website <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>
                 </div>
 
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div class="bg-white border-t-4 border-t-purple-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-1">WJEC STEM Past Paper Portal</h3>
-                        <p class="text-slate-500 text-xs mb-3">Format: Official Board Link</p>
-                        <p class="text-slate-600 text-sm mb-4">Direct shortcuts to current and historical exam board materials specific to Welsh secondary school systems.</p>
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-purple-50 text-purple-700 text-xs font-bold uppercase tracking-wider mb-3">Curriculum</span>
+                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">WJEC STEM Past Papers</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Direct diagnostic search portal for past core curriculum materials assigned within the Welsh educational standard.</p>
                     </div>
-                    <a href="https://www.wjec.co.uk/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-purple-600 text-slate-800 hover:text-white border border-slate-200 hover:border-purple-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                    <a href="https://www.wjec.co.uk/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-purple-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
                         Go to WJEC Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>
                 </div>
