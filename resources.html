@@ -9,6 +9,17 @@
     <style>
         .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
         html { scroll-behavior: smooth; }
+        
+        /* Hide scrollbar for the horizontal pill menu but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Active Pill styling */
+        .pill-active {
+            background-color: #0f172a;
+            color: white !important;
+            border-color: #0f172a;
+        }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
@@ -16,14 +27,12 @@
     <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20 relative">
-                
                 <div class="flex items-center justify-start z-20">
                     <a href="index.html" class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
                         <i class="fa-solid fa-atom text-emerald-600 animate-pulse"></i>
                         <span class="whitespace-nowrap">Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
                     </a>
                 </div>
-                
                 <div class="hidden lg:flex absolute inset-x-0 top-0 h-full justify-center pointer-events-none z-10">
                     <div class="flex items-center space-x-5 xl:space-x-7 h-full pointer-events-auto">
                         <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
@@ -35,7 +44,6 @@
                         <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">About</a>
                     </div>
                 </div>
-
                 <div class="flex items-center justify-end gap-4 z-20">
                     <a href="contact.html" class="hidden lg:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Contact</a>
                     <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition lg:hidden pointer-events-auto z-30">
@@ -44,7 +52,6 @@
                 </div>
             </div>
         </div>
-
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner">
             <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
             <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Opportunities</a>
@@ -53,177 +60,177 @@
             <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
             <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Suggest</a>
             <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">About</a>
-            <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
         </div>
     </nav>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         
-        <div class="mb-12 text-center lg:text-left bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden text-white">
+        <div class="mb-8 md:mb-12 text-center lg:text-left bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 md:p-12 shadow-xl relative overflow-hidden text-white">
             <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-emerald-500/10 blur-3xl rounded-full"></div>
-            <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-4 relative z-10">The STEM Resource Bank</h1>
-            <p class="text-slate-300 text-lg md:text-xl font-medium max-w-2xl leading-relaxed relative z-10">Free extension masterclasses, past papers, and specialized admissions diagnostic toolkits curated across all core STEM pillars.</p>
+            <h1 class="text-3xl md:text-5xl font-black tracking-tighter mb-4 relative z-10">The STEM Resource Bank</h1>
+            <p class="text-slate-300 text-base md:text-xl font-medium max-w-2xl leading-relaxed relative z-10">Premium study toolkits and admissions diagnostic materials curated for ambitious Welsh students.</p>
         </div>
 
-        <div class="sticky top-20 z-40 bg-slate-50/90 backdrop-blur-md py-4 border-b border-slate-200 mb-12 hidden sm:block">
-            <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-                <a href="#science" class="px-4 py-2 rounded-xl text-sm font-bold bg-emerald-100 border border-emerald-200 text-emerald-800 hover:bg-emerald-600 hover:text-white transition shadow-sm"><i class="fa-solid fa-flask mr-1.5"></i> Science</a>
-                <a href="#technology" class="px-4 py-2 rounded-xl text-sm font-bold bg-cyan-100 border border-cyan-200 text-cyan-800 hover:bg-cyan-600 hover:text-white transition shadow-sm"><i class="fa-solid fa-code mr-1.5"></i> Technology</a>
-                <a href="#engineering" class="px-4 py-2 rounded-xl text-sm font-bold bg-amber-100 border border-amber-200 text-amber-800 hover:bg-amber-600 hover:text-white transition shadow-sm"><i class="fa-solid fa-gears mr-1.5"></i> Engineering</a>
-                <a href="#math" class="px-4 py-2 rounded-xl text-sm font-bold bg-blue-100 border border-blue-200 text-blue-800 hover:bg-blue-600 hover:text-white transition shadow-sm"><i class="fa-solid fa-calculator mr-1.5"></i> Mathematics</a>
-                <a href="#admissions" class="px-4 py-2 rounded-xl text-sm font-bold bg-purple-100 border border-purple-200 text-purple-800 hover:bg-purple-600 hover:text-white transition shadow-sm"><i class="fa-solid fa-graduation-cap mr-1.5"></i> Admissions</a>
+        <div class="sticky top-20 z-40 bg-slate-50/95 backdrop-blur-md py-4 border-b border-slate-200 mb-8 md:mb-12 -mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
+            <div class="flex whitespace-nowrap gap-2 sm:justify-center lg:justify-start min-w-max">
+                <a href="#science" class="px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-flask text-emerald-500"></i> Science
+                </a>
+                <a href="#technology" class="px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-cyan-600 hover:text-cyan-600 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-code text-cyan-500"></i> Technology
+                </a>
+                <a href="#engineering" class="px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-amber-600 hover:text-amber-600 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-gears text-amber-500"></i> Engineering
+                </a>
+                <a href="#math" class="px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-600 hover:text-blue-600 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-calculator text-blue-500"></i> Mathematics
+                </a>
+                <a href="#admissions" class="px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-purple-600 hover:text-purple-600 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-purple-500"></i> Admissions
+                </a>
             </div>
         </div>
 
-        <section id="science" class="mb-16 scroll-mt-40">
+        <section id="science" class="mb-12 md:mb-20 scroll-mt-48 md:scroll-mt-40">
             <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-emerald-600/20">
+                <div class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-emerald-600/20">
                     <i class="fa-solid fa-flask"></i>
                 </div>
                 <h2 class="text-2xl font-black text-slate-900 tracking-tight">Science Vault</h2>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border-t-4 border-t-emerald-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <span class="inline-block px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-3">Physics</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+                <div class="bg-white border-t-4 border-t-emerald-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                    <div class="flex-grow">
+                        <span class="inline-block px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase tracking-widest mb-3">Physics</span>
                         <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">Isaac Physics Deep-Dive</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">A massive collection of conceptual problem-solving tasks backed by Cambridge University to build deep mathematical intuition in physics.</p>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Conceptual problem-solving tasks from Cambridge University to build deep mathematical intuition.</p>
                     </div>
-                    <a href="https://isaacphysics.org/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                        Start Practicing <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <a href="https://isaacphysics.org/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                        Start Practicing <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
-
-                <div class="bg-white border-t-4 border-t-emerald-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <span class="inline-block px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-3">Olympiad</span>
+                <div class="bg-white border-t-4 border-t-emerald-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                    <div class="flex-grow">
+                        <span class="inline-block px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase tracking-widest mb-3">Olympiad</span>
                         <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">British Physics Olympiad</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Extremely rigorous past challenges designed to stretch advanced theoretical understanding far beyond standard syllabus requirements.</p>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Rigorous past challenges designed to stretch advanced theoretical understanding past school limits.</p>
                     </div>
-                    <a href="https://www.bpho.org.uk/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                        Access Papers <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <a href="https://www.bpho.org.uk/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                        Access Papers <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section id="technology" class="mb-16 scroll-mt-40">
+        <section id="technology" class="mb-12 md:mb-20 scroll-mt-48 md:scroll-mt-40">
             <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 bg-cyan-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-cyan-600/20">
+                <div class="w-10 h-10 bg-cyan-600 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-cyan-600/20">
                     <i class="fa-solid fa-code"></i>
                 </div>
                 <h2 class="text-2xl font-black text-slate-900 tracking-tight">Technology & Computing</h2>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border-t-4 border-t-cyan-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-cyan-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <span class="inline-block px-2.5 py-1 rounded-md bg-cyan-50 text-cyan-700 text-xs font-bold uppercase tracking-wider mb-3">Cyber Security</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+                <div class="bg-white border-t-4 border-t-cyan-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                    <div class="flex-grow">
+                        <span class="inline-block px-3 py-1 rounded-lg bg-cyan-50 text-cyan-700 text-[10px] font-black uppercase tracking-widest mb-3">Cyber Security</span>
                         <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-cyan-600 transition-colors">NCSC CyberFirst</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">The National Cyber Security Centre's flagship framework offering interactive student path development and defenses.</p>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Interactive student path development and defenses from the National Cyber Security Centre.</p>
                     </div>
-                    <a href="https://www.ncsc.gov.uk/cyberfirst/overview" target="_blank" class="w-full text-center bg-slate-900 hover:bg-cyan-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                        Explore CyberFirst <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <a href="https://www.ncsc.gov.uk/cyberfirst/overview" target="_blank" class="w-full text-center bg-slate-950 hover:bg-cyan-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                        Explore CyberFirst <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
-
-                <div class="bg-white border-t-4 border-t-cyan-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-cyan-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <span class="inline-block px-2.5 py-1 rounded-md bg-cyan-50 text-cyan-700 text-xs font-bold uppercase tracking-wider mb-3">Software</span>
+                <div class="bg-white border-t-4 border-t-cyan-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                    <div class="flex-grow">
+                        <span class="inline-block px-3 py-1 rounded-lg bg-cyan-50 text-cyan-700 text-[10px] font-black uppercase tracking-widest mb-3">Software</span>
                         <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-cyan-600 transition-colors">Harvard CS50 Course</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">The premier entry-level introduction to the structural engineering of code, algorithmic analysis, and low-level execution languages.</p>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">The premier introduction to algorithmic analysis and programming. The gold standard for coding.</p>
                     </div>
-                    <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank" class="w-full text-center bg-slate-900 hover:bg-cyan-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                        View Course <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank" class="w-full text-center bg-slate-950 hover:bg-cyan-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                        View Course <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section id="engineering" class="mb-16 scroll-mt-40">
+        <section id="engineering" class="mb-12 md:mb-20 scroll-mt-48 md:scroll-mt-40">
             <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 bg-amber-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-amber-600/20">
+                <div class="w-10 h-10 bg-amber-600 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-amber-600/20">
                     <i class="fa-solid fa-gears"></i>
                 </div>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Engineering & Infrastructure</h2>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Engineering</h2>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border-t-4 border-t-amber-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-amber-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <span class="inline-block px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 text-xs font-bold uppercase tracking-wider mb-3">Careers</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+                <div class="bg-white border-t-4 border-t-amber-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-amber-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                    <div class="flex-grow">
+                        <span class="inline-block px-3 py-1 rounded-lg bg-amber-50 text-amber-700 text-[10px] font-black uppercase tracking-widest mb-3">Industrial Insights</span>
                         <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">Tomorrow's Engineers</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">An industry network hub mapping out dynamic cross-sector pathways, engineering disciplines, and direct industrial insights.</p>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">A specialized hub mapping out engineering pathways and direct industry blueprints for students.</p>
                     </div>
-                    <a href="https://www.tomorrowsengineers.org.uk/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-amber-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                        Open Hub <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <a href="https://www.tomorrowsengineers.org.uk/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                        Open Hub <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section id="math" class="mb-16 scroll-mt-40">
+        <section id="math" class="mb-12 md:mb-20 scroll-mt-48 md:scroll-mt-40">
             <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-blue-600/20">
+                <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-blue-600/20">
                     <i class="fa-solid fa-calculator"></i>
                 </div>
                 <h2 class="text-2xl font-black text-slate-900 tracking-tight">Advanced Mathematics</h2>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border-t-4 border-t-blue-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <span class="inline-block px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">Logic Challenges</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+                <div class="bg-white border-t-4 border-t-blue-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                    <div class="flex-grow">
+                        <span class="inline-block px-3 py-1 rounded-lg bg-blue-50 text-blue-700 text-[10px] font-black uppercase tracking-widest mb-3">Logic Challenge</span>
                         <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">UKMT Challenge Vault</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Past mathematical challenge booklets focused on deep logical deduction, structural geometry patterns, and analytical proofs.</p>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Official past challenges focused on logic deduction and mathematical proofs for advanced students.</p>
                     </div>
-                    <a href="https://www.ukmt.org.uk/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                        Access Vault <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <a href="https://www.ukmt.org.uk/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-blue-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                        Access Vault <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
-
-                <div class="bg-white border-t-4 border-t-blue-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <span class="inline-block px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">University Prep</span>
+                <div class="bg-white border-t-4 border-t-blue-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                    <div class="flex-grow">
+                        <span class="inline-block px-3 py-1 rounded-lg bg-blue-50 text-blue-700 text-[10px] font-black uppercase tracking-widest mb-3">Preparation</span>
                         <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">STEP Support Programme</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Cambridge's advanced analytical mathematical problem-solving syllabus to prepare students completely free for step examinations.</p>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Cambridge's advanced analytical problem-solving syllabus to prepare students for university entrance.</p>
                     </div>
-                    <a href="https://www.maths.org/step/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                        Open Official Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <a href="https://www.maths.org/step/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-blue-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                        Open Portal <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section id="admissions" class="mb-16 scroll-mt-40">
+        <section id="admissions" class="mb-12 md:mb-20 scroll-mt-48 md:scroll-mt-40">
             <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 bg-purple-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-purple-600/20">
+                <div class="w-10 h-10 bg-purple-600 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-purple-600/20">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight">University Entrance & Board Portals</h2>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">University Admissions</h2>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border-t-4 border-t-purple-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <span class="inline-block px-2.5 py-1 rounded-md bg-purple-50 text-purple-700 text-xs font-bold uppercase tracking-wider mb-3">Entrance Test</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+                <div class="bg-white border-t-4 border-t-purple-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                    <div class="flex-grow">
+                        <span class="inline-block px-3 py-1 rounded-lg bg-purple-50 text-purple-700 text-[10px] font-black uppercase tracking-widest mb-3">Test Hub</span>
                         <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">Official ESAT Portal</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Central guidelines, diagnostic timelines, and specimen tests for the Engineering and Science Admissions Test.</p>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Central hub for the Engineering and Science Admissions Test used by top-tier universities.</p>
                     </div>
-                    <a href="https://esat-test.org/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-purple-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                        Go to ESAT Website <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <a href="https://esat-test.org/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-purple-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                        Go to Website <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
-
-                <div class="bg-white border-t-4 border-t-purple-500 border-x border-b border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <span class="inline-block px-2.5 py-1 rounded-md bg-purple-50 text-purple-700 text-xs font-bold uppercase tracking-wider mb-3">Curriculum</span>
-                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">WJEC STEM Past Papers</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Direct diagnostic search portal for past core curriculum materials assigned within the Welsh educational standard.</p>
+                <div class="bg-white border-t-4 border-t-purple-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                    <div class="flex-grow">
+                        <span class="inline-block px-3 py-1 rounded-lg bg-purple-50 text-purple-700 text-[10px] font-black uppercase tracking-widest mb-3">Board Portal</span>
+                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">WJEC STEM Papers</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Direct shortcuts to past curriculum materials for Welsh secondary school systems.</p>
                     </div>
-                    <a href="https://www.wjec.co.uk/" target="_blank" class="w-full text-center bg-slate-900 hover:bg-purple-600 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                        Go to WJEC Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <a href="https://www.wjec.co.uk/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-purple-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                        WJEC Portal <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
             </div>
@@ -232,6 +239,7 @@
     </main>
 
     <script>
+        // Mobile Menu Logic
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
