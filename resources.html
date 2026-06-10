@@ -3,165 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Essential STEM resources, websites, and organisations for rural Welsh students.">
-    <title>Resources | Rural Wales STEM Hub</title>
+    <title>Study Resources - Rural Wales STEM Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
-        .tail-container { font-family: 'Inter', sans-serif; }
-        .heading-font { font-family: 'Playfair Display', sans-serif; }
+        .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
     </style>
 </head>
-<body class="tail-container bg-slate-50 flex flex-col min-h-screen">
+<body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
 
- <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20 relative">
-            
-            <div class="flex items-center justify-start z-20">
-                <a href="index.html" class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
-                    <i class="fa-solid fa-atom text-emerald-600 animate-pulse"></i>
-                    <span class="whitespace-nowrap">Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
-                </a>
-            </div>
-            
-            <div class="hidden lg:flex absolute inset-x-0 top-0 h-full justify-center pointer-events-none z-10">
-                <div class="flex items-center space-x-6 xl:space-x-8 h-full pointer-events-auto">
-                    <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
-                    <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Opportunities</a>
-                   <a href="timeline.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Timeline</a>
-                    <a href="resources.html" class="text-emerald-600 font-bold text-base h-full flex items-center border-b-2 border-emerald-600">Resources</a>
-                    <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Guides</a>
-                    <a href="suggest.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Suggest</a>
-                    <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">About</a>
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 relative">
+                
+                <div class="flex items-center justify-start z-20">
+                    <a href="index.html" class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
+                        <i class="fa-solid fa-atom text-emerald-600 animate-pulse"></i>
+                        <span class="whitespace-nowrap">Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
+                    </a>
+                </div>
+                
+                <div class="hidden lg:flex absolute inset-x-0 top-0 h-full justify-center pointer-events-none z-10">
+                    <div class="flex items-center space-x-5 xl:space-x-7 h-full pointer-events-auto">
+                        <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
+                        <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Opportunities</a>
+                        <a href="timeline.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Timeline</a>
+                        <a href="resources.html" class="text-emerald-600 font-bold text-base h-full flex items-center border-b-2 border-emerald-600">Resources</a>
+                        <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Guides</a>
+                        <a href="suggest.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Suggest</a>
+                        <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">About</a>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end gap-4 z-20">
+                    <a href="contact.html" class="hidden lg:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Contact</a>
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition lg:hidden pointer-events-auto z-30">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
                 </div>
             </div>
-
-            <div class="flex items-center justify-end gap-4 z-20">
-                <a href="contact.html" class="hidden lg:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Contact</a>
-                <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition lg:hidden pointer-events-auto z-30">
-                    <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
-                </button>
-            </div>
-            
         </div>
-    </div>
 
-    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner">
-        <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
-        <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Opportunities</a>
-      <a href="timeline.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Timeline</a>
-        <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">Resources</a>
-        <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
-        <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Suggest</a>
-        <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">About</a>
-        <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
-    </div>
-</nav>
-
-<script>
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
-
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        if (mobileMenu.classList.contains('hidden')) {
-            menuIcon.classList.remove('fa-xmark');
-            menuIcon.classList.add('fa-bars');
-        } else {
-            menuIcon.classList.remove('fa-bars');
-            menuIcon.classList.add('fa-xmark');
-        }
-    });
-</script>
-    <header class="bg-emerald-800 text-white py-20 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
-            <h1 class="heading-font text-5xl md:text-6xl font-bold mb-6">STEM Resources</h1>
-            <p class="text-xl text-emerald-100 leading-relaxed">The best websites, organisations, and tools to help you discover and secure your future in Science, Technology, Engineering, and Maths.</p>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner">
+            <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
+            <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Opportunities</a>
+            <a href="timeline.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Timeline</a>
+            <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">Resources</a>
+            <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
+            <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Suggest</a>
+            <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">About</a>
+            <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
         </div>
-    </header>
+    </nav>
 
-    <main class="max-w-6xl mx-auto px-6 py-16 flex-grow w-full">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <a href="https://www.stemcymru.org.uk/" target="_blank" class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-emerald-200 transition-all group flex flex-col h-full">
-                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 mb-4 group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
-                    <i class="fa-solid fa-dragon"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">STEM Cymru</h3>
-                <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow">Runs the Engineering Education Scheme Wales (EESW) and offers fantastic hands-on STEM projects for students across Wales.</p>
-                <span class="text-emerald-700 text-sm font-semibold flex items-center gap-2">Visit Website <i class="fa-solid fa-arrow-right text-xs"></i></span>
-            </a>
-
-            <a href="https://careerswales.gov.wales/" target="_blank" class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-emerald-200 transition-all group flex flex-col h-full">
-                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 mb-4 group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
-                    <i class="fa-solid fa-briefcase"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">Careers Wales</h3>
-                <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow">The official Welsh Government careers portal. Excellent for finding local apprenticeships and understanding different STEM job profiles.</p>
-                <span class="text-emerald-700 text-sm font-semibold flex items-center gap-2">Visit Website <i class="fa-solid fa-arrow-right text-xs"></i></span>
-            </a>
-
-            <a href="https://www.gradcracker.com/" target="_blank" class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-emerald-200 transition-all group flex flex-col h-full">
-                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 mb-4 group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
-                    <i class="fa-solid fa-rocket"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">Gradcracker</h3>
-                <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow">The UK's top careers website for STEM students. While aimed mostly at university students, it's brilliant for researching which companies hire STEM graduates.</p>
-                <span class="text-emerald-700 text-sm font-semibold flex items-center gap-2">Visit Website <i class="fa-solid fa-arrow-right text-xs"></i></span>
-            </a>
-
-            <a href="https://www.stemsmart.org.uk/" target="_blank" class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-emerald-200 transition-all group flex flex-col h-full">
-                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 mb-4 group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
-                    <i class="fa-solid fa-microscope"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">STEM SMART Cambridge</h3>
-                <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow">A free initiative from the University of Cambridge to support state school students in their STEM A-levels. Highly recommended.</p>
-                <span class="text-emerald-700 text-sm font-semibold flex items-center gap-2">Visit Website <i class="fa-solid fa-arrow-right text-xs"></i></span>
-            </a>
-
-            <a href="https://www.suttontrust.com/" target="_blank" class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-emerald-200 transition-all group flex flex-col h-full">
-                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 mb-4 group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
-                    <i class="fa-solid fa-globe"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">Sutton Trust</h3>
-                <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow">Offers UK summer schools, US university programmes, and apprenticeships support for high-achieving students from less advantaged backgrounds.</p>
-                <span class="text-emerald-700 text-sm font-semibold flex items-center gap-2">Visit Website <i class="fa-solid fa-arrow-right text-xs"></i></span>
-            </a>
-
-            <a href="https://www.nuffieldresearchplacements.org/" target="_blank" class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-emerald-200 transition-all group flex flex-col h-full">
-                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 mb-4 group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
-                    <i class="fa-solid fa-flask"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">Nuffield Research Placements</h3>
-                <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow">Provides engaging, real-world research or development placement opportunities in STEM fields for Year 12 students.</p>
-                <span class="text-emerald-700 text-sm font-semibold flex items-center gap-2">Visit Website <i class="fa-solid fa-arrow-right text-xs"></i></span>
-            </a>
-
+        <div class="mb-16 text-center lg:text-left">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-4">The STEM Resource Bank</h1>
+            <p class="text-slate-600 text-lg md:text-xl font-medium max-w-3xl leading-relaxed">Free, hand-picked extension materials, past papers, and study toolkits to help you maximize your academic profile.</p>
         </div>
+
+        <section class="mb-16">
+            <div class="flex items-center gap-3 mb-6 border-b border-slate-200 pb-3">
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-900">Advanced Mathematics Vault</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-1">UKMT Senior Challenge Papers</h3>
+                        <p class="text-slate-500 text-xs mb-3">Format: PDF Archive</p>
+                        <p class="text-slate-600 text-sm mb-4">Official past papers and full analytical solutions for the UK Senior Mathematical Challenge to practice problem-solving.</p>
+                    </div>
+                    <a href="https://www.ukmt.org.uk/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-emerald-600 text-slate-800 hover:text-white border border-slate-200 hover:border-emerald-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        Access Vault <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-1">STEP Support Program</h3>
+                        <p class="text-slate-500 text-xs mb-3">Format: Online Portal</p>
+                        <p class="text-slate-600 text-sm mb-4">Cambridge University's free structured modules designed to bridge the gap between A-Level and advanced university math.</p>
+                    </div>
+                    <a href="https://www.stepsupportprogramme.orgs.maths.org/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-emerald-600 text-slate-800 hover:text-white border border-slate-200 hover:border-emerald-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        Open Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <div class="flex items-center gap-3 mb-6 border-b border-slate-200 pb-3">
+                <div class="w-10 h-10 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-900">Physics & Engineering Tools</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-1">British Physics Olympiad (BPhO)</h3>
+                        <p class="text-slate-500 text-xs mb-3">Format: Past Papers</p>
+                        <p class="text-slate-600 text-sm mb-4">Extremely high-level conceptual physics problems designed to stretch your critical thinking past normal A-Level constraints.</p>
+                    </div>
+                    <a href="https://www.bpho.org.uk/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-blue-600 text-slate-800 hover:text-white border border-slate-200 hover:border-blue-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        Access Vault <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-1">Isaac Physics Deep-Dive</h3>
+                        <p class="text-slate-500 text-xs mb-3">Format: Interactive Platform</p>
+                        <p class="text-slate-600 text-sm mb-4">A massive collection of targeted problem-solving questions backed by the Department for Education and Cambridge University.</p>
+                    </div>
+                    <a href="https://isaacphysics.org/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-blue-600 text-slate-800 hover:text-white border border-slate-200 hover:border-blue-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        Start Practicing <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <div class="flex items-center gap-3 mb-6 border-b border-slate-200 pb-3">
+                <div class="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-900">University Entrance & Curriculum</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-1">ESAT / MAT Preparation</h3>
+                        <p class="text-slate-500 text-xs mb-3">Format: Guide & Specimen Papers</p>
+                        <p class="text-slate-600 text-sm mb-4">Preparation guidelines for the brand new Engineering and Science Admissions Test (ESAT) and the Mathematical Admissions Test (MAT).</p>
+                    </div>
+                    <a href="#" class="w-full text-center bg-slate-50 hover:bg-purple-600 text-slate-800 hover:text-white border border-slate-200 hover:border-purple-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        View Resources <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-1">WJEC STEM Past Paper Portal</h3>
+                        <p class="text-slate-500 text-xs mb-3">Format: Official Board Link</p>
+                        <p class="text-slate-600 text-sm mb-4">Direct shortcuts to current and historic math, physics, and computer science exam papers specific to the Welsh exam board.</p>
+                    </div>
+                    <a href="https://www.wjec.co.uk/" target="_blank" class="w-full text-center bg-slate-50 hover:bg-purple-600 text-slate-800 hover:text-white border border-slate-200 hover:border-purple-600 font-bold py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        Go to WJEC Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-12 text-center mt-auto">
-        <p>&copy; 2026 Rural Wales STEM Pathways Hub • Created by Austin Dallimore</p>
-    </footer>
-<script>
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        if (mobileMenu.classList.contains('hidden')) {
-            menuIcon.classList.remove('fa-xmark');
-            menuIcon.classList.add('fa-bars');
-        } else {
-            menuIcon.classList.remove('fa-bars');
-            menuIcon.classList.add('fa-xmark');
-        }
-    });
-</script>
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+    </script>
 </body>
 </html>
