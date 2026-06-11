@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rural Wales STEM Hub</title>
+    <title>Rural Wales STEM Hub - Your Career Starts Here</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        .hero-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#10b981 0.75px, transparent 0.75px), radial-gradient(#10b981 0.75px, #f8fafc 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            opacity: 0.4;
+        }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
@@ -56,106 +63,82 @@
         </div>
     </nav>
 
-    <main class="flex-grow flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-16 md:py-24 max-w-5xl mx-auto w-full">
-        
-        <div class="text-center mb-6">
-            <span class="bg-emerald-50 text-emerald-700 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider border border-emerald-200">
-                Welcome to the Rural Wales STEM Hub
-            </span>
-        </div>
-
-        <section class="w-full text-center mb-20">
-            <div class="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm max-w-4xl mx-auto">
-                <h1 class="text-2xl md:text-4xl font-light text-slate-700 leading-relaxed md:leading-loose tracking-tight">
-                    I am a 
-                    <select id="user-stage" class="bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold px-3 py-1 rounded-xl mx-1 border-b-4 border-emerald-500 cursor-pointer focus:outline-none transition-colors inline-block text-xl md:text-3xl appearance-none text-center">
-                        <option value="y11">Year 11</option>
-                        <option value="y12" selected>Year 12</option>
-                    </select>
-                    student looking for 
-                    <select id="user-intent" class="bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold px-3 py-1 rounded-xl mx-1 border-b-4 border-emerald-500 cursor-pointer focus:outline-none transition-colors inline-block text-xl md:text-3xl appearance-none text-center">
-                        <option value="experience">Work Experience</option>
-                        <option value="apprenticeships">Apprenticeships</option>
-                        <option value="exams">STEM Exams</option>
-                        <option value="guides">Application Guides</option>
-                    </select>.
+    <header class="relative bg-white overflow-hidden border-b border-slate-200">
+        <div class="absolute inset-0 hero-pattern z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <span class="inline-block py-1.5 px-4 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-bold text-sm mb-6 tracking-wide shadow-sm">
+                    <i class="fa-solid fa-rocket mr-2"></i> Elevating Welsh Talent
+                </span>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 tracking-tighter mb-6 leading-tight">
+                    Level the playing field in <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">STEM.</span>
                 </h1>
-                
-                <div class="mt-8">
-                    <button onclick="handleMadLibsSearch()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3.5 rounded-xl text-base transition shadow-md hover:shadow-lg flex items-center gap-2 mx-auto">
-                        Find My Path <i class="fa-solid fa-arrow-right text-sm"></i>
-                    </button>
+                <p class="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+                    We connect ambitious students in rural Wales with elite degree apprenticeships, bursaries, and work experience placements. Don't let geography limit your potential.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="opportunities.html" class="w-full sm:w-auto bg-slate-900 text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-slate-800 transition shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2">
+                        Browse Opportunities <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                    <a href="timeline.html" class="w-full sm:w-auto bg-white text-slate-900 border-2 border-slate-200 px-8 py-4 rounded-xl text-lg font-bold hover:border-slate-900 hover:bg-slate-50 transition flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-calendar-check text-emerald-600"></i> My Timeline
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </header>
 
-        <section class="w-full max-w-4xl mx-auto">
-            <div class="text-center mb-10">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400">Or map out your long-term roadmap</h2>
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Everything you need to succeed</h2>
+                <p class="text-slate-600 text-lg font-medium max-w-2xl mx-auto">Stop searching through confusing university websites. We've built the ultimate toolkit for your STEM applications.</p>
             </div>
 
-            <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 w-full px-4">
-                
-                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-slate-200 -translate-y-1/2 z-0"></div>
-
-                <a href="timeline.html" class="relative z-10 bg-white border border-slate-200 rounded-2xl p-5 w-full md:w-48 text-center shadow-sm hover:shadow-md hover:border-emerald-300 group transition duration-300">
-                    <div class="w-10 h-10 bg-slate-100 text-slate-600 group-hover:bg-emerald-600 group-hover:text-white rounded-full flex items-center justify-center font-bold text-sm mx-auto mb-3 transition-colors">
-                        1
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition duration-300 group">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-database"></i>
                     </div>
-                    <h3 class="font-black text-slate-900 text-sm group-hover:text-emerald-600 transition-colors">Year 11 / GCSEs</h3>
-                    <p class="text-xs text-slate-500 mt-1">Explore local options & initial insights.</p>
-                </a>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">Live Database</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">A constantly updated feed of the best work experience, degree apprenticeships, and summer schools available.</p>
+                    <a href="opportunities.html" class="text-emerald-600 font-bold hover:text-emerald-700 flex items-center gap-1">Explore Database <i class="fa-solid fa-chevron-right text-xs"></i></a>
+                </div>
 
-                <a href="timeline.html" class="relative z-10 bg-white border border-slate-200 rounded-2xl p-5 w-full md:w-48 text-center shadow-sm hover:shadow-md hover:border-emerald-300 group transition duration-300">
-                    <div class="w-10 h-10 bg-slate-100 text-slate-600 group-hover:bg-emerald-600 group-hover:text-white rounded-full flex items-center justify-center font-bold text-sm mx-auto mb-3 transition-colors">
-                        2
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition duration-300 group">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-regular fa-calendar-days"></i>
                     </div>
-                    <h3 class="font-black text-slate-900 text-sm group-hover:text-emerald-600 transition-colors">Year 12 A-Levels</h3>
-                    <p class="text-xs text-slate-500 mt-1">The critical window for master actions.</p>
-                </a>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">Custom Timeline</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Save opportunities directly to your browser and build a personalized application schedule so you never miss a deadline.</p>
+                    <a href="timeline.html" class="text-blue-600 font-bold hover:text-blue-700 flex items-center gap-1">View Timeline <i class="fa-solid fa-chevron-right text-xs"></i></a>
+                </div>
 
-                <a href="opportunities.html" class="relative z-10 bg-white border border-slate-200 rounded-2xl p-5 w-full md:w-48 text-center shadow-sm hover:shadow-md hover:border-emerald-300 group transition duration-300">
-                    <div class="w-10 h-10 bg-slate-100 text-slate-600 group-hover:bg-emerald-600 group-hover:text-white rounded-full flex items-center justify-center font-bold text-sm mx-auto mb-3 transition-colors">
-                        3
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition duration-300 group">
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-chess-knight"></i>
                     </div>
-                    <h3 class="font-black text-slate-900 text-sm group-hover:text-emerald-600 transition-colors">Apply & Compete</h3>
-                    <p class="text-xs text-slate-500 mt-1">Sift open live bursaries & challenge applications.</p>
-                </a>
-
-                <a href="guides.html" class="relative z-10 bg-white border border-slate-200 rounded-2xl p-5 w-full md:w-48 text-center shadow-sm hover:shadow-md hover:border-emerald-300 group transition duration-300">
-                    <div class="w-10 h-10 bg-slate-100 text-slate-600 group-hover:bg-emerald-600 group-hover:text-white rounded-full flex items-center justify-center font-bold text-sm mx-auto mb-3 transition-colors">
-                        4
-                    </div>
-                    <h3 class="font-black text-slate-900 text-sm group-hover:text-emerald-600 transition-colors">Secure Future</h3>
-                    <p class="text-xs text-slate-500 mt-1">Master application, CV, & interview tactics.</p>
-                </a>
-
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">Strategy Guides</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Expert articles on how to write a killer CV at 16, ace a corporate assessment centre, and choose the right pathway.</p>
+                    <a href="guides.html" class="text-purple-600 font-bold hover:text-purple-700 flex items-center gap-1">Read Guides <i class="fa-solid fa-chevron-right text-xs"></i></a>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
-
-    <footer class="bg-white border-t border-slate-100 py-8 text-center text-xs text-slate-400 mt-auto">
-        <p>© Rural Wales STEM Hub. Designed with clarity to serve ambitious regional minds.</p>
+    <footer class="bg-slate-950 text-slate-400 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-atom text-emerald-500"></i>
+                <span class="text-white font-bold text-lg">Rural Wales STEM Hub</span>
+            </div>
+            <p class="text-sm">Built to empower the next generation of engineers, scientists, and innovators.</p>
+            <div class="flex gap-4">
+                <a href="contact.html" class="hover:text-white transition"><i class="fa-solid fa-envelope"></i></a>
+                <a href="suggest.html" class="hover:text-white transition"><i class="fa-solid fa-lightbulb"></i></a>
+            </div>
+        </div>
     </footer>
-
-    <script>
-        function handleMadLibsSearch() {
-            const stage = document.getElementById('user-stage').value;
-            const intent = document.getElementById('user-intent').value;
-
-            // Route dynamically based on user choices
-            if (intent === 'guides') {
-                window.location.href = 'guides.html';
-            } else if (intent === 'exams') {
-                window.location.href = 'opportunities.html'; // Fall directly back to database filters
-            } else if (stage === 'y11' && intent === 'experience') {
-                window.location.href = 'timeline.html'; // Takes them directly to Year 11 Autumn timeline
-            } else {
-                window.location.href = 'opportunities.html';
-            }
-        }
-    </script>
 
     <script>
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -173,6 +156,6 @@
             }
         });
     </script>
-
 </body>
 </html>
+
