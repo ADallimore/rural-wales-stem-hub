@@ -76,18 +76,18 @@
                 <button onclick="resetForm()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-3 rounded-xl transition shadow-sm">Submit Another</button>
             </div>
 
-            <form id="suggestion-form" class="space-y-6">
+            <form id="suggestion-form" action="https://formspree.io/f/mrevkgjz" method="POST" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     
                     <div class="space-y-2">
                         <label for="title" class="block text-sm font-bold text-slate-700">Opportunity Title <span class="text-red-500">*</span></label>
-                        <input type="text" id="title" required placeholder="e.g. Airbus Engineering Apprenticeship" 
+                        <input type="text" id="title" name="title" required placeholder="e.g. Airbus Engineering Apprenticeship" 
                             class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition placeholder-slate-400 font-medium">
                     </div>
 
                     <div class="space-y-2">
                         <label for="category" class="block text-sm font-bold text-slate-700">Category <span class="text-red-500">*</span></label>
-                        <select id="category" required 
+                        <select id="category" name="category" required 
                             class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition font-medium appearance-none cursor-pointer">
                             <option value="" disabled selected>Select a category...</option>
                             <option value="apprenticeship">Apprenticeship</option>
@@ -106,20 +106,20 @@
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <i class="fa-solid fa-link text-slate-400"></i>
                         </div>
-                        <input type="url" id="link" required placeholder="https://..." 
+                        <input type="url" id="link" name="link" required placeholder="https://..." 
                             class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition placeholder-slate-400 font-medium">
                     </div>
                 </div>
 
                 <div class="space-y-2">
                     <label for="deadline" class="block text-sm font-bold text-slate-700">Closing Date <span class="text-slate-400 font-normal ml-1">(if known)</span></label>
-                    <input type="date" id="deadline" 
+                    <input type="date" id="deadline" name="deadline" 
                         class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition font-medium text-slate-500">
                 </div>
 
                 <div class="space-y-2">
                     <label for="description" class="block text-sm font-bold text-slate-700">Brief Description</label>
-                    <textarea id="description" rows="3" placeholder="What makes this a great opportunity for students?" 
+                    <textarea id="description" name="description" rows="3" placeholder="What makes this a great opportunity for students?" 
                         class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition placeholder-slate-400 font-medium resize-none"></textarea>
                 </div>
 
@@ -128,7 +128,7 @@
                 <div class="space-y-2">
                     <label for="email" class="block text-sm font-bold text-slate-700">Your Email Address <span class="text-slate-400 font-normal ml-1">(Optional)</span></label>
                     <p class="text-xs text-slate-500 mb-2">We'll only use this to contact you if we need more details about your submission.</p>
-                    <input type="email" id="email" placeholder="you@example.com" 
+                    <input type="email" id="email" name="email" placeholder="you@example.com" 
                         class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition placeholder-slate-400 font-medium">
                 </div>
 
@@ -141,24 +141,42 @@
     </main>
 
     <script>
-        // Form Submission Logic
+        // Form Submission Logic connected to Formspree
         const form = document.getElementById('suggestion-form');
         const successState = document.getElementById('success-state');
 
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault(); // Stop the page from reloading
+
+            // Gather the data from the form
+            const data = new FormData(e.target);
             
-            // In a real app, you would send the data to a server here.
-            // For now, we just show the success animation!
-            
-            form.style.opacity = '0';
-            setTimeout(() => {
-                successState.classList.remove('hidden');
-            }, 300);
+            try {
+                // Send the data to Formspree
+                const response = await fetch(e.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                // If Formspree accepts it, show your custom success animation!
+                if (response.ok) {
+                    form.style.opacity = '0';
+                    setTimeout(() => {
+                        successState.classList.remove('hidden');
+                        form.reset(); // Clear the form in the background
+                    }, 300);
+                } else {
+                    alert("Oops! There was a problem submitting your opportunity.");
+                }
+            } catch (error) {
+                alert("Oops! There was a problem submitting your opportunity.");
+            }
         });
 
         function resetForm() {
-            form.reset(); // Clear the inputs
             successState.classList.add('hidden');
             form.style.opacity = '1';
         }
