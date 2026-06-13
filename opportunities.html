@@ -101,11 +101,6 @@
                     <i class="fa-solid fa-layer-group absolute left-4 top-4 text-emerald-600"></i>
                     <select id="category-filter" class="w-full pl-11 pr-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm md:text-base bg-emerald-50 font-semibold transition text-emerald-800 cursor-pointer appearance-none">
                         <option value="All">All Categories</option>
-                        <option value="Apprenticeship">Apprenticeships</option>
-                        <option value="Work Experience">Work Experience</option>
-                        <option value="Bursary">Bursaries & Grants</option>
-                        <option value="Webinar">Webinars & Events</option>
-                        <option value="Competition">STEM Competitions</option>
                     </select>
                 </div>
 
@@ -202,6 +197,16 @@
                     grid.classList.remove('hidden');
                     filterContainer.classList.remove('hidden');
 
+                    // Populate Category Dropdown Dynamically
+                    const rawCategories = data.map(item => item.Category).filter(Boolean);
+                    const uniqueCategories = [...new Set(rawCategories)].sort();
+                    uniqueCategories.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category;
+                        option.innerText = category;
+                        categoryDropdown.appendChild(option);
+                    });
+
                     const savedItems = getSavedItems();
 
                     data.forEach((item, index) => {
@@ -211,7 +216,7 @@
                         const companySafe = item.Colour ? item.Colour.trim().toLowerCase() : 'emerald'; 
                         const firstLetter = item.Title.charAt(0).toUpperCase();
                         
-                        // Variables for our extra filters
+                        // New variables for our extra filters
                         const regionSafe = item.Region || '';
                         const yearSafe = item.YearGroup || '';
                         
@@ -238,6 +243,7 @@
                         const safeCategory = categorySafe.replace(/'/g, "\\'");
                         const safeLink = item.Link ? item.Link.replace(/'/g, "\\'") : '#';
 
+                        // Notice we inject data-region and data-year into the card HTML below
                         const cardHTML = `
                             <div class="opp-card group animate-card-in bg-white rounded-3xl p-7 shadow-sm border border-slate-100/70 hover:shadow-2xl hover:border-emerald-100 hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full" 
                                  data-category="${categorySafe}" 
