@@ -3,165 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Suggest a STEM Opportunity for Rural Wales">
-    <title>Suggest an Opportunity | Rural Wales STEM Hub</title>
+    <title>Suggest an Opportunity - Rural Wales STEM Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
-        .tail-container { font-family: 'Inter', sans-serif; }
-        .heading-font { font-family: 'Playfair Display', sans-serif; }
+        .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
     </style>
 </head>
-<body class="tail-container bg-slate-50 flex flex-col min-h-screen">
+<body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
 
-<nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20 relative">
-            
-            <div class="flex items-center justify-start z-20">
-                <a href="index.html" class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
-                    <i class="fa-solid fa-atom text-emerald-600 animate-pulse"></i>
-                    <span class="whitespace-nowrap">Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
-                </a>
-            </div>
-            
-            <div class="hidden lg:flex absolute inset-x-0 top-0 h-full justify-center pointer-events-none z-10">
-                <div class="flex items-center space-x-6 xl:space-x-8 h-full pointer-events-auto">
-                    <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
-                    <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Opportunities</a>
-                    <a href="timeline.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Timeline</a>
-                    <a href="resources.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Resources</a>
-                    <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Guides</a>
-                    <a href="suggest.html" class="text-emerald-600 font-bold text-base h-full flex items-center border-b-2 border-emerald-600">Suggest</a>
-                    <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">About</a>
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 relative">
+                
+                <div class="flex items-center justify-start z-20">
+                    <a href="index.html" class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
+                        <i class="fa-solid fa-atom text-emerald-600"></i>
+                        <span class="whitespace-nowrap">Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
+                    </a>
+                </div>
+                
+                <div class="hidden lg:flex absolute inset-x-0 top-0 h-full justify-center pointer-events-none z-10">
+                    <div class="flex items-center space-x-5 xl:space-x-7 h-full pointer-events-auto">
+                        <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
+                        <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Opportunities</a>
+                        <a href="timeline.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Timeline</a>
+                        <a href="resources.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Resources</a>
+                        <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Guides</a>
+                        <a href="suggest.html" class="text-emerald-600 font-bold text-base h-full flex items-center border-b-2 border-emerald-600">Suggest</a>
+                        <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">About</a>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end gap-4 z-20">
+                    <a href="contact.html" class="hidden lg:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Contact</a>
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition lg:hidden pointer-events-auto z-30">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
                 </div>
             </div>
-
-            <div class="flex items-center justify-end gap-4 z-20">
-                <a href="contact.html" class="hidden lg:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Contact</a>
-                <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition lg:hidden pointer-events-auto z-30">
-                    <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
-                </button>
-            </div>
-            
         </div>
-    </div>
+        
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner">
+            <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
+            <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Opportunities</a>
+            <a href="timeline.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Timeline</a>
+            <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Resources</a>
+            <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
+            <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">Suggest</a>
+            <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">About</a>
+        </div>
+    </nav>
 
-    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner">
-        <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
-        <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Opportunities</a>
-       <a href="timeline.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Timeline</a>
-        <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Resources</a>
-        <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
-        <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">Suggest</a>
-        <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">About</a>
-        <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
-    </div>
-</nav>
-
-<script>
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
-
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        if (mobileMenu.classList.contains('hidden')) {
-            menuIcon.classList.remove('fa-xmark');
-            menuIcon.classList.add('fa-bars');
-        } else {
-            menuIcon.classList.remove('fa-bars');
-            menuIcon.classList.add('fa-xmark');
-        }
-    });
-</script>
-
-    <main class="max-w-3xl mx-auto px-6 py-16 flex-grow w-full">
-        <div class="text-center mb-10">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mb-6 text-2xl">
-                <i class="fa-solid fa-lightbulb"></i>
+    <main class="flex-grow max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        
+        <div class="mb-10 text-center">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm">
+                <i class="fa-solid fa-paper-plane"></i>
             </div>
-            <h1 class="heading-font text-4xl font-bold text-slate-900 mb-4">Suggest an Opportunity</h1>
-            <p class="text-slate-600 text-lg">Found a great apprenticeship, scheme, or summer school that would help rural Welsh students? Let me know so I can add it to the database!</p>
+            <h1 class="text-4xl font-black text-slate-900 tracking-tighter mb-4">Suggest an Opportunity</h1>
+            <p class="text-slate-600 text-lg font-medium">Know of a great apprenticeship, webinar, or bursary for Welsh students? Submit it below and we'll add it to the database.</p>
         </div>
 
-        <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
+        <div class="bg-white rounded-3xl p-6 md:p-10 border border-slate-200 shadow-sm relative overflow-hidden">
             
-            <form action="https://formspree.io/f/mrevkgjz" method="POST" class="space-y-6">
-                
+            <div id="success-state" class="hidden absolute inset-0 bg-white z-10 flex flex-col items-center justify-center p-8 text-center">
+                <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm animate-bounce">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="text-3xl font-black text-slate-900 mb-2">Submitted Successfully!</h3>
+                <p class="text-slate-600 mb-8 max-w-md">Thank you for contributing to the Hub. Our team will review your submission and add it to the live database shortly.</p>
+                <button onclick="resetForm()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-3 rounded-xl transition shadow-sm">Submit Another</button>
+            </div>
+
+            <form id="suggestion-form" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-900 mb-2">Opportunity Title <span class="text-red-500">*</span></label>
-                        <input type="text" name="title" required placeholder="e.g. Tata Steel Apprenticeship" 
-                               class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50 transition">
+                    
+                    <div class="space-y-2">
+                        <label for="title" class="block text-sm font-bold text-slate-700">Opportunity Title <span class="text-red-500">*</span></label>
+                        <input type="text" id="title" required placeholder="e.g. Airbus Engineering Apprenticeship" 
+                            class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition placeholder-slate-400 font-medium">
                     </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-900 mb-2">Category <span class="text-red-500">*</span></label>
-                        <select name="category" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50 transition">
-                            <option value="">Select a category...</option>
-                            <option value="Apprenticeship">Apprenticeship</option>
-                            <option value="Scholarship">Scholarship</option>
-                            <option value="Summer School">Summer School</option>
-                            <option value="Insight Programme">Insight Programme</option>
-                            <option value="Project">Project</option>
-                            <option value="General">General/Other</option>
+
+                    <div class="space-y-2">
+                        <label for="category" class="block text-sm font-bold text-slate-700">Category <span class="text-red-500">*</span></label>
+                        <select id="category" required 
+                            class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition font-medium appearance-none cursor-pointer">
+                            <option value="" disabled selected>Select a category...</option>
+                            <option value="apprenticeship">Apprenticeship</option>
+                            <option value="bursary">Bursary / Grant</option>
+                            <option value="work-experience">Work Experience</option>
+                            <option value="webinar">Webinar / Event</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
+
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-900 mb-2">Website Link <span class="text-red-500">*</span></label>
-                        <input type="url" name="link" required placeholder="https://..." 
-                               class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50 transition">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-900 mb-2">Deadline</label>
-                        <input type="text" name="deadline" placeholder="e.g. 15 May 2026 or 'Rolling'" 
-                               class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50 transition">
+                <div class="space-y-2">
+                    <label for="link" class="block text-sm font-bold text-slate-700">Link to Application / Details <span class="text-red-500">*</span></label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-link text-slate-400"></i>
+                        </div>
+                        <input type="url" id="link" required placeholder="https://..." 
+                            class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition placeholder-slate-400 font-medium">
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-sm font-semibold text-slate-900 mb-2">Brief Description</label>
-                    <textarea name="description" rows="3" placeholder="What is it and why is it good for Welsh students?" 
-                              class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50 transition resize-none"></textarea>
+                <div class="space-y-2">
+                    <label for="deadline" class="block text-sm font-bold text-slate-700">Closing Date <span class="text-slate-400 font-normal ml-1">(if known)</span></label>
+                    <input type="date" id="deadline" 
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition font-medium text-slate-500">
+                </div>
+
+                <div class="space-y-2">
+                    <label for="description" class="block text-sm font-bold text-slate-700">Brief Description</label>
+                    <textarea id="description" rows="3" placeholder="What makes this a great opportunity for students?" 
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition placeholder-slate-400 font-medium resize-none"></textarea>
                 </div>
 
                 <hr class="border-slate-100 my-6">
 
-                <div>
-                    <label class="block text-sm font-semibold text-slate-900 mb-2">Your Name & Email (Optional)</label>
-                    <input type="text" name="submitter_info" placeholder="So I can say thank you!" 
-                           class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50 transition mb-2">
+                <div class="space-y-2">
+                    <label for="email" class="block text-sm font-bold text-slate-700">Your Email Address <span class="text-slate-400 font-normal ml-1">(Optional)</span></label>
+                    <p class="text-xs text-slate-500 mb-2">We'll only use this to contact you if we need more details about your submission.</p>
+                    <input type="email" id="email" placeholder="you@example.com" 
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition placeholder-slate-400 font-medium">
                 </div>
 
-                <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-emerald-700/20 mt-4">
-                    Submit to Database
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-lg py-4 rounded-xl transition shadow-md hover:shadow-lg mt-4 flex items-center justify-center gap-2">
+                    Submit Opportunity <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </form>
-            </div>
+        </div>
+
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-12 text-center mt-auto">
-        <p>&copy; 2026 Rural Wales STEM Pathways Hub • Created by Austin Dallimore</p>
-    </footer>
-<script>
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
+    <script>
+        // Form Submission Logic
+        const form = document.getElementById('suggestion-form');
+        const successState = document.getElementById('success-state');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        if (mobileMenu.classList.contains('hidden')) {
-            menuIcon.classList.remove('fa-xmark');
-            menuIcon.classList.add('fa-bars');
-        } else {
-            menuIcon.classList.remove('fa-bars');
-            menuIcon.classList.add('fa-xmark');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop the page from reloading
+            
+            // In a real app, you would send the data to a server here.
+            // For now, we just show the success animation!
+            
+            form.style.opacity = '0';
+            setTimeout(() => {
+                successState.classList.remove('hidden');
+            }, 300);
+        });
+
+        function resetForm() {
+            form.reset(); // Clear the inputs
+            successState.classList.add('hidden');
+            form.style.opacity = '1';
         }
-    });
-</script>
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+    </script>
 </body>
 </html>
