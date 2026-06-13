@@ -6,11 +6,12 @@
     <title>My Timeline - Rural Wales STEM Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
+<body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900 overflow-x-hidden">
 
     <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,13 +19,13 @@
                 
                 <div class="flex items-center justify-start z-20">
                     <a href="index.html" class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
-                        <i class="fa-solid fa-atom text-emerald-600 animate-pulse"></i>
+                        <i class="fa-solid fa-atom text-emerald-600"></i>
                         <span class="whitespace-nowrap">Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
                     </a>
                 </div>
                 
                 <div class="hidden lg:flex absolute inset-x-0 top-0 h-full justify-center pointer-events-none z-10">
-                    <div class="flex items-center space-x-5 xl:space-x-7 h-full pointer-events-auto">
+                    <div class="flex items-center space-x-6 xl:space-x-8 h-full pointer-events-auto">
                         <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
                         <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Opportunities</a>
                         <a href="timeline.html" class="text-emerald-600 font-bold text-base h-full flex items-center border-b-2 border-emerald-600">Timeline</a>
@@ -43,203 +44,118 @@
                 </div>
             </div>
         </div>
-
+        
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner">
             <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
             <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Opportunities</a>
             <a href="timeline.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">Timeline</a>
             <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Resources</a>
             <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
-            <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Suggest</a>
-            <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">About</a>
-            <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
         </div>
     </nav>
 
-    <main class="flex-grow max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <div class="mb-12 text-center">
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-4">Your Action Plan</h1>
-            <p class="text-slate-600 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">Track your saved opportunities below, and follow the master STEM roadmap to ensure you never miss a milestone.</p>
+        <div class="mb-12 text-center md:text-left border-b border-slate-200 pb-8" data-aos="fade-down">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-3">My Application Timeline</h1>
+            <p class="text-slate-600 text-lg font-medium">Your saved opportunities, tracked locally so you never miss a deadline.</p>
         </div>
 
-        <section class="mb-20">
-            <div class="flex items-center gap-3 mb-6">
-                <i class="fa-solid fa-bookmark text-emerald-500 text-2xl"></i>
-                <h2 class="text-2xl font-bold text-slate-900">My Saved Schedule</h2>
+        <div id="empty-state" class="hidden flex flex-col items-center justify-center py-20 text-center bg-white rounded-3xl border border-slate-100 shadow-sm" data-aos="fade-up">
+            <div class="w-24 h-24 bg-slate-50 text-slate-300 rounded-full flex items-center justify-center text-4xl mb-6">
+                <i class="fa-regular fa-folder-open"></i>
             </div>
-            
-            <div id="personal-timeline-container">
-                <p class="text-slate-500 italic">Checking your saved items...</p>
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Your timeline is currently empty</h2>
+            <p class="text-slate-500 mb-8 max-w-md mx-auto">Head over to the live database, find the perfect STEM pathway, and hit "Save" to build your roadmap.</p>
+            <a href="opportunities.html" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-md transition">
+                Browse Opportunities
+            </a>
+        </div>
+
+        <div id="timeline-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden" data-aos="fade-up" data-aos-delay="100">
             </div>
-        </section>
-
-        <div class="w-full h-px bg-slate-200 mb-16"></div>
-
-        <section>
-            <div class="flex items-center gap-3 mb-10">
-                <i class="fa-solid fa-map-location-dot text-slate-900 text-2xl"></i>
-                <h2 class="text-2xl font-bold text-slate-900">The Master STEM Roadmap</h2>
-            </div>
-
-            <div class="relative border-l-4 border-slate-200 ml-4 md:ml-8">
-
-                <div class="mb-10 relative">
-                    <div class="absolute -left-5 md:-left-9 mt-1 w-10 h-10 md:w-14 md:h-14 bg-emerald-600 text-white rounded-full flex items-center justify-center font-black text-lg md:text-xl border-4 border-slate-50 shadow-sm z-10">
-                        Y11
-                    </div>
-                    <div class="ml-10 md:ml-12 pt-2 md:pt-3">
-                        <h2 class="text-2xl md:text-3xl font-black text-slate-900">Year 11 / GCSE Level</h2>
-                        <p class="text-slate-500 font-semibold mt-1">Laying the foundation and exploring your options.</p>
-                    </div>
-                </div>
-
-                <div class="mb-10 relative group">
-                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-emerald-500 transition-colors z-10"></div>
-                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Autumn Term (Sep - Dec)</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Research & Discovery</h3>
-                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Start attending virtual open days for major engineering hubs and universities.</li>
-                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Look into post-16 options: Sixth Form vs. College vs. Level 3 Apprenticeships.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mb-16 relative group">
-                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-emerald-500 transition-colors z-10"></div>
-                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="bg-amber-50 text-amber-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Spring Term (Jan - Apr)</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Apply for Summer Insights</h3>
-                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Corporate "Insight Weeks" for 15-16 year olds often close applications in February/March.</li>
-                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Draft your first basic CV. Focus on school projects, UKMT scores, and personal skills.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mb-10 relative">
-                    <div class="absolute -left-5 md:-left-9 mt-1 w-10 h-10 md:w-14 md:h-14 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-lg md:text-xl border-4 border-slate-50 shadow-sm z-10">
-                        Y12
-                    </div>
-                    <div class="ml-10 md:ml-12 pt-2 md:pt-3">
-                        <h2 class="text-2xl md:text-3xl font-black text-slate-900">Year 12 / First Year A-Level</h2>
-                        <p class="text-slate-500 font-semibold mt-1">The critical year for Degree Apprenticeships, Exams, & Bursaries.</p>
-                    </div>
-                </div>
-
-                <div class="mb-10 relative group">
-                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
-                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="bg-purple-50 text-purple-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Autumn Term (Sep - Dec)</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Early Applications & Olympiads</h3>
-                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Top-tier Degree Apprenticeships (like BBC, Airbus) open now.</li>
-                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Keep an eye on registration dates for Senior Maths Challenges and Olympiads.</li>
-                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Register for Nuffield Research Placements (crucial for Welsh students).</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mb-10 relative group">
-                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
-                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-red-500">
-                        <span class="bg-red-50 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Winter (Jan - Feb)</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">The Deadline Crunch</h3>
-                        <p class="text-slate-600 text-sm md:text-base mb-3">This is when 80% of major corporate schemes close. Do not leave applications to the last minute!</p>
-                        <a href="opportunities.html" class="inline-flex items-center text-sm font-bold text-emerald-600 hover:text-emerald-700 transition">
-                            Save Live Deadlines to your Dashboard <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="mb-4 relative group">
-                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
-                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="bg-teal-50 text-teal-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Summer Term (May - Jul)</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">University Admissions Tests</h3>
-                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Book your spot for specific university admissions tests (like ESAT or MAT) if required.</li>
-                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Secure your Year 12 summer work experience placement.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </section>
 
     </main>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        function renderPersonalTimeline() {
-            const container = document.getElementById('personal-timeline-container');
-            // Pull data from browser storage
-            const savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
+        AOS.init({ once: true, offset: 50 });
 
-            // If empty, show a nice empty state
-            if (savedItems.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12 px-6 bg-white rounded-3xl border border-slate-200 border-dashed">
-                        <div class="text-4xl mb-4 text-slate-300"><i class="fa-regular fa-calendar-xmark"></i></div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Your schedule is empty</h3>
-                        <p class="text-slate-500 mb-6 max-w-md mx-auto">Head over to the Opportunities page and click "Save" on exams, bursaries, or apprenticeships to build your custom timeline.</p>
-                        <a href="opportunities.html" class="inline-flex bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm hover:bg-emerald-700 transition shadow-sm">Browse Opportunities</a>
-                    </div>
-                `;
-                return;
-            }
-
-            // If populated, build the cards
-            let html = '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">';
-            savedItems.forEach((item, index) => {
-                html += `
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
-                        <div>
-                            <span class="text-[10px] font-extrabold text-emerald-600 uppercase tracking-widest mb-2 block bg-emerald-50 inline-block px-2 py-1 rounded-md">${item.category}</span>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2 leading-tight">${item.title}</h4>
-                            <p class="text-sm font-semibold text-slate-600 mb-5"><i class="fa-regular fa-clock mr-1.5 text-slate-400"></i> Deadline: <span class="text-slate-800">${item.deadline}</span></p>
-                        </div>
-                        <div class="flex items-center gap-3 mt-auto pt-4 border-t border-slate-100">
-                            <a href="${item.link}" target="_blank" class="flex-1 text-center bg-slate-50 hover:bg-slate-900 text-slate-700 hover:text-white border border-slate-200 hover:border-slate-900 text-xs font-bold py-2 rounded-lg transition">View Details</a>
-                            <button onclick="removeSavedItem(${index})" class="text-slate-400 hover:text-red-500 transition px-3 py-2 rounded-lg hover:bg-red-50" title="Remove from timeline">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-            html += '</div>';
-            container.innerHTML = html;
-        }
-
-        // Function to remove an item and re-render instantly
-        function removeSavedItem(index) {
-            let savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
-            savedItems.splice(index, 1);
-            localStorage.setItem('mySTEMTimeline', JSON.stringify(savedItems));
-            renderPersonalTimeline(); 
-        }
-
-        // Run the render function as soon as the page loads
-        document.addEventListener("DOMContentLoaded", renderPersonalTimeline);
-    </script>
-
-    <script>
+        // Mobile Menu Logic
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
-
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.classList.remove('fa-xmark');
-                menuIcon.classList.add('fa-bars');
-            } else {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-xmark');
-            }
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-xmark');
         });
-    </script>
 
+        // Function to remove an item from the timeline
+        function removeSavedItem(title) {
+            let savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
+            savedItems = savedItems.filter(item => item.title !== title);
+            localStorage.setItem('mySTEMTimeline', JSON.stringify(savedItems));
+            
+            // Re-render the grid immediately
+            renderTimeline();
+        }
+
+        // Function to render the timeline cards
+        function renderTimeline() {
+            const savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
+            const grid = document.getElementById('timeline-grid');
+            const emptyState = document.getElementById('empty-state');
+            
+            grid.innerHTML = '';
+
+            if (savedItems.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.classList.remove('hidden');
+
+            savedItems.forEach((item, index) => {
+                const safeTitle = item.title.replace(/'/g, "\\'");
+                const firstLetter = item.title.charAt(0).toUpperCase();
+
+                const cardHTML = `
+                    <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-200 hover:shadow-xl transition-all duration-300 flex flex-col relative group" style="animation: fadeIn 0.4s ease-out forwards; animation-delay: ${index * 50}ms; opacity: 0;">
+                        
+                        <button onclick="removeSavedItem('${safeTitle}')" class="absolute top-4 right-4 text-slate-300 hover:text-red-500 bg-slate-50 hover:bg-red-50 w-8 h-8 rounded-full flex items-center justify-center transition-colors" title="Remove from timeline">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+
+                        <div class="w-12 h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center text-2xl font-black shadow-inner mb-4">
+                            ${firstLetter}
+                        </div>
+                        
+                        <div class="mb-6 flex-grow">
+                            <p class="text-emerald-600 text-xs font-bold uppercase tracking-widest mb-1.5">${item.category}</p>
+                            <h3 class="text-xl font-black text-slate-900 leading-tight mb-2">${item.title}</h3>
+                        </div>
+                        
+                        <div class="mt-auto border-t border-slate-100 pt-5">
+                            <div class="flex items-center justify-between">
+                                <span class="bg-amber-50 text-amber-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-amber-200 flex items-center gap-1.5 shadow-sm">
+                                    <i class="fa-regular fa-clock"></i> Deadline: ${item.deadline}
+                                </span>
+                                <a href="${item.link}" target="_blank" class="text-slate-500 hover:text-emerald-600 font-bold text-sm flex items-center gap-1 transition">
+                                    Apply <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        // Run on page load
+        document.addEventListener("DOMContentLoaded", renderTimeline);
+    </script>
 </body>
 </html>
