@@ -26,13 +26,13 @@
                 
                 <div class="hidden lg:flex absolute inset-x-0 top-0 h-full justify-center pointer-events-none z-10">
                     <div class="flex items-center space-x-6 xl:space-x-8 h-full pointer-events-auto">
-                        <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
-                        <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Opportunities</a>
+                        <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base transition">Home</a>
+                        <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base transition">Opportunities</a>
                         <a href="timeline.html" class="text-emerald-600 font-bold text-base h-full flex items-center border-b-2 border-emerald-600">Timeline</a>
-                        <a href="resources.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Resources</a>
-                        <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Guides</a>
-                        <a href="suggest.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Suggest</a>
-                        <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-full flex items-center border-b-2 border-transparent hover:border-slate-200 transition">About</a>
+                        <a href="resources.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base transition">Resources</a>
+                        <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base transition">Guides</a>
+                        <a href="suggest.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base transition">Suggest</a>
+                        <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base transition">About</a>
                     </div>
                 </div>
 
@@ -51,24 +51,30 @@
             <a href="timeline.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">Timeline</a>
             <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Resources</a>
             <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
+            <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
         </div>
     </nav>
 
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <div class="mb-12 text-center md:text-left border-b border-slate-200 pb-8" data-aos="fade-down">
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-3">My Application Timeline</h1>
-            <p class="text-slate-600 text-lg font-medium">Your saved opportunities, tracked locally so you never miss a deadline.</p>
+        <div class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-slate-200 pb-8" data-aos="fade-down">
+            <div class="max-w-2xl text-center md:text-left mx-auto md:mx-0">
+                <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-3">Application Pipeline</h1>
+                <p class="text-slate-600 text-lg md:text-xl font-medium leading-relaxed">Your shortlisted opportunities, tracked and prioritized by deadline.</p>
+            </div>
+            <a href="opportunities.html" class="shrink-0 bg-white text-slate-900 border-2 border-slate-200 px-7 py-3.5 rounded-2xl text-base font-bold flex items-center gap-2.5 hover:border-slate-900 hover:bg-slate-50 transition mx-auto md:mx-0">
+                <i class="fa-solid fa-plus text-emerald-600"></i> Find More
+            </a>
         </div>
 
-        <div id="empty-state" class="hidden flex flex-col items-center justify-center py-20 text-center bg-white rounded-3xl border border-slate-100 shadow-sm" data-aos="fade-up">
+        <div id="empty-state" class="hidden flex flex-col items-center justify-center py-24 text-center bg-white rounded-3xl border border-slate-100 shadow-sm" data-aos="fade-up">
             <div class="w-24 h-24 bg-slate-50 text-slate-300 rounded-full flex items-center justify-center text-4xl mb-6">
                 <i class="fa-regular fa-folder-open"></i>
             </div>
-            <h2 class="text-2xl font-bold text-slate-900 mb-2">Your timeline is currently empty</h2>
-            <p class="text-slate-500 mb-8 max-w-md mx-auto">Head over to the live database, find the perfect STEM pathway, and hit "Save" to build your roadmap.</p>
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Your pipeline is empty</h2>
+            <p class="text-slate-500 mb-8 max-w-md mx-auto">Head back to the live database and click "Save" on opportunities to start building your customized roadmap.</p>
             <a href="opportunities.html" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-md transition">
-                Browse Opportunities
+                Explore Database
             </a>
         </div>
 
@@ -81,27 +87,41 @@
     <script>
         AOS.init({ once: true, offset: 50 });
 
-        // Mobile Menu Logic
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            menuIcon.classList.toggle('fa-bars');
-            menuIcon.classList.toggle('fa-xmark');
+        // Mobile Menu
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+            document.getElementById('menu-icon').classList.toggle('fa-bars');
+            document.getElementById('menu-icon').classList.toggle('fa-xmark');
         });
 
-        // Function to remove an item from the timeline
         function removeSavedItem(title) {
             let savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
             savedItems = savedItems.filter(item => item.title !== title);
             localStorage.setItem('mySTEMTimeline', JSON.stringify(savedItems));
-            
-            // Re-render the grid immediately
             renderTimeline();
         }
 
-        // Function to render the timeline cards
+        function calculateUrgency(deadlineStr) {
+            if (!deadlineStr || deadlineStr === 'TBC') return { label: 'TBC', color: 'slate' };
+            if (deadlineStr.toLowerCase() === 'rolling') return { label: 'Rolling', color: 'blue' };
+
+            // Parse DD/MM/YYYY
+            const parts = deadlineStr.split(/[-/]/);
+            let dateObj = new Date(deadlineStr);
+            if (parts.length === 3 && parts[0].length <= 2) {
+                dateObj = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+            }
+
+            if (isNaN(dateObj.getTime())) return { label: deadlineStr, color: 'emerald' };
+
+            const today = new Date();
+            const daysLeft = Math.ceil((dateObj - today) / (1000 * 60 * 60 * 24));
+
+            if (daysLeft < 0) return { label: 'Closed', color: 'red', passed: true };
+            if (daysLeft <= 14) return { label: `🔥 ${daysLeft} Days Left`, color: 'orange' };
+            return { label: `Active`, color: 'emerald' };
+        }
+
         function renderTimeline() {
             const savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
             const grid = document.getElementById('timeline-grid');
@@ -121,32 +141,40 @@
             savedItems.forEach((item, index) => {
                 const safeTitle = item.title.replace(/'/g, "\\'");
                 const firstLetter = item.title.charAt(0).toUpperCase();
-
+                
+                // Urgency Logic
+                const urgency = calculateUrgency(item.deadline);
+                const isPassed = urgency.passed ? "opacity-60 grayscale" : "";
+                
                 const cardHTML = `
-                    <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-200 hover:shadow-xl transition-all duration-300 flex flex-col relative group" style="animation: fadeIn 0.4s ease-out forwards; animation-delay: ${index * 50}ms; opacity: 0;">
+                    <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-100/70 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full relative ${isPassed}" style="animation: fadeIn 0.4s ease-out forwards; animation-delay: ${index * 50}ms; opacity: 0;">
                         
-                        <button onclick="removeSavedItem('${safeTitle}')" class="absolute top-4 right-4 text-slate-300 hover:text-red-500 bg-slate-50 hover:bg-red-50 w-8 h-8 rounded-full flex items-center justify-center transition-colors" title="Remove from timeline">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-
-                        <div class="w-12 h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center text-2xl font-black shadow-inner mb-4">
-                            ${firstLetter}
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center text-3xl font-extrabold shadow-md border-4 border-white ring-1 ring-slate-100 shrink-0">
+                                ${firstLetter}
+                            </div>
+                            <div class="flex flex-col items-end gap-2 text-right">
+                                <span class="bg-${urgency.color}-50 text-${urgency.color}-700 text-xs font-bold px-3 py-1 rounded-full border border-${urgency.color}-100 uppercase tracking-wider">
+                                    ${urgency.label}
+                                </span>
+                                <button onclick="removeSavedItem('${safeTitle}')" class="text-xs font-bold px-3 py-1.5 rounded-lg border border-red-200 bg-red-50 text-red-600 hover:bg-red-100 transition-colors flex items-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-trash-can"></i> Remove
+                                </button>
+                            </div>
                         </div>
                         
                         <div class="mb-6 flex-grow">
-                            <p class="text-emerald-600 text-xs font-bold uppercase tracking-widest mb-1.5">${item.category}</p>
-                            <h3 class="text-xl font-black text-slate-900 leading-tight mb-2">${item.title}</h3>
+                            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1.5">${item.category || 'Opportunity'}</p>
+                            <h3 class="text-2xl font-black text-slate-950 leading-tight mb-3">${item.title}</h3>
                         </div>
                         
-                        <div class="mt-auto border-t border-slate-100 pt-5">
-                            <div class="flex items-center justify-between">
-                                <span class="bg-amber-50 text-amber-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-amber-200 flex items-center gap-1.5 shadow-sm">
-                                    <i class="fa-regular fa-clock"></i> Deadline: ${item.deadline}
-                                </span>
-                                <a href="${item.link}" target="_blank" class="text-slate-500 hover:text-emerald-600 font-bold text-sm flex items-center gap-1 transition">
-                                    Apply <i class="fa-solid fa-arrow-right"></i>
-                                </a>
+                        <div class="mt-auto border-t border-slate-100 pt-5 flex items-center justify-between gap-4">
+                            <div class="text-sm font-semibold text-slate-600 flex items-center">
+                                <i class="fa-regular fa-calendar-days mr-1.5 text-slate-400"></i> ${item.deadline || 'TBC'}
                             </div>
+                            <a href="${item.link || '#'}" target="_blank" class="shrink-0 bg-slate-950 text-white px-5 py-3 rounded-xl text-sm font-bold flex items-center gap-2.5 hover:bg-emerald-600 transition shadow-md">
+                                Apply <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
                         </div>
                     </div>
                 `;
@@ -154,7 +182,6 @@
             });
         }
 
-        // Run on page load
         document.addEventListener("DOMContentLoaded", renderTimeline);
     </script>
 </body>
