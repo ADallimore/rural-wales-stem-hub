@@ -82,7 +82,7 @@
         <div class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6" data-aos="fade-down">
             <div class="max-w-2xl text-center md:text-left mx-auto md:mx-0">
                 <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-3">Live Opportunities</h1>
-                <p class="text-slate-600 text-lg md:text-xl font-medium leading-relaxed">Discover elite apprenticeships, scholarships, and exams curated for ambitious students in Wales.</p>
+                <p class="text-slate-600 text-lg md:text-xl font-medium leading-relaxed">Discover elite apprenticeships, scholarships, and challenges curated for ambitious students in Wales.</p>
             </div>
             <a href="timeline.html" class="shrink-0 bg-slate-900 text-white px-7 py-3.5 rounded-2xl text-base font-bold flex items-center gap-2.5 hover:bg-slate-800 transition shadow-lg mx-auto md:mx-0 transform hover:-translate-y-1">
                 <i class="fa-regular fa-calendar-check text-emerald-400"></i> View My Timeline
@@ -97,7 +97,7 @@
                     <input type="text" id="search-input" placeholder="Search by role, company, location, or keyword..." class="w-full pl-12 pr-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm md:text-base bg-slate-50 font-semibold placeholder-slate-400 transition">
                 </div>
                 
-                <div class="w-full lg:w-48 shrink-0 relative">
+                <div class="w-full lg:w-56 shrink-0 relative">
                     <i class="fa-solid fa-layer-group absolute left-4 top-4 text-emerald-600"></i>
                     <select id="category-filter" class="w-full pl-11 pr-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm md:text-base bg-emerald-50 font-semibold transition text-emerald-800 cursor-pointer appearance-none">
                         <option value="All">All Categories</option>
@@ -138,20 +138,17 @@
             <p class="text-slate-950 font-black text-xl mb-2 tracking-tight">Database Connection Failed</p>
         </div>
 
-        <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
-            </div>
+        <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden"></div>
 
     </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // Initialize AOS
         AOS.init({ once: true, offset: 50 });
 
         const sheetCSVUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSyvn7qSCsr734NAvG_1QTR1rP6Cb_WwJfE5UW1hXAEhG99a8LHygnKwAYaL2Q0EiOeUkGpdbZKWKN/pub?output=csv";
 
-        // LocalStorage logic for saving items
         function getSavedItems() {
             return JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
         }
@@ -163,13 +160,11 @@
             if (existsIndex > -1) {
                 savedItems.splice(existsIndex, 1);
                 btn.innerHTML = `<i class="fa-regular fa-bookmark"></i> Save`;
-                btn.classList.remove('bg-emerald-100', 'text-emerald-700', 'border-emerald-200');
-                btn.classList.add('bg-slate-50', 'text-slate-600', 'border-slate-200', 'hover:bg-slate-100');
+                btn.className = "text-xs font-bold px-3 py-1.5 rounded-lg border transition-colors flex items-center gap-1.5 shadow-sm bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100";
             } else {
                 savedItems.push({ title, deadline, category, link });
                 btn.innerHTML = `<i class="fa-solid fa-bookmark"></i> Saved`;
-                btn.classList.remove('bg-slate-50', 'text-slate-600', 'border-slate-200', 'hover:bg-slate-100');
-                btn.classList.add('bg-emerald-100', 'text-emerald-700', 'border-emerald-200');
+                btn.className = "text-xs font-bold px-3 py-1.5 rounded-lg border transition-colors flex items-center gap-1.5 shadow-sm bg-emerald-100 text-emerald-700 border-emerald-200";
             }
             
             localStorage.setItem('mySTEMTimeline', JSON.stringify(savedItems));
@@ -213,23 +208,43 @@
                         if(!item.Title || item.Title.trim() === "") return;
 
                         const categorySafe = item.Category || 'STEM';
-                        const companySafe = item.Colour ? item.Colour.trim().toLowerCase() : 'emerald'; 
-                        const firstLetter = item.Title.charAt(0).toUpperCase();
+                        const catLower = categorySafe.toLowerCase();
                         
-                        // New variables for our extra filters
+                        // Intelligent theme mapping based on category names if explicit color isn't provided
+                        let themeColor = item.Colour ? item.Colour.trim().toLowerCase() : 'emerald'; 
+                        if (!item.Colour) {
+                            if (catLower.includes('competition')) themeColor = 'amber';
+                            else if (catLower.includes('project')) themeColor = 'indigo';
+                            else if (catLower.includes('apprenticeship')) themeColor = 'blue';
+                            else if (catLower.includes('bursary') || catLower.includes('grant')) themeColor = 'purple';
+                            else if (catLower.includes('webinar') || catLower.includes('masterclass')) themeColor = 'rose';
+                        }
+
+                        // Premium Custom Avatar Graphic Engine
+                        let avatarGraphic = item.Title.charAt(0).toUpperCase();
+                        if (catLower.includes('competition')) {
+                            avatarGraphic = '<i class="fa-solid fa-trophy text-2xl"></i>';
+                        } else if (catLower.includes('project')) {
+                            avatarGraphic = '<i class="fa-solid fa-diagram-project text-2xl"></i>';
+                        } else if (catLower.includes('apprenticeship')) {
+                            avatarGraphic = '<i class="fa-solid fa-briefcase text-2xl"></i>';
+                        } else if (catLower.includes('bursary') || catLower.includes('grant')) {
+                            avatarGraphic = '<i class="fa-solid fa-award text-2xl"></i>';
+                        } else if (catLower.includes('webinar') || catLower.includes('masterclass')) {
+                            avatarGraphic = '<i class="fa-solid fa-laptop-code text-2xl"></i>';
+                        }
+                        
                         const regionSafe = item.Region || '';
                         const yearSafe = item.YearGroup || '';
                         
                         let deadlineBadge = '';
                         let footerText = `<i class="fa-regular fa-calendar-days mr-1.5 text-slate-400"></i> Closes: ${item.Deadline || 'TBC'}`;
-                        let themeColor = companySafe; 
                         
                         if (item.Deadline && item.Deadline.toLowerCase() !== 'rolling') {
                             deadlineBadge = `<span class="bg-${themeColor}-50 text-${themeColor}-700 text-xs font-bold px-3 py-1 rounded-full border border-${themeColor}-100 uppercase tracking-wider">Active</span>`;
                         } else if (item.Deadline && item.Deadline.toLowerCase() === 'rolling') {
-                            themeColor = 'emerald';
-                            deadlineBadge = `<span class="bg-${themeColor}-50 text-${themeColor}-700 text-xs font-bold px-3 py-1 rounded-full border border-${themeColor}-100 uppercase tracking-wider"><i class="fa-solid fa-rotate-right mr-1.5 text-${themeColor}-400"></i>Rolling</span>`;
-                            footerText = `<i class="fa-solid fa-hourglass-start mr-1.5 text-${themeColor}-400"></i>Open Selection`;
+                            deadlineBadge = `<span class="bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-100 uppercase tracking-wider"><i class="fa-solid fa-rotate-right mr-1.5 text-emerald-400"></i>Rolling</span>`;
+                            footerText = `<i class="fa-solid fa-hourglass-start mr-1.5 text-emerald-400"></i>Open Selection`;
                         }
 
                         const isSaved = savedItems.some(saved => saved.title === item.Title);
@@ -243,9 +258,8 @@
                         const safeCategory = categorySafe.replace(/'/g, "\\'");
                         const safeLink = item.Link ? item.Link.replace(/'/g, "\\'") : '#';
 
-                        // Notice we inject data-region and data-year into the card HTML below
                         const cardHTML = `
-                            <div class="opp-card group animate-card-in bg-white rounded-3xl p-7 shadow-sm border border-slate-100/70 hover:shadow-2xl hover:border-emerald-100 hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full" 
+                            <div class="opp-card group animate-card-in bg-white rounded-3xl p-7 shadow-sm border border-slate-100/70 hover:shadow-2xl hover:border-${themeColor}-100 hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full" 
                                  data-category="${categorySafe}" 
                                  data-region="${regionSafe}"
                                  data-year="${yearSafe}"
@@ -253,8 +267,8 @@
                                  style="animation-delay: ${index * 50}ms;">
                                 
                                 <div class="flex justify-between items-start mb-6">
-                                    <div class="w-16 h-16 bg-gradient-to-tr from-${themeColor}-600 to-${themeColor}-400 text-white rounded-2xl flex items-center justify-center text-3xl font-extrabold shadow-md border-4 border-white ring-1 ring-slate-100 shadow-${themeColor}-500/10 shrink-0">
-                                        ${firstLetter}
+                                    <div class="w-16 h-16 bg-gradient-to-tr from-${themeColor}-600 to-${themeColor}-400 text-white rounded-2xl flex items-center justify-center text-3xl font-extrabold shadow-md border-4 border-white ring-1 ring-slate-100 shrink-0">
+                                        ${avatarGraphic}
                                     </div>
                                     <div class="flex flex-col items-end gap-2 text-right">
                                         ${deadlineBadge}
@@ -265,7 +279,7 @@
                                 </div>
                                 
                                 <div class="mb-6 flex-grow">
-                                    <p class="text-emerald-600 text-xs font-bold uppercase tracking-widest mb-1.5">${categorySafe}</p>
+                                    <p class="text-${themeColor}-600 text-xs font-bold uppercase tracking-widest mb-1.5">${categorySafe}</p>
                                     <h3 class="text-2xl font-black text-slate-950 leading-tight mb-3 group-hover:text-${themeColor}-700 transition-colors">${item.Title}</h3>
                                     <p class="text-slate-600 text-base leading-relaxed flex-grow">${item.Description}</p>
                                 </div>
@@ -284,7 +298,6 @@
                         grid.insertAdjacentHTML('beforeend', cardHTML);
                     });
 
-                    // Master Filter Function
                     function filterGrid() {
                         const searchValue = searchInput.value.toLowerCase().trim();
                         const categoryValue = categoryDropdown.value;
@@ -299,7 +312,6 @@
                             const cardYear = card.getAttribute('data-year');
                             const cardText = card.getAttribute('data-searchtext');
                             
-                            // Check all 4 conditions
                             const matchesSearch = searchValue === "" || cardText.includes(searchValue);
                             const matchesCategory = categoryValue === 'All' || cardCategory === categoryValue;
                             const matchesRegion = regionValue === 'All' || cardRegion.includes(regionValue);
@@ -313,7 +325,6 @@
                         });
                     }
 
-                    // Attach Event Listeners to all inputs
                     searchInput.addEventListener('input', filterGrid);
                     categoryDropdown.addEventListener('change', filterGrid);
                     regionDropdown.addEventListener('change', filterGrid);
