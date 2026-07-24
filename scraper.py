@@ -24,43 +24,33 @@ CREDENTIALS_FILE = "credentials.json"
 # Optional Discord Alerting (Set env var or paste URL directly if desired)
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 
-# Focused, DuckDuckGo-friendly search queries
-# Bump depth per query to bring in more results
+# Optimal results count per query to stay under rate limits
 MAX_RESULTS_PER_QUERY = 10
 
-# Comprehensive STEM Search Net across Wales
+# High-yield, DuckDuckGo-friendly STEM search queries across Wales
 SEARCH_QUERIES = [
-    # --- SCIENCE & LIFE SCIENCES ---
-    'biomedical laboratory science apprenticeship Wales',
-    'pharmaceutical chemistry placement Wales students',
-    'environmental science green tech placement Wales',
-    'healthcare science NHS Wales apprenticeship',
-    'marine biology conservation work experience Wales',
-
-    # --- TECHNOLOGY & COMPUTING ---
-    'software engineering degree apprenticeship Wales',
-    'cyber security degree apprenticeship Wales',
-    'data science AI degree apprenticeship Wales',
-    'IT digital technology degree apprenticeship Wales',
-    'game development cloud computing placement Wales',
-
-    # --- ENGINEERING & MANUFACTURING ---
-    'mechanical electrical engineering apprenticeship South Wales',
-    'civil structural engineering degree apprenticeship Wales',
-    'aerospace robotics engineering placement Wales',
-    'renewable energy engineering apprenticeship Wales',
-    'chemical engineering work experience North Wales',
-
-    # --- MATHEMATICS & DATA ANALYTICS ---
-    'data analyst statistics placement Wales',
-    'actuarial financial mathematics apprenticeship Wales',
-    'quantitative analysis STEM placement Wales',
-
-    # --- GENERAL STEM & BURSARIES ---
-    'STEM bursary scholarship Wales students',
-    'STEM work experience placement Wales students',
-    'women in STEM taster day Wales',
-    'higher apprenticeship STEM Wales'
+    # General STEM & Placements
+    'STEM degree apprenticeship Wales',
+    'STEM placement Wales students',
+    'STEM work experience Wales',
+    'STEM bursary Wales',
+    
+    # Science & Healthcare
+    'lab science apprenticeship Wales',
+    'healthcare science placement Wales',
+    'environmental science placement Wales',
+    
+    # Tech & Computing
+    'software degree apprenticeship Wales',
+    'cyber security apprenticeship Wales',
+    'data science apprenticeship Wales',
+    'IT higher apprenticeship Wales',
+    
+    # Engineering
+    'engineering degree apprenticeship Wales',
+    'civil engineering apprenticeship Wales',
+    'mechanical engineering placement Wales',
+    'electrical engineering apprenticeship Wales'
 ]
 
 # Aggregators, social media, ad networks, and generic news sites to block
