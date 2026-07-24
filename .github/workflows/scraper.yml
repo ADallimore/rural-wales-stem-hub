@@ -1,0 +1,38 @@
+name: Daily STEM Opportunity Scraper
+
+on:
+  schedule:
+    # Runs every day at 08:00 UTC (1:00 PM UK time during BST / 12:00 PM GMT)
+    - cron: '0 8 * * *'
+  # Allows you to trigger the scraper manually anytime from the GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install gspread requests duckduckgo_search
+
+      - name: Recreate credentials.json from secret
+        env:
+          CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
+        run: |
+          echo "$CREDENTIALS_JSON" > credentials.json
+
+      - name: Run Scraper
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          python scraper.py
