@@ -25,17 +25,43 @@ CREDENTIALS_FILE = "credentials.json"
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 
 # Focused, DuckDuckGo-friendly search queries
-SEARCH_QUERIES = [
-    'degree apprenticeship STEM Wales',
-    'cyber security degree apprenticeship Wales',
-    'software engineering apprenticeship Wales',
-    'engineering degree apprenticeship South Wales',
-    'STEM work experience placement Wales students',
-    'STEM bursary scholarship Wales students',
-    'higher apprenticeship computing Wales'
-]
+# Bump depth per query to bring in more results
+MAX_RESULTS_PER_QUERY = 10
 
-MAX_RESULTS_PER_QUERY = 8
+# Comprehensive STEM Search Net across Wales
+SEARCH_QUERIES = [
+    # --- SCIENCE & LIFE SCIENCES ---
+    'biomedical laboratory science apprenticeship Wales',
+    'pharmaceutical chemistry placement Wales students',
+    'environmental science green tech placement Wales',
+    'healthcare science NHS Wales apprenticeship',
+    'marine biology conservation work experience Wales',
+
+    # --- TECHNOLOGY & COMPUTING ---
+    'software engineering degree apprenticeship Wales',
+    'cyber security degree apprenticeship Wales',
+    'data science AI degree apprenticeship Wales',
+    'IT digital technology degree apprenticeship Wales',
+    'game development cloud computing placement Wales',
+
+    # --- ENGINEERING & MANUFACTURING ---
+    'mechanical electrical engineering apprenticeship South Wales',
+    'civil structural engineering degree apprenticeship Wales',
+    'aerospace robotics engineering placement Wales',
+    'renewable energy engineering apprenticeship Wales',
+    'chemical engineering work experience North Wales',
+
+    # --- MATHEMATICS & DATA ANALYTICS ---
+    'data analyst statistics placement Wales',
+    'actuarial financial mathematics apprenticeship Wales',
+    'quantitative analysis STEM placement Wales',
+
+    # --- GENERAL STEM & BURSARIES ---
+    'STEM bursary scholarship Wales students',
+    'STEM work experience placement Wales students',
+    'women in STEM taster day Wales',
+    'higher apprenticeship STEM Wales'
+]
 
 # Aggregators, social media, ad networks, and generic news sites to block
 BLOCKED_DOMAINS = [
