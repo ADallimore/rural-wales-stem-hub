@@ -24,35 +24,17 @@ CREDENTIALS_FILE = "credentials.json"
 # Optional Discord Alerting (Set env var or paste URL directly if desired)
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 
-# Optimal results count per query to stay under rate limits
-MAX_RESULTS_PER_QUERY = 10
-
-# High-yield, DuckDuckGo-friendly STEM search queries across Wales
 SEARCH_QUERIES = [
-    # General STEM & Placements
-    'STEM degree apprenticeship Wales',
-    'STEM placement Wales students',
-    'STEM work experience Wales',
-    'STEM bursary Wales',
-    
-    # Science & Healthcare
-    'lab science apprenticeship Wales',
-    'healthcare science placement Wales',
-    'environmental science placement Wales',
-    
-    # Tech & Computing
-    'software degree apprenticeship Wales',
-    'cyber security apprenticeship Wales',
-    'data science apprenticeship Wales',
-    'IT higher apprenticeship Wales',
-    
-    # Engineering
-    'engineering degree apprenticeship Wales',
-    'civil engineering apprenticeship Wales',
-    'mechanical engineering placement Wales',
-    'electrical engineering apprenticeship Wales'
+    'degree apprenticeship STEM Wales',
+    'cyber security degree apprenticeship Wales',
+    'software engineering apprenticeship Wales',
+    'engineering degree apprenticeship South Wales',
+    'STEM work experience placement Wales students',
+    'STEM bursary scholarship Wales students',
+    'higher apprenticeship computing Wales'
 ]
 
+MAX_RESULTS_PER_QUERY = 10
 # Aggregators, social media, ad networks, and generic news sites to block
 BLOCKED_DOMAINS = [
     "indeed.com", "reed.co.uk", "totaljobs.com", "glassdoor.co.uk", "cv-library.co.uk",
