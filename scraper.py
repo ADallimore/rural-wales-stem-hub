@@ -24,6 +24,7 @@ CREDENTIALS_FILE = "credentials.json"
 # Optional Discord Alerting (Set env var or paste URL directly if desired)
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 
+# Focused, DuckDuckGo-friendly search queries
 SEARCH_QUERIES = [
     'degree apprenticeship STEM Wales',
     'cyber security degree apprenticeship Wales',
@@ -34,7 +35,8 @@ SEARCH_QUERIES = [
     'higher apprenticeship computing Wales'
 ]
 
-MAX_RESULTS_PER_QUERY = 10
+MAX_RESULTS_PER_QUERY = 8
+
 # Aggregators, social media, ad networks, and generic news sites to block
 BLOCKED_DOMAINS = [
     "indeed.com", "reed.co.uk", "totaljobs.com", "glassdoor.co.uk", "cv-library.co.uk",
