@@ -24,31 +24,21 @@ CREDENTIALS_FILE = "credentials.json"
 # Optional Discord Alerting (Set env var or paste URL directly if desired)
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 
-# Expanded, DuckDuckGo-friendly search queries
+# Welsh-specific, quality-first search queries
 SEARCH_QUERIES = [
-    'degree apprenticeship STEM Wales',
-    'cyber security degree apprenticeship Wales',
-    'software engineering apprenticeship Wales',
-    'engineering degree apprenticeship South Wales',
-    'STEM work experience placement Wales students',
-    'STEM bursary scholarship Wales students',
-    'higher apprenticeship computing Wales',
-    'STEM internship Wales sixth form',
-    'summer school STEM Wales year 12',
-    'STEM outreach programme Wales schools',
-    'university STEM taster day Wales',
-    'coding bootcamp Wales students',
-    'robotics competition Wales students',
-    'science challenge Wales schools',
-    'women in STEM Wales students',
-    'renewable energy apprenticeship Wales',
-    'AI data science programme Wales students',
-    'site:gov.wales STEM funding students',
-    'site:ac.uk STEM outreach Wales',
-    'site:.org.uk STEM Wales students'
+    'degree apprenticeship STEM Wales students',
+    'software engineering apprenticeship Wales students',
+    'STEM work experience Wales year 12 year 13',
+    'STEM scholarship bursary Wales students',
+    'cyber security programme Wales sixth form',
+    'engineering outreach Wales schools',
+    'site:gov.wales STEM students apply',
+    'site:ac.uk Wales STEM outreach students',
+    'site:.org.uk Wales STEM programme students',
+    'UK STEM programme open to Welsh students'
 ]
 
-MAX_RESULTS_PER_QUERY = 15
+MAX_RESULTS_PER_QUERY = 8
 
 # Aggregators, social media, ad networks, and generic news sites to block
 BLOCKED_DOMAINS = [
@@ -196,7 +186,7 @@ def sanitize_text(text):
 
 
 def is_quality_welsh_opportunity(url, title, snippet):
-    """Verifies that result is a direct provider link located in Wales or Remote."""
+    """Verifies that result is Welsh-specific or explicitly available to Welsh students."""
     url_lower = url.lower()
     title_lower = title.lower()
     snippet_lower = snippet.lower()
@@ -212,18 +202,23 @@ def is_quality_welsh_opportunity(url, title, snippet):
 
     # 3. Explicit Non-Welsh Location Check
     if any(loc in combined for loc in EXCLUDED_LOCATIONS):
-        if not any(w in combined for w in ["wales", "cymru", "remote"]):
+        if not any(w in combined for w in ["wales", "cymru"]):
             return False
 
-    # 4. Flexible relevance check (Welsh priority, Remote fallback)
+    # 4. Welsh relevance / eligibility signals
     has_welsh_identifier = any(w in combined for w in [
-        "wales", "cymru", "cardiff", "swansea", "wrexham", "deeside", "newport", 
-        "bangor", "coleg", "usw", "cardiffmet", "uwtsd", "techniquest", "remote"
+        "wales", "cymru", "cardiff", "swansea", "wrexham", "deeside", "newport",
+        "bangor", "coleg", "usw", "cardiffmet", "uwtsd", "techniquest"
     ])
     has_welsh_identifier = has_welsh_identifier or any(w in url_lower for w in [
         ".wales", "gov.wales", "/wales", "/cymru"
     ])
+    has_welsh_eligibility_signal = any(k in combined for k in [
+        "open to welsh students", "welsh students eligible", "including wales",
+        "uk students", "students in the uk", "across the uk", "uk-wide"
+    ])
 
+    # 5. STEM + student targeting signals
     has_stem_signal = any(k in combined for k in [
         "stem", "science", "technology", "engineering", "comput", "digital",
         "cyber", "robot", "data", "ai", "math", "physics", "chemistry", "coding"
@@ -232,10 +227,16 @@ def is_quality_welsh_opportunity(url, title, snippet):
         "student", "school", "pupil", "year 11", "year 12", "year 13",
         "sixth form", "college", "undergraduate", "apprentice", "young people"
     ])
+    has_programme_quality_signal = any(k in combined for k in [
+        "programme", "program", "scheme", "application", "apply", "deadline",
+        "cohort", "bursary", "scholarship", "apprenticeship", "placement"
+    ])
 
-    # Keep Welsh opportunities by default; also allow remote UK STEM pathways for students.
-    return (has_welsh_identifier and has_stem_signal) or (
-        "remote" in combined and has_stem_signal and has_target_audience
+    return (
+        (has_welsh_identifier or has_welsh_eligibility_signal)
+        and has_stem_signal
+        and has_target_audience
+        and has_programme_quality_signal
     )
 
 
