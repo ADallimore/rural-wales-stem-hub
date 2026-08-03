@@ -369,12 +369,6 @@ def fetch_stem_opportunities(queries, known_urls, max_results=10):
             print(f"⚠️ Network issue: {network_err}. Retrying... ({attempt+1}/3)")
             time.sleep(5)
 
-      try:
-    ddg_results = list(ddgs.text(query, max_results=max_results))
-    print(f"    🔎 DDG Raw Results Found: {len(ddg_results)}")  # <-- ADD THIS LINE
-    added_count = 0
-    for item in ddg_results:
-        
     return all_results
 
 
