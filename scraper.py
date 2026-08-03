@@ -445,3 +445,21 @@ def send_discord_alert(webhook_url, new_opportunities):
 # --- MAIN SCRIPT ENTRY ---
 # ==============================================================================
 if __name__ == "__main__":
+    try:
+        print("Connecting to Google Sheets...")
+        gc = gspread.service_account(filename=CREDENTIALS_FILE)
+        spreadsheet = gc.open(SPREADSHEET_NAME)
+        print(f"✅ Authenticated: '{SPREADSHEET_NAME}'\n")
+        
+        live_urls = get_urls_from_sheet(spreadsheet, LIVE_WORKSHEET_NAME)
+        pending_urls = get_urls_from_sheet(spreadsheet, PENDING_WORKSHEET_NAME)
+        known_urls = live_urls.union(pending_urls)
+        
+        print(f"📊 Blocklist Status: {len(live_urls)} Live URLs and {len(pending_urls)} Pending URLs.")
+        
+        new_opps = fetch_stem_opportunities(SEARCH_QUERIES, known_urls, MAX_RESULTS_PER_QUERY)
+        update_pending_sheet(spreadsheet, new_opps, live_urls)
+        send_discord_alert(DISCORD_WEBHOOK_URL, new_opps)
+
+    except Exception as e:
+        print(f"❌ Execution Failed: {e}")
