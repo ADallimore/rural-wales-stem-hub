@@ -24,7 +24,7 @@ CREDENTIALS_FILE = "credentials.json"
 # Optional Discord Alerting (Set env var or paste URL directly if desired)
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 
-# Focused, DuckDuckGo-friendly search queries
+# Expanded, DuckDuckGo-friendly search queries
 SEARCH_QUERIES = [
     'degree apprenticeship STEM Wales',
     'cyber security degree apprenticeship Wales',
@@ -32,10 +32,23 @@ SEARCH_QUERIES = [
     'engineering degree apprenticeship South Wales',
     'STEM work experience placement Wales students',
     'STEM bursary scholarship Wales students',
-    'higher apprenticeship computing Wales'
+    'higher apprenticeship computing Wales',
+    'STEM internship Wales sixth form',
+    'summer school STEM Wales year 12',
+    'STEM outreach programme Wales schools',
+    'university STEM taster day Wales',
+    'coding bootcamp Wales students',
+    'robotics competition Wales students',
+    'science challenge Wales schools',
+    'women in STEM Wales students',
+    'renewable energy apprenticeship Wales',
+    'AI data science programme Wales students',
+    'site:gov.wales STEM funding students',
+    'site:ac.uk STEM outreach Wales',
+    'site:.org.uk STEM Wales students'
 ]
 
-MAX_RESULTS_PER_QUERY = 8
+MAX_RESULTS_PER_QUERY = 15
 
 # Aggregators, social media, ad networks, and generic news sites to block
 BLOCKED_DOMAINS = [
@@ -202,13 +215,28 @@ def is_quality_welsh_opportunity(url, title, snippet):
         if not any(w in combined for w in ["wales", "cymru", "remote"]):
             return False
 
-    # 4. Mandatory Welsh / Remote Region Tag Check
+    # 4. Flexible relevance check (Welsh priority, Remote fallback)
     has_welsh_identifier = any(w in combined for w in [
         "wales", "cymru", "cardiff", "swansea", "wrexham", "deeside", "newport", 
         "bangor", "coleg", "usw", "cardiffmet", "uwtsd", "techniquest", "remote"
     ])
+    has_welsh_identifier = has_welsh_identifier or any(w in url_lower for w in [
+        ".wales", "gov.wales", "/wales", "/cymru"
+    ])
 
-    return has_welsh_identifier
+    has_stem_signal = any(k in combined for k in [
+        "stem", "science", "technology", "engineering", "comput", "digital",
+        "cyber", "robot", "data", "ai", "math", "physics", "chemistry", "coding"
+    ])
+    has_target_audience = any(k in combined for k in [
+        "student", "school", "pupil", "year 11", "year 12", "year 13",
+        "sixth form", "college", "undergraduate", "apprentice", "young people"
+    ])
+
+    # Keep Welsh opportunities by default; also allow remote UK STEM pathways for students.
+    return (has_welsh_identifier and has_stem_signal) or (
+        "remote" in combined and has_stem_signal and has_target_audience
+    )
 
 
 def enrich_opportunity_data(title, snippet, url):
