@@ -21,37 +21,59 @@ PENDING_WORKSHEET_NAME = "Pending"
 LIVE_WORKSHEET_NAME = "Live Tracker"
 CREDENTIALS_FILE = "credentials.json"
 
-# Optional Discord Alerting (Set env var or paste URL directly if desired)
+# Optional Discord Alerting (Set via GitHub Secret or env var)
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 
-# Focused, DuckDuckGo-friendly search queries
+# High-yield, targeted search queries covering all 4 STEM pillars across Wales
 SEARCH_QUERIES = [
-    'degree apprenticeship STEM Wales',
+    # Technology & Computing
+    'degree apprenticeship software engineering Wales',
     'cyber security degree apprenticeship Wales',
-    'software engineering apprenticeship Wales',
-    'engineering degree apprenticeship South Wales',
+    'data science AI degree apprenticeship Wales',
+    'IT digital technology higher apprenticeship Wales',
+
+    # Engineering & Manufacturing
+    'engineering degree apprenticeship Wales',
+    'mechanical electrical engineering apprenticeship South Wales',
+    'civil structural engineering apprenticeship Wales',
+    'renewable energy green tech placement Wales',
+
+    # Science & Healthcare
+    'biomedical laboratory science apprenticeship Wales',
+    'healthcare science NHS Wales placement',
+    'environmental science placement Wales',
+
+    # Broad STEM, Work Experience & Funding
     'STEM work experience placement Wales students',
+    'STEM degree apprenticeship Wales',
     'STEM bursary scholarship Wales students',
-    'higher apprenticeship computing Wales'
+    'higher apprenticeship STEM Wales'
 ]
 
-MAX_RESULTS_PER_QUERY = 8
+MAX_RESULTS_PER_QUERY = 10
 
-# Aggregators, social media, ad networks, and generic news sites to block
+# Aggregators, social media, dictionaries, wikis, and news networks to block
 BLOCKED_DOMAINS = [
+    # Job Aggregators & Spam Boards
     "indeed.com", "reed.co.uk", "totaljobs.com", "glassdoor.co.uk", "cv-library.co.uk",
     "jobsite.co.uk", "simplyhired.co.uk", "adzuna.co.uk", "gradcracker.com", "eventbrite.co.uk",
-    "bing.com", "doubleclick.net", "tiktok.com", "instagram.com", "twitter.com", 
-    "x.com", "youtube.com", "reddit.com", "medium.com", "wordpress.com", 
-    "blogspot.com", "wikipedia.org", "bbc.co.uk", "walesonline.co.uk", "wales247.co.uk",
-    "businessnewswales.com", "quora.com", "educanada.ca", "globalscholarships.com",
-    "universitycompare.com", "sciencefix.co.uk"
+    "doubleclick.net", "adzuna.com", "monster.co.uk",
+
+    # Social Networks
+    "tiktok.com", "instagram.com", "twitter.com", "x.com", "youtube.com", "facebook.com",
+
+    # Dictionaries, Encyclopedias, Q&A & News Sites (Fixes definition spam)
+    "dictionary.cambridge.org", "merriam-webster.com", "wikipedia.org", "wiktionary.org",
+    "britannica.com", "collinsdictionary.com", "dictionary.com", "thefreedictionary.com",
+    "quora.com", "reddit.com", "medium.com", "wordpress.com", "blogspot.com",
+    "bbc.co.uk", "walesonline.co.uk", "wales247.co.uk", "businessnewswales.com",
+    "educanada.ca", "globalscholarships.com", "universitycompare.com", "sciencefix.co.uk"
 ]
 
 JUNK_KEYWORDS_TITLE = [
     "news", "blog", "article", "press-release", "shortlist", "announced", "winners", 
-    "calendar", "lesson plan", "jobs available", "internship jobs", "events in", 
-    "best engineering apprenticeship jobs", "search vacancies"
+    "calendar", "lesson plan", "definition", "meaning", "what is", "wiki",
+    "pronunciation", "synonyms", "translation", "forum", "discussion"
 ]
 
 # Explicit out-of-region location blocklist
@@ -96,7 +118,7 @@ def parse_matched_date(m, pattern_type, months_map, current_year):
 def extract_deadline(text):
     """
     Context-aware deadline extractor. Prioritizes explicit date triggers
-    ('deadline:', 'closing date:') before checking standalone snippet dates.
+    ('deadline:', 'closing date:') before checking standalone dates.
     """
     if not text:
         return "Rolling"
@@ -116,14 +138,10 @@ def extract_deadline(text):
     # Base Regex Patterns
     iso_pattern = r'\b(20\d{2})[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])\b'
     uk_num_pattern = r'\b(0?[1-9]|[12][0-9]|3[01])[./-](0?[1-9]|1[012])[./-]((?:20)?\d{2})\b'
-    
-    # Matches "15th November 2026", "15 Nov 2026", "15 November"
     dmy_pattern = r'\b(0?[1-9]|[12][0-9]|3[01])(?:st|nd|rd|th)?\s+(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s*,?\s*(20\d{2})?\b'
-    
-    # Matches "November 15th 2026", "Nov 15 2026", "November 15"
     mdy_pattern = r'\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+(0?[1-9]|[12][0-9]|3[01])(?:st|nd|rd|th)?\s*,?\s*(20\d{2})?\b'
 
-    # --- TIER 1: Check Contextual Trigger Phrases First ---
+    # --- TIER 1: Contextual Trigger Phrases First ---
     for pattern_type, pattern in [
         ('dmy', context_prefix + dmy_pattern),
         ('mdy', context_prefix + mdy_pattern),
@@ -134,7 +152,7 @@ def extract_deadline(text):
         if match:
             return parse_matched_date(match, pattern_type, months_map, current_year)
 
-    # --- TIER 2: Check Standalone Date Expressions Across Full Text ---
+    # --- TIER 2: Standalone Date Expressions ---
     for pattern_type, pattern in [
         ('dmy', dmy_pattern),
         ('mdy', mdy_pattern),
@@ -196,31 +214,38 @@ TRUSTED_WELSH_PROVIDERS = [
     "astonmartin", "geaerospace", "thales", "iqe", "renishaw"
 ]
 
+ACTION_KEYWORDS = [
+    "apply", "application", "apprenticeship", "placement", "internship", 
+    "bursary", "scholarship", "scheme", "programme", "vacancy", "intake",
+    "opportunity", "work experience", "taster", "closing date", "deadline"
+]
+
+
 def is_quality_welsh_opportunity(url, title, snippet):
-    """Smart filter: Keeps valid Welsh STEM opportunities while blocking generic job spam."""
+    """Smart filter: Keeps valid Welsh STEM opportunities while blocking generic job spam & definitions."""
     url_lower = url.lower()
     title_lower = title.lower()
     snippet_lower = snippet.lower()
     combined = f"{title_lower} {snippet_lower}"
 
-    # 1. Hard Block: Aggregators / Job Boards
+    # 1. Block Job Aggregators, Dictionaries & Social Networks
     if any(domain in url_lower for domain in BLOCKED_DOMAINS):
         return False
 
-    # 2. Hard Block: Irrelevant / Non-STEM junk titles
+    # 2. Block Definition & News Junk Titles
     if any(junk in title_lower for junk in JUNK_KEYWORDS_TITLE):
         return False
 
-    # 3. Hard Block: Explicitly out-of-region (e.g. London/Manchester) UNLESS Wales/Remote is mentioned
+    # 3. Block Out-of-Region Locations (unless Wales/Remote is explicitly mentioned)
     if any(loc in combined for loc in EXCLUDED_LOCATIONS):
         if not any(w in combined for w in ["wales", "cymru", "remote", "cardiff", "swansea", "wrexham", "newport"]):
             return False
 
-    # 4. Instant Pass: Trusted Welsh Employers, Universities, or Portals
-    if any(provider in url_lower or provider in combined for provider in TRUSTED_WELSH_PROVIDERS):
-        return True
+    # 4. Require at least one Action Keyword (knocks out explanatory pages & dictionary definitions)
+    if not any(kw in combined for kw in ACTION_KEYWORDS):
+        return False
 
-    # 5. Smart Pass: Since search query already specified 'Wales', trust remaining direct links!
+    # 5. Passed quality filters
     return True
 
 
@@ -290,7 +315,7 @@ def get_urls_from_sheet(spreadsheet, sheet_name):
     return urls
 
 
-def fetch_stem_opportunities(queries, known_urls, max_results=8):
+def fetch_stem_opportunities(queries, known_urls, max_results=10):
     """Executes search queries, filters results, and enriches data."""
     all_results = []
     seen_urls = set(known_urls)
@@ -315,7 +340,7 @@ def fetch_stem_opportunities(queries, known_urls, max_results=8):
                                 continue
 
                             if not is_quality_welsh_opportunity(url, title, snippet):
-                                print(f"   🚫 Filtered out: {title[:48]}...")
+                                print(f"    🚫 Filtered out: {title[:48]}...")
                                 continue
 
                             seen_urls.add(norm_url)
@@ -333,10 +358,12 @@ def fetch_stem_opportunities(queries, known_urls, max_results=8):
                                 'logo': enriched['logo']
                             })
                             added_count += 1
-                        print(f"   ↳ Retained {added_count} verified opportunities.\n")
+                        print(f"    ↳ Retained {added_count} verified opportunities.\n")
                     except Exception as e:
-                        print(f"   ❌ Query Error: {e}\n")
-                    time.sleep(1.2)
+                        print(f"    ❌ Query Error: {e}\n")
+                    
+                    # Pause between queries to prevent DuckDuckGo rate limiting
+                    time.sleep(2.5)
             break
         except Exception as network_err:
             print(f"⚠️ Network issue: {network_err}. Retrying... ({attempt+1}/3)")
@@ -418,21 +445,3 @@ def send_discord_alert(webhook_url, new_opportunities):
 # --- MAIN SCRIPT ENTRY ---
 # ==============================================================================
 if __name__ == "__main__":
-    try:
-        print("Connecting to Google Sheets...")
-        gc = gspread.service_account(filename=CREDENTIALS_FILE)
-        spreadsheet = gc.open(SPREADSHEET_NAME)
-        print(f"✅ Authenticated: '{SPREADSHEET_NAME}'\n")
-        
-        live_urls = get_urls_from_sheet(spreadsheet, LIVE_WORKSHEET_NAME)
-        pending_urls = get_urls_from_sheet(spreadsheet, PENDING_WORKSHEET_NAME)
-        known_urls = live_urls.union(pending_urls)
-        
-        print(f"📊 Blocklist Status: {len(live_urls)} Live URLs and {len(pending_urls)} Pending URLs.")
-        
-        new_opps = fetch_stem_opportunities(SEARCH_QUERIES, known_urls, MAX_RESULTS_PER_QUERY)
-        update_pending_sheet(spreadsheet, new_opps, live_urls)
-        send_discord_alert(DISCORD_WEBHOOK_URL, new_opps)
-
-    except Exception as e:
-        print(f"❌ Execution Failed: {e}")
