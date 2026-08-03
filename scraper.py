@@ -24,15 +24,18 @@ CREDENTIALS_FILE = "credentials.json"
 # Optional Discord Alerting (Set env var or paste URL directly if desired)
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 
-# Focused, DuckDuckGo-friendly search queries
+# Welsh-specific, quality-first search queries
 SEARCH_QUERIES = [
-    'degree apprenticeship STEM Wales',
-    'cyber security degree apprenticeship Wales',
-    'software engineering apprenticeship Wales',
-    'engineering degree apprenticeship South Wales',
-    'STEM work experience placement Wales students',
-    'STEM bursary scholarship Wales students',
-    'higher apprenticeship computing Wales'
+    'degree apprenticeship STEM Wales students',
+    'software engineering apprenticeship Wales students',
+    'STEM work experience Wales year 12 year 13',
+    'STEM scholarship bursary Wales students',
+    'cyber security programme Wales sixth form',
+    'engineering outreach Wales schools',
+    'site:gov.wales STEM students apply',
+    'site:ac.uk Wales STEM outreach students',
+    'site:.org.uk Wales STEM programme students',
+    'UK STEM programme open to Welsh students'
 ]
 
 MAX_RESULTS_PER_QUERY = 8
@@ -183,7 +186,7 @@ def sanitize_text(text):
 
 
 def is_quality_welsh_opportunity(url, title, snippet):
-    """Verifies that result is a direct provider link located in Wales or Remote."""
+    """Verifies that result is Welsh-specific or explicitly available to Welsh students."""
     url_lower = url.lower()
     title_lower = title.lower()
     snippet_lower = snippet.lower()
@@ -199,16 +202,42 @@ def is_quality_welsh_opportunity(url, title, snippet):
 
     # 3. Explicit Non-Welsh Location Check
     if any(loc in combined for loc in EXCLUDED_LOCATIONS):
-        if not any(w in combined for w in ["wales", "cymru", "remote"]):
+        if not any(w in combined for w in ["wales", "cymru"]):
             return False
 
-    # 4. Mandatory Welsh / Remote Region Tag Check
+    # 4. Welsh relevance / eligibility signals
     has_welsh_identifier = any(w in combined for w in [
-        "wales", "cymru", "cardiff", "swansea", "wrexham", "deeside", "newport", 
-        "bangor", "coleg", "usw", "cardiffmet", "uwtsd", "techniquest", "remote"
+        "wales", "cymru", "cardiff", "swansea", "wrexham", "deeside", "newport",
+        "bangor", "coleg", "usw", "cardiffmet", "uwtsd", "techniquest"
+    ])
+    has_welsh_identifier = has_welsh_identifier or any(w in url_lower for w in [
+        ".wales", "gov.wales", "/wales", "/cymru"
+    ])
+    has_welsh_eligibility_signal = any(k in combined for k in [
+        "open to welsh students", "welsh students eligible", "including wales",
+        "uk students", "students in the uk", "across the uk", "uk-wide"
     ])
 
-    return has_welsh_identifier
+    # 5. STEM + student targeting signals
+    has_stem_signal = any(k in combined for k in [
+        "stem", "science", "technology", "engineering", "comput", "digital",
+        "cyber", "robot", "data", "ai", "math", "physics", "chemistry", "coding"
+    ])
+    has_target_audience = any(k in combined for k in [
+        "student", "school", "pupil", "year 11", "year 12", "year 13",
+        "sixth form", "college", "undergraduate", "apprentice", "young people"
+    ])
+    has_programme_quality_signal = any(k in combined for k in [
+        "programme", "program", "scheme", "application", "apply", "deadline",
+        "cohort", "bursary", "scholarship", "apprenticeship", "placement"
+    ])
+
+    return (
+        (has_welsh_identifier or has_welsh_eligibility_signal)
+        and has_stem_signal
+        and has_target_audience
+        and has_programme_quality_signal
+    )
 
 
 def enrich_opportunity_data(title, snippet, url):
