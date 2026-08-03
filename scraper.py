@@ -41,8 +41,8 @@ MAX_RESULTS_PER_QUERY = 8
 BLOCKED_DOMAINS = [
     "indeed.com", "reed.co.uk", "totaljobs.com", "glassdoor.co.uk", "cv-library.co.uk",
     "jobsite.co.uk", "simplyhired.co.uk", "adzuna.co.uk", "gradcracker.com", "eventbrite.co.uk",
-    "bing.com", "doubleclick.net", "tiktok.com", "instagram.com", "facebook.com", "twitter.com", 
-    "x.com", "linkedin.com", "youtube.com", "reddit.com", "medium.com", "wordpress.com", 
+    "bing.com", "doubleclick.net", "tiktok.com", "instagram.com", "twitter.com", 
+    "x.com", "youtube.com", "reddit.com", "medium.com", "wordpress.com", 
     "blogspot.com", "wikipedia.org", "bbc.co.uk", "walesonline.co.uk", "wales247.co.uk",
     "businessnewswales.com", "quora.com", "educanada.ca", "globalscholarships.com",
     "universitycompare.com", "sciencefix.co.uk"
@@ -182,33 +182,46 @@ def sanitize_text(text):
     return re.sub(r'\s+', ' ', cleaned).strip()
 
 
+TRUSTED_WELSH_PROVIDERS = [
+    # Universities & Colleges
+    "cardiff.ac.uk", "swansea.ac.uk", "bangor.ac.uk", "wrexham.ac.uk", 
+    "southwales.ac.uk", "cardiffmet.ac.uk", "uwtsd.ac.uk", "gowercollswan.ac.uk",
+    "cavc.ac.uk", "coleggwent.ac.uk", "cambria.ac.uk", "nptcgroup.ac.uk",
+    
+    # Welsh Portals & Government
+    "gov.wales", "careerswales", "stem.org.uk", "wales.nhs.uk",
+    
+    # Key Regional Employers & STEM Hubs
+    "airbus", "dvla", "welshwater", "dwrcymru", "sony", "techniquest", 
+    "astonmartin", "geaerospace", "thales", "iqe", "renishaw"
+]
+
 def is_quality_welsh_opportunity(url, title, snippet):
-    """Verifies that result is a direct provider link located in Wales or Remote."""
+    """Smart filter: Keeps valid Welsh STEM opportunities while blocking generic job spam."""
     url_lower = url.lower()
     title_lower = title.lower()
     snippet_lower = snippet.lower()
     combined = f"{title_lower} {snippet_lower}"
 
-    # 1. Block Domain Check
+    # 1. Hard Block: Aggregators / Job Boards
     if any(domain in url_lower for domain in BLOCKED_DOMAINS):
         return False
 
-    # 2. Block Aggregator/Junk Title Check
+    # 2. Hard Block: Irrelevant / Non-STEM junk titles
     if any(junk in title_lower for junk in JUNK_KEYWORDS_TITLE):
         return False
 
-    # 3. Explicit Non-Welsh Location Check
+    # 3. Hard Block: Explicitly out-of-region (e.g. London/Manchester) UNLESS Wales/Remote is mentioned
     if any(loc in combined for loc in EXCLUDED_LOCATIONS):
-        if not any(w in combined for w in ["wales", "cymru", "remote"]):
+        if not any(w in combined for w in ["wales", "cymru", "remote", "cardiff", "swansea", "wrexham", "newport"]):
             return False
 
-    # 4. Mandatory Welsh / Remote Region Tag Check
-    has_welsh_identifier = any(w in combined for w in [
-        "wales", "cymru", "cardiff", "swansea", "wrexham", "deeside", "newport", 
-        "bangor", "coleg", "usw", "cardiffmet", "uwtsd", "techniquest", "remote"
-    ])
+    # 4. Instant Pass: Trusted Welsh Employers, Universities, or Portals
+    if any(provider in url_lower or provider in combined for provider in TRUSTED_WELSH_PROVIDERS):
+        return True
 
-    return has_welsh_identifier
+    # 5. Smart Pass: Since search query already specified 'Wales', trust remaining direct links!
+    return True
 
 
 def enrich_opportunity_data(title, snippet, url):
