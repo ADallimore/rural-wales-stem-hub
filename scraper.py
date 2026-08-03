@@ -7,11 +7,11 @@ import requests
 from urllib.parse import urlparse
 import gspread
 
-# Dual-import support for DuckDuckGo library variants
+# Support for updated 'ddgs' library and legacy fallback
 try:
-    from duckduckgo_search import DDGS
-except ImportError:
     from ddgs import DDGS
+except ImportError:
+    from duckduckgo_search import DDGS
 
 # ==============================================================================
 # --- CONFIGURATION ---
@@ -24,24 +24,27 @@ CREDENTIALS_FILE = "credentials.json"
 # Optional Discord Alerting (Set via GitHub Secret or env var)
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 
-# High-yield, targeted search queries covering all 4 STEM pillars across Wales
+# High-yield, targeted search queries with regional & employer specificity
 SEARCH_QUERIES = [
-    # Technology & Computing
+    # Core STEM Pillars
     'degree apprenticeship software engineering Wales',
     'cyber security degree apprenticeship Wales',
     'data science AI degree apprenticeship Wales',
     'IT digital technology higher apprenticeship Wales',
-
-    # Engineering & Manufacturing
     'engineering degree apprenticeship Wales',
     'mechanical electrical engineering apprenticeship South Wales',
     'civil structural engineering apprenticeship Wales',
     'renewable energy green tech placement Wales',
-
-    # Science & Healthcare
     'biomedical laboratory science apprenticeship Wales',
     'healthcare science NHS Wales placement',
     'environmental science placement Wales',
+
+    # Regional & Town Specificity
+    'degree apprenticeship Cardiff STEM',
+    'degree apprenticeship Swansea engineering',
+    'apprenticeship Wrexham Deeside STEM',
+    'degree apprenticeship Newport technology',
+    'prentisiaeth STEM Cymru',
 
     # Broad STEM, Work Experience & Funding
     'STEM work experience placement Wales students',
@@ -329,6 +332,7 @@ def fetch_stem_opportunities(queries, known_urls, max_results=10):
                     print(f"🔍 Searching: {query}")
                     try:
                         ddg_results = list(ddgs.text(query, max_results=max_results))
+                        print(f"    🔎 DDG Raw Results Found: {len(ddg_results)}")
                         added_count = 0
                         for item in ddg_results:
                             url = item.get('href', '').strip()
@@ -369,12 +373,6 @@ def fetch_stem_opportunities(queries, known_urls, max_results=10):
             print(f"⚠️ Network issue: {network_err}. Retrying... ({attempt+1}/3)")
             time.sleep(5)
 
-      try:
-    ddg_results = list(ddgs.text(query, max_results=max_results))
-    print(f"    🔎 DDG Raw Results Found: {len(ddg_results)}")  # <-- ADD THIS LINE
-    added_count = 0
-    for item in ddg_results:
-        
     return all_results
 
 
