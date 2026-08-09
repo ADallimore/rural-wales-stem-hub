@@ -5,335 +5,468 @@
     <script defer src="https://cloud.umami.is/script.js" data-website-id="ee36f12b-5655-4069-9c58-aa452b479645"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opportunities - Rural Wales STEM Hub</title>
+    <title>Browse Opportunities - Rural Wales STEM Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
+        * { box-sizing: border-box; }
         .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-        .loader {
-            border: 4px solid #f8fafc;
-            border-top: 4px solid #059669;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .hidden-card { display: none !important; }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .loader { border: 4px solid #e2e8f0; border-top: 4px solid #10b981; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .hidden-opp { display: none !important; }
+        .urgency-closed { background: #fee2e2; color: #991b1b; }
+        .urgency-hot { background: #fef3c7; color: #92400e; animation: pulse 2s infinite; }
+        .urgency-ok { background: #d1fae5; color: #065f46; }
+        
+        .sidebar-filter-group { border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+        .sidebar-filter-group:last-child { border-bottom: none; }
+        
+        .filter-chip { display: inline-block; padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; background: #e2e8f0; color: #475569; cursor: pointer; transition: all 0.2s; }
+        .filter-chip:hover { background: #10b981; color: white; }
+        .filter-chip.active { background: #10b981; color: white; }
+        
+        .opp-list-item { padding: 1.5rem; border: 1px solid #e2e8f0; border-radius: 12px; transition: all 0.2s; cursor: pointer; }
+        .opp-list-item:hover { box-shadow: 0 10px 25px rgba(16, 185, 129, 0.1); border-color: #10b981; }
+        
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .sidebar.mobile-open { display: block; position: fixed; left: 0; top: 80px; width: 100%; background: white; z-index: 40; max-height: 60vh; overflow-y: auto; }
         }
-        .animate-card-in { animation: fadeIn 0.4s ease-out forwards; }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900 overflow-x-hidden">
+<body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
 
- <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                
                 <div class="flex items-center flex-shrink-0 z-20">
                     <a href="index.html" class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
                         <i class="fa-solid fa-atom text-emerald-600 animate-pulse"></i>
                         <span class="whitespace-nowrap">Rural Wales <span class="text-emerald-600">STEM Hub</span></span>
                     </a>
                 </div>
-                
                 <div class="hidden xl:flex flex-1 justify-center items-center px-4">
-                    <div class="flex items-center space-x-5 lg:space-x-7 h-full">
-                        <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
-                        <a href="opportunities.html" class="text-emerald-600 font-bold text-base h-20 flex items-center border-b-2 border-emerald-600">Opportunities</a>
-                        <a href="timeline.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Timeline</a>
-                        <a href="resources.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Resources</a>
-                        <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Guides</a>
-                        <a href="suggest.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Suggest</a>
-                        <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">About</a>
+                    <div class="flex items-center space-x-5 lg:space-x-7 h-full text-sm">
+                        <a href="index.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Home</a>
+                        <a href="opportunities.html" class="text-emerald-600 font-bold border-b-2 border-emerald-600">Opportunities</a>
+                        <a href="timeline.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Timeline</a>
+                        <a href="resources.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Resources</a>
+                        <a href="guides.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Guides</a>
+                        <a href="suggest.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Suggest</a>
+                        <a href="about.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">About</a>
                     </div>
                 </div>
-
                 <div class="flex items-center justify-end flex-shrink-0 gap-4 z-20">
-                    <a href="contact.html" class="hidden xl:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Contact</a>
-                    
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition xl:hidden z-30">
+                    <a href="contact.html" class="hidden xl:inline-flex bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm transition">Contact</a>
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-emerald-600 p-2 rounded-lg xl:hidden">
                         <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
                     </button>
                 </div>
             </div>
         </div>
-
-        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner w-full">
-            <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
-            <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">Opportunities</a>
-            <a href="timeline.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Timeline</a>
-            <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Resources</a>
-            <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
-            <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Suggest</a>
-            <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">About</a>
-            <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-100 px-4 py-3 space-y-1">
+            <a href="index.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50 hover:text-emerald-600">Home</a>
+            <a href="opportunities.html" class="block px-4 py-2 rounded-lg font-bold bg-emerald-50 text-emerald-600">Opportunities</a>
+            <a href="timeline.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Timeline</a>
+            <a href="resources.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Resources</a>
+            <a href="guides.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Guides</a>
+            <a href="suggest.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Suggest</a>
+            <a href="about.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">About</a>
+            <a href="contact.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50 mt-2 border-t border-slate-200">Contact</a>
         </div>
     </nav>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
-        <div class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6" data-aos="fade-down">
-            <div class="max-w-2xl text-center md:text-left mx-auto md:mx-0">
-                <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-3">Live Opportunities</h1>
-                <p class="text-slate-600 text-lg md:text-xl font-medium leading-relaxed">Discover elite apprenticeships, scholarships, and exams curated for ambitious students in Wales.</p>
-            </div>
-            <a href="timeline.html" class="shrink-0 bg-slate-900 text-white px-7 py-3.5 rounded-2xl text-base font-bold flex items-center gap-2.5 hover:bg-slate-800 transition shadow-lg mx-auto md:mx-0 transform hover:-translate-y-1">
-                <i class="fa-regular fa-calendar-check text-emerald-400"></i> View My Timeline
-            </a>
-        </div>
+    <!-- Main Content -->
+    <div class="flex-grow flex flex-col lg:flex-row max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 gap-8">
 
-        <div id="filter-container" class="bg-white border border-slate-100 rounded-3xl p-5 shadow-sm mb-12 hidden" data-aos="fade-up" data-aos-delay="100">
-            <div class="flex flex-col lg:flex-row gap-4">
+        <!-- Sidebar Filters (Desktop) -->
+        <aside class="sidebar lg:w-64 flex-shrink-0 lg:block">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 sticky top-24 shadow-sm">
+                <div class="flex justify-between items-center mb-6 lg:hidden">
+                    <h3 class="font-bold text-lg">Filters</h3>
+                    <button id="close-filters" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+                </div>
+
+                <!-- Search -->
+                <div class="sidebar-filter-group">
+                    <label class="block text-sm font-bold text-slate-700 mb-3">Search</label>
+                    <input type="text" id="search-input" placeholder="Role, company, keyword..." class="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm">
+                </div>
+
+                <!-- Category -->
+                <div class="sidebar-filter-group">
+                    <label class="block text-sm font-bold text-slate-700 mb-3">Category</label>
+                    <div id="category-filters" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Region -->
+                <div class="sidebar-filter-group">
+                    <label class="block text-sm font-bold text-slate-700 mb-3">Region</label>
+                    <div id="region-filters" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Year Group -->
+                <div class="sidebar-filter-group">
+                    <label class="block text-sm font-bold text-slate-700 mb-3">Year Group</label>
+                    <div id="year-filters" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Clear Filters -->
+                <button id="clear-filters" class="w-full py-2 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition text-sm">Clear All</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 min-w-0">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">Discover Opportunities</h1>
+                <p class="text-slate-600 text-lg max-w-2xl">Filter, search, and save opportunities. Real data from real Welsh STEM providers.</p>
                 
-                <div class="relative flex-grow">
-                    <i class="fa-solid fa-search absolute left-4.5 top-4 text-slate-400"></i>
-                    <input type="text" id="search-input" placeholder="Search by role, company, location, or keyword..." class="w-full pl-12 pr-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm md:text-base bg-slate-50 font-semibold placeholder-slate-400 transition">
+                <!-- View Toggle & Results Count -->
+                <div class="flex items-center justify-between mt-6 flex-wrap gap-4">
+                    <div id="results-count" class="text-slate-600 font-semibold">Loading...</div>
+                    <div class="flex items-center gap-2">
+                        <button id="view-list" class="p-2.5 rounded-lg bg-emerald-100 text-emerald-600 hover:bg-emerald-600 hover:text-white transition" title="List view">
+                            <i class="fa-solid fa-list"></i>
+                        </button>
+                        <button id="view-grid" class="p-2.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition" title="Grid view">
+                            <i class="fa-solid fa-grid-2"></i>
+                        </button>
+                        <button id="filter-toggle" class="lg:hidden p-2.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                            <i class="fa-solid fa-sliders"></i>
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="w-full lg:w-48 shrink-0 relative">
-                    <i class="fa-solid fa-layer-group absolute left-4 top-4 text-emerald-600"></i>
-                    <select id="category-filter" class="w-full pl-11 pr-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm md:text-base bg-emerald-50 font-semibold transition text-emerald-800 cursor-pointer appearance-none">
-                        <option value="All">All Categories</option>
-                    </select>
-                </div>
-
-                <div class="w-full lg:w-48 shrink-0 relative">
-                    <i class="fa-solid fa-location-dot absolute left-4 top-4 text-blue-600"></i>
-                    <select id="region-filter" class="w-full pl-11 pr-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base bg-blue-50 font-semibold transition text-blue-800 cursor-pointer appearance-none">
-                        <option value="All">All Regions</option>
-                        <option value="North Wales">North Wales</option>
-                        <option value="South Wales">South Wales</option>
-                        <option value="West Wales">West Wales</option>
-                        <option value="Mid Wales">Mid Wales / Borders</option>
-                        <option value="Remote">UK-Wide / Remote</option>
-                    </select>
-                </div>
-
-                <div class="w-full lg:w-48 shrink-0 relative">
-                    <i class="fa-solid fa-user-graduate absolute left-4 top-4 text-purple-600"></i>
-                    <select id="year-filter" class="w-full pl-11 pr-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm md:text-base bg-purple-50 font-semibold transition text-purple-800 cursor-pointer appearance-none">
-                        <option value="All">All Years</option>
-                        <option value="11">Year 11</option>
-                        <option value="12">Year 12</option>
-                        <option value="13">Year 13</option>
-                    </select>
-                </div>
-
-            </div>
-        </div>
-
-        <div id="loading-state" class="flex flex-col items-center justify-center py-24 text-center">
-            <div class="loader mb-5"></div>
-            <p class="text-slate-900 font-bold text-lg">Syncing with Live Database...</p>
-        </div>
-
-        <div id="error-state" class="hidden text-center py-24 px-6 bg-white rounded-3xl border border-red-100 shadow-sm">
-            <p class="text-slate-950 font-black text-xl mb-2 tracking-tight">Database Connection Failed</p>
-        </div>
-
-        <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
             </div>
 
-    </main>
+            <!-- Loading State -->
+            <div id="loading-state" class="flex flex-col items-center justify-center py-24 text-center">
+                <div class="loader mb-4"></div>
+                <p class="text-slate-600 font-semibold">Loading opportunities from Wales...</p>
+            </div>
+
+            <!-- Opportunities List/Grid -->
+            <div id="opportunities-container" class="hidden space-y-4"></div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center py-16 px-6 bg-white rounded-2xl border-2 border-dashed border-slate-300">
+                <i class="fa-solid fa-inbox text-5xl text-slate-300 mb-4"></i>
+                <p class="text-slate-600 font-semibold text-lg">No opportunities found</p>
+                <p class="text-slate-500 mt-2">Try adjusting your filters</p>
+            </div>
+        </main>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script>
-        // Initialize AOS
         AOS.init({ once: true, offset: 50 });
 
+        // ==================== DATA & STATE ====================
         const sheetCSVUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSyvn7qSCsr734NAvG_1QTR1rP6Cb_WwJfE5UW1hXAEhG99a8LHygnKwAYaL2Q0EiOeUkGpdbZKWKN/pub?output=csv";
+        let allOpportunities = [];
+        let filteredOpportunities = [];
+        let viewMode = 'list'; // 'list' or 'grid'
+        
+        const state = {
+            search: '',
+            categories: new Set(),
+            regions: new Set(),
+            years: new Set()
+        };
 
-        // LocalStorage logic for saving items
-        function getSavedItems() {
-            return JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
+        // ==================== UI ELEMENTS ====================
+        const searchInput = document.getElementById('search-input');
+        const categoryFilters = document.getElementById('category-filters');
+        const regionFilters = document.getElementById('region-filters');
+        const yearFilters = document.getElementById('year-filters');
+        const clearFiltersBtn = document.getElementById('clear-filters');
+        const loadingState = document.getElementById('loading-state');
+        const oppContainer = document.getElementById('opportunities-container');
+        const emptyState = document.getElementById('empty-state');
+        const resultsCount = document.getElementById('results-count');
+        const viewListBtn = document.getElementById('view-list');
+        const viewGridBtn = document.getElementById('view-grid');
+        const filterToggle = document.getElementById('filter-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const closeFiltersBtn = document.getElementById('close-filters');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // ==================== DATA LOADING ====================
+        function loadData() {
+            Papa.parse(sheetCSVUrl, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: (results) => {
+                    allOpportunities = results.data.filter(item => item.Title && item.Title.trim());
+                    buildFilters();
+                    applyFilters();
+                    loadingState.classList.add('hidden');
+                }
+            });
         }
 
-        function toggleSave(btn, title, deadline, category, link) {
-            let savedItems = getSavedItems();
-            const existsIndex = savedItems.findIndex(item => item.title === title);
+        // ==================== BUILD FILTER CHIPS ====================
+        function buildFilters() {
+            const categories = [...new Set(allOpportunities.map(o => o.Category).filter(Boolean))].sort();
+            const regions = [...new Set(allOpportunities.map(o => o.Region).filter(Boolean))].sort();
+            const years = ['11', '12', '13'];
 
-            if (existsIndex > -1) {
-                savedItems.splice(existsIndex, 1);
-                btn.innerHTML = `<i class="fa-regular fa-bookmark"></i> Save`;
-                btn.classList.remove('bg-emerald-100', 'text-emerald-700', 'border-emerald-200');
-                btn.classList.add('bg-slate-50', 'text-slate-600', 'border-slate-200', 'hover:bg-slate-100');
+            categoryFilters.innerHTML = categories.map(cat => 
+                `<button class="filter-chip" data-category="${cat}">${cat}</button>`
+            ).join('');
+
+            regionFilters.innerHTML = regions.map(reg => 
+                `<button class="filter-chip" data-region="${reg}">${reg}</button>`
+            ).join('');
+
+            yearFilters.innerHTML = years.map(yr => 
+                `<button class="filter-chip" data-year="Year ${yr}">Year ${yr}</button>`
+            ).join('');
+
+            // Attach event listeners
+            document.querySelectorAll('[data-category]').forEach(btn => {
+                btn.addEventListener('click', () => toggleFilter('categories', btn.dataset.category, btn));
+            });
+            document.querySelectorAll('[data-region]').forEach(btn => {
+                btn.addEventListener('click', () => toggleFilter('regions', btn.dataset.region, btn));
+            });
+            document.querySelectorAll('[data-year]').forEach(btn => {
+                btn.addEventListener('click', () => toggleFilter('years', btn.dataset.year, btn));
+            });
+        }
+
+        // ==================== FILTER LOGIC ====================
+        function toggleFilter(type, value, btn) {
+            if (state[type].has(value)) {
+                state[type].delete(value);
+                btn.classList.remove('active');
+            } else {
+                state[type].add(value);
+                btn.classList.add('active');
+            }
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const search = state.search.toLowerCase();
+            
+            filteredOpportunities = allOpportunities.filter(opp => {
+                const matchSearch = !search || 
+                    opp.Title.toLowerCase().includes(search) || 
+                    (opp.Description || '').toLowerCase().includes(search) ||
+                    (opp.Category || '').toLowerCase().includes(search);
+                
+                const matchCategory = state.categories.size === 0 || state.categories.has(opp.Category);
+                const matchRegion = state.regions.size === 0 || state.regions.has(opp.Region);
+                
+                let matchYear = state.years.size === 0;
+                if (state.years.size > 0) {
+                    matchYear = Array.from(state.years).some(yr => 
+                        (opp.YearGroup || '').includes(yr.replace('Year ', ''))
+                    );
+                }
+                
+                return matchSearch && matchCategory && matchRegion && matchYear;
+            });
+
+            renderOpportunities();
+        }
+
+        // ==================== RENDER OPPORTUNITIES ====================
+        function renderOpportunities() {
+            oppContainer.innerHTML = '';
+            resultsCount.textContent = `${filteredOpportunities.length} ${filteredOpportunities.length === 1 ? 'opportunity' : 'opportunities'} found`;
+
+            if (filteredOpportunities.length === 0) {
+                oppContainer.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            oppContainer.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+
+            if (viewMode === 'list') {
+                renderListView();
+            } else {
+                renderGridView();
+            }
+        }
+
+        function renderListView() {
+            oppContainer.classList.remove('grid');
+            oppContainer.classList.add('space-y-4');
+            
+            oppContainer.innerHTML = filteredOpportunities.map((opp, idx) => {
+                const urgency = calculateUrgency(opp.Deadline);
+                const savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
+                const isSaved = savedItems.some(s => s.title === opp.Title);
+                
+                return `
+                    <div class="opp-list-item bg-white group" data-aos="fade-up" data-aos-delay="${idx * 50}">
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                    <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full uppercase tracking-wide">${opp.Category || 'STEM'}</span>
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">${opp.Region || 'N/A'}</span>
+                                    <span class="urgency-badge ${urgency.class} text-xs font-bold px-2.5 py-1 rounded-full">${urgency.text}</span>
+                                </div>
+                                <h3 class="text-xl font-black text-slate-900 mb-2 group-hover:text-emerald-600 transition">${opp.Title}</h3>
+                                <p class="text-slate-600 text-sm line-clamp-2">${opp.Description || 'No description available'}</p>
+                            </div>
+                            <div class="flex items-center gap-3 flex-shrink-0">
+                                <button onclick="saveTL(this, '${opp.Title.replace(/'/g, "\\'")}', '${(opp.Deadline || 'TBC').replace(/'/g, "\\'")}', '${(opp.Category || 'STEM').replace(/'/g, "\\'")}', '${(opp.Link || '#').replace(/'/g, "\\'")}')" 
+                                        class="px-4 py-2 rounded-lg font-semibold text-sm transition ${isSaved ? 'bg-emerald-100 text-emerald-600 hover:bg-emerald-200' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                                    <i class="fa-${isSaved ? 'solid' : 'regular'} fa-bookmark"></i> ${isSaved ? 'Saved' : 'Save'}
+                                </button>
+                                <a href="${opp.Link || '#'}" target="_blank" rel="noopener" class="px-4 py-2 bg-slate-900 hover:bg-emerald-600 text-white font-semibold rounded-lg transition text-sm flex items-center gap-1">
+                                    Apply <i class="fa-solid fa-arrow-up-right text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            AOS.refresh();
+        }
+
+        function renderGridView() {
+            oppContainer.classList.add('grid');
+            oppContainer.classList.remove('space-y-4');
+            oppContainer.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
+            
+            oppContainer.innerHTML = filteredOpportunities.map((opp, idx) => {
+                const urgency = calculateUrgency(opp.Deadline);
+                const savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
+                const isSaved = savedItems.some(s => s.title === opp.Title);
+                
+                return `
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-emerald-300 transition-all group" data-aos="fade-up" data-aos-delay="${idx * 50}">
+                        <div class="p-6 h-full flex flex-col">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase">${opp.Category || 'STEM'}</span>
+                                <span class="urgency-badge ${urgency.class} text-xs font-bold px-2 py-1 rounded-full">${urgency.text}</span>
+                            </div>
+                            <h3 class="text-lg font-black text-slate-900 mb-2 line-clamp-2 group-hover:text-emerald-600 transition">${opp.Title}</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow">${opp.Description || 'No description available'}</p>
+                            <div class="text-xs text-slate-500 mb-4 font-semibold">${opp.Region || 'N/A'} • Closes: ${opp.Deadline || 'TBC'}</div>
+                            <div class="flex gap-2 mt-auto">
+                                <button onclick="saveTL(this, '${opp.Title.replace(/'/g, "\\'")}', '${(opp.Deadline || 'TBC').replace(/'/g, "\\'")}', '${(opp.Category || 'STEM').replace(/'/g, "\\'")}', '${(opp.Link || '#').replace(/'/g, "\\'")}')" 
+                                        class="flex-1 px-3 py-2 rounded-lg font-semibold text-xs transition ${isSaved ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                                    <i class="fa-${isSaved ? 'solid' : 'regular'} fa-bookmark"></i> ${isSaved ? 'Saved' : 'Save'}
+                                </button>
+                                <a href="${opp.Link || '#'}" target="_blank" class="flex-1 px-3 py-2 bg-slate-900 hover:bg-emerald-600 text-white font-semibold rounded-lg transition text-xs flex items-center justify-center gap-1">
+                                    Apply <i class="fa-solid fa-arrow-up-right text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            AOS.refresh();
+        }
+
+        // ==================== UTILITY FUNCTIONS ====================
+        function calculateUrgency(deadline) {
+            if (!deadline || deadline.toUpperCase() === 'TBC') return { text: 'TBC', class: 'bg-slate-100 text-slate-600' };
+            if (deadline.toLowerCase() === 'rolling') return { text: 'Rolling', class: 'bg-blue-100 text-blue-600' };
+            
+            const parts = deadline.split('/');
+            let dateObj;
+            if (parts.length === 3) {
+                dateObj = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+            } else {
+                dateObj = new Date(deadline);
+            }
+            
+            if (isNaN(dateObj.getTime())) return { text: 'Unknown', class: 'bg-slate-100 text-slate-600' };
+            
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const daysLeft = Math.ceil((dateObj - today) / (1000 * 60 * 60 * 24));
+            
+            if (daysLeft < 0) return { text: 'Closed', class: 'urgency-closed' };
+            if (daysLeft <= 14) return { text: `${daysLeft} days`, class: 'urgency-hot' };
+            return { text: `${daysLeft} days`, class: 'urgency-ok' };
+        }
+
+        function saveTL(btn, title, deadline, category, link) {
+            let savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
+            const exists = savedItems.findIndex(s => s.title === title);
+            
+            if (exists > -1) {
+                savedItems.splice(exists, 1);
+                btn.className = 'px-4 py-2 rounded-lg font-semibold text-sm transition bg-slate-100 text-slate-600 hover:bg-slate-200';
+                btn.innerHTML = '<i class="fa-regular fa-bookmark"></i> Save';
             } else {
                 savedItems.push({ title, deadline, category, link });
-                btn.innerHTML = `<i class="fa-solid fa-bookmark"></i> Saved`;
-                btn.classList.remove('bg-slate-50', 'text-slate-600', 'border-slate-200', 'hover:bg-slate-100');
-                btn.classList.add('bg-emerald-100', 'text-emerald-700', 'border-emerald-200');
+                btn.className = 'px-4 py-2 rounded-lg font-semibold text-sm transition bg-emerald-100 text-emerald-600 hover:bg-emerald-200';
+                btn.innerHTML = '<i class="fa-solid fa-bookmark"></i> Saved';
             }
             
             localStorage.setItem('mySTEMTimeline', JSON.stringify(savedItems));
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            Papa.parse(sheetCSVUrl, {
-                download: true,
-                header: true,
-                skipEmptyLines: true,
-                complete: function(results) {
-                    const data = results.data;
-                    const grid = document.getElementById('opportunities-grid');
-                    const filterContainer = document.getElementById('filter-container');
-                    const loader = document.getElementById('loading-state');
-                    
-                    const searchInput = document.getElementById('search-input');
-                    const categoryDropdown = document.getElementById('category-filter');
-                    const regionDropdown = document.getElementById('region-filter');
-                    const yearDropdown = document.getElementById('year-filter');
-
-                    loader.classList.add('hidden');
-                    if (data.length === 0) return;
-
-                    grid.classList.remove('hidden');
-                    filterContainer.classList.remove('hidden');
-
-                    // Populate Category Dropdown Dynamically
-                    const rawCategories = data.map(item => item.Category).filter(Boolean);
-                    const uniqueCategories = [...new Set(rawCategories)].sort();
-                    uniqueCategories.forEach(category => {
-                        const option = document.createElement('option');
-                        option.value = category;
-                        option.innerText = category;
-                        categoryDropdown.appendChild(option);
-                    });
-
-                    const savedItems = getSavedItems();
-
-                    data.forEach((item, index) => {
-                        if(!item.Title || item.Title.trim() === "") return;
-
-                        const categorySafe = item.Category || 'STEM';
-                        const companySafe = item.Colour ? item.Colour.trim().toLowerCase() : 'emerald'; 
-                        const firstLetter = item.Title.charAt(0).toUpperCase();
-                        
-                        // New variables for our extra filters
-                        const regionSafe = item.Region || '';
-                        const yearSafe = item.YearGroup || '';
-                        
-                        let deadlineBadge = '';
-                        let footerText = `<i class="fa-regular fa-calendar-days mr-1.5 text-slate-400"></i> Closes: ${item.Deadline || 'TBC'}`;
-                        let themeColor = companySafe; 
-                        
-                        if (item.Deadline && item.Deadline.toLowerCase() !== 'rolling') {
-                            deadlineBadge = `<span class="bg-${themeColor}-50 text-${themeColor}-700 text-xs font-bold px-3 py-1 rounded-full border border-${themeColor}-100 uppercase tracking-wider">Active</span>`;
-                        } else if (item.Deadline && item.Deadline.toLowerCase() === 'rolling') {
-                            themeColor = 'emerald';
-                            deadlineBadge = `<span class="bg-${themeColor}-50 text-${themeColor}-700 text-xs font-bold px-3 py-1 rounded-full border border-${themeColor}-100 uppercase tracking-wider"><i class="fa-solid fa-rotate-right mr-1.5 text-${themeColor}-400"></i>Rolling</span>`;
-                            footerText = `<i class="fa-solid fa-hourglass-start mr-1.5 text-${themeColor}-400"></i>Open Selection`;
-                        }
-
-                        const isSaved = savedItems.some(saved => saved.title === item.Title);
-                        const btnClass = isSaved 
-                            ? "bg-emerald-100 text-emerald-700 border-emerald-200" 
-                            : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100";
-                        const btnIcon = isSaved ? `<i class="fa-solid fa-bookmark"></i> Saved` : `<i class="fa-regular fa-bookmark"></i> Save`;
-
-                        const safeTitle = item.Title.replace(/'/g, "\\'");
-                        const safeDeadline = item.Deadline ? item.Deadline.replace(/'/g, "\\'") : 'TBC';
-                        const safeCategory = categorySafe.replace(/'/g, "\\'");
-                        const safeLink = item.Link ? item.Link.replace(/'/g, "\\'") : '#';
-
-                        // Notice we inject data-region and data-year into the card HTML below
-                        const cardHTML = `
-                            <div class="opp-card group animate-card-in bg-white rounded-3xl p-7 shadow-sm border border-slate-100/70 hover:shadow-2xl hover:border-emerald-100 hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full" 
-                                 data-category="${categorySafe}" 
-                                 data-region="${regionSafe}"
-                                 data-year="${yearSafe}"
-                                 data-searchtext="${item.Title.toLowerCase()} ${item.Description.toLowerCase()} ${categorySafe.toLowerCase()}"
-                                 style="animation-delay: ${index * 50}ms;">
-                                
-                                <div class="flex justify-between items-start mb-6">
-                                    <div class="w-16 h-16 bg-gradient-to-tr from-${themeColor}-600 to-${themeColor}-400 text-white rounded-2xl flex items-center justify-center text-3xl font-extrabold shadow-md border-4 border-white ring-1 ring-slate-100 shadow-${themeColor}-500/10 shrink-0">
-                                        ${firstLetter}
-                                    </div>
-                                    <div class="flex flex-col items-end gap-2 text-right">
-                                        ${deadlineBadge}
-                                        <button onclick="toggleSave(this, '${safeTitle}', '${safeDeadline}', '${safeCategory}', '${safeLink}')" class="text-xs font-bold px-3 py-1.5 rounded-lg border transition-colors flex items-center gap-1.5 shadow-sm ${btnClass}">
-                                            ${btnIcon}
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-6 flex-grow">
-                                    <p class="text-emerald-600 text-xs font-bold uppercase tracking-widest mb-1.5">${categorySafe}</p>
-                                    <h3 class="text-2xl font-black text-slate-950 leading-tight mb-3 group-hover:text-${themeColor}-700 transition-colors">${item.Title}</h3>
-                                    <p class="text-slate-600 text-base leading-relaxed flex-grow">${item.Description}</p>
-                                </div>
-                                
-                                <div class="mt-auto border-t border-slate-100 pt-5 flex items-center justify-between gap-4">
-                                    <div class="text-sm font-semibold text-slate-600 flex items-center">
-                                        ${footerText}
-                                    </div>
-                                    <a href="${item.Link || '#'}" target="_blank" rel="noopener noreferrer" 
-                                       class="shrink-0 bg-slate-950 text-white px-5 py-3 rounded-xl text-sm font-bold flex items-center gap-2.5 hover:bg-${themeColor}-600 transition shadow-md shadow-slate-950/10">
-                                        Details <i class="fa-solid fa-arrow-right text-xs"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        `;
-                        grid.insertAdjacentHTML('beforeend', cardHTML);
-                    });
-
-                    // Master Filter Function
-                    function filterGrid() {
-                        const searchValue = searchInput.value.toLowerCase().trim();
-                        const categoryValue = categoryDropdown.value;
-                        const regionValue = regionDropdown.value;
-                        const yearValue = yearDropdown.value;
-                        
-                        const cards = document.querySelectorAll('.opp-card');
-
-                        cards.forEach(card => {
-                            const cardCategory = card.getAttribute('data-category');
-                            const cardRegion = card.getAttribute('data-region');
-                            const cardYear = card.getAttribute('data-year');
-                            const cardText = card.getAttribute('data-searchtext');
-                            
-                            // Check all 4 conditions
-                            const matchesSearch = searchValue === "" || cardText.includes(searchValue);
-                            const matchesCategory = categoryValue === 'All' || cardCategory === categoryValue;
-                            const matchesRegion = regionValue === 'All' || cardRegion.includes(regionValue);
-                            const matchesYear = yearValue === 'All' || cardYear.includes(yearValue);
-                            
-                            if (matchesSearch && matchesCategory && matchesRegion && matchesYear) {
-                                card.classList.remove('hidden-card');
-                            } else {
-                                card.classList.add('hidden-card');
-                            }
-                        });
-                    }
-
-                    // Attach Event Listeners to all inputs
-                    searchInput.addEventListener('input', filterGrid);
-                    categoryDropdown.addEventListener('change', filterGrid);
-                    regionDropdown.addEventListener('change', filterGrid);
-                    yearDropdown.addEventListener('change', filterGrid);
-                }
-            });
+        // ==================== EVENT LISTENERS ====================
+        searchInput.addEventListener('input', (e) => {
+            state.search = e.target.value;
+            applyFilters();
         });
-    </script>
-    <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
+
+        clearFiltersBtn.addEventListener('click', () => {
+            state.search = '';
+            state.categories.clear();
+            state.regions.clear();
+            state.years.clear();
+            searchInput.value = '';
+            document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
+            applyFilters();
+        });
+
+        viewListBtn.addEventListener('click', () => {
+            viewMode = 'list';
+            viewListBtn.classList.add('bg-emerald-100', 'text-emerald-600');
+            viewListBtn.classList.remove('bg-slate-100', 'text-slate-600');
+            viewGridBtn.classList.add('bg-slate-100', 'text-slate-600');
+            viewGridBtn.classList.remove('bg-emerald-100', 'text-emerald-600');
+            renderOpportunities();
+        });
+
+        viewGridBtn.addEventListener('click', () => {
+            viewMode = 'grid';
+            viewGridBtn.classList.add('bg-emerald-100', 'text-emerald-600');
+            viewGridBtn.classList.remove('bg-slate-100', 'text-slate-600');
+            viewListBtn.classList.add('bg-slate-100', 'text-slate-600');
+            viewListBtn.classList.remove('bg-emerald-100', 'text-emerald-600');
+            renderOpportunities();
+        });
+
+        filterToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('mobile-open');
+        });
+
+        closeFiltersBtn.addEventListener('click', () => {
+            sidebar.classList.remove('mobile-open');
+        });
+
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            menuIcon.classList.toggle('fa-bars');
-            menuIcon.classList.toggle('fa-xmark');
+            document.getElementById('menu-icon').classList.toggle('fa-bars');
+            document.getElementById('menu-icon').classList.toggle('fa-xmark');
         });
+
+        // ==================== INITIALIZATION ====================
+        loadData();
     </script>
 </body>
 </html>
