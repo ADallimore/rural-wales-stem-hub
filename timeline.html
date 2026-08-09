@@ -2,18 +2,48 @@
 <html lang="en">
 <head>
     <link rel="icon" type="image/png" href="favicon.png">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="ee36f12b-5655-4069-9c58-aa452b479645"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Timeline - Rural Wales STEM Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * { box-sizing: border-box; }
         .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        
+        .timeline-marker {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .timeline-marker::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background: #10b981;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #10b981;
+        }
+        
+        .urgency-closed { background: #fee2e2; color: #991b1b; }
+        .urgency-hot { background: #fef3c7; color: #92400e; animation: pulse 1s infinite; }
+        .urgency-ok { background: #d1fae5; color: #065f46; }
+        
+        @media (max-width: 768px) {
+            .timeline-marker { padding-left: 2rem; }
+            .timeline-marker::before { width: 1.25rem; height: 1.25rem; }
+        }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
 
-  <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center flex-shrink-0 z-20">
@@ -23,260 +53,312 @@
                     </a>
                 </div>
                 <div class="hidden xl:flex flex-1 justify-center items-center px-4">
-                    <div class="flex items-center space-x-5 lg:space-x-7 h-full">
-                        <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
-                        <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Opportunities</a>
-                        <a href="timeline.html" class="text-emerald-600 font-bold text-base h-20 flex items-center border-b-2 border-emerald-600">Timeline</a>
-                        <a href="resources.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Resources</a>
-                        <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Guides</a>
-                        <a href="suggest.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Suggest</a>
-                        <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">About</a>
+                    <div class="flex items-center space-x-5 lg:space-x-7 h-full text-sm">
+                        <a href="index.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Home</a>
+                        <a href="opportunities.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Opportunities</a>
+                        <a href="timeline.html" class="text-emerald-600 font-bold border-b-2 border-emerald-600">Timeline</a>
+                        <a href="resources.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Resources</a>
+                        <a href="guides.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Guides</a>
+                        <a href="suggest.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Suggest</a>
+                        <a href="about.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">About</a>
                     </div>
                 </div>
                 <div class="flex items-center justify-end flex-shrink-0 gap-4 z-20">
-                    <a href="contact.html" class="hidden xl:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Contact</a>
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition xl:hidden z-30">
+                    <a href="contact.html" class="hidden xl:inline-flex bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm transition">Contact</a>
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-emerald-600 p-2 rounded-lg xl:hidden">
                         <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner w-full">
-            <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
-            <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Opportunities</a>
-            <a href="timeline.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">Timeline</a>
-            <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Resources</a>
-            <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
-            <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Suggest</a>
-            <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">About</a>
-            <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-100 px-4 py-3 space-y-1">
+            <a href="index.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50 hover:text-emerald-600">Home</a>
+            <a href="opportunities.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Opportunities</a>
+            <a href="timeline.html" class="block px-4 py-2 rounded-lg font-bold bg-emerald-50 text-emerald-600">Timeline</a>
+            <a href="resources.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Resources</a>
+            <a href="guides.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Guides</a>
+            <a href="suggest.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Suggest</a>
+            <a href="about.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">About</a>
+            <a href="contact.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50 mt-2 border-t border-slate-200">Contact</a>
         </div>
     </nav>
-    <main class="flex-grow max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Main Content -->
+    <div class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <div class="mb-12 text-center">
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-4">Your Action Plan</h1>
-            <p class="text-slate-600 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">Track your saved opportunities below, and follow the master STEM roadmap to ensure you never miss a milestone.</p>
+        <!-- Hero Section -->
+        <div class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-3">Your Action Plan</h1>
+            <p class="text-slate-600 text-lg max-w-2xl">Track applications, manage deadlines, and never miss an opportunity. Everything you save appears here.</p>
         </div>
 
-        <section class="mb-20">
-            <div class="flex items-center gap-3 mb-6">
-                <i class="fa-solid fa-bookmark text-emerald-500 text-2xl"></i>
-                <h2 class="text-2xl font-bold text-slate-900">My Saved Schedule</h2>
+        <!-- Stats Bar -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="bg-white rounded-xl border border-slate-200 p-4 text-center">
+                <div id="stat-total" class="text-3xl font-black text-emerald-600">0</div>
+                <div class="text-xs text-slate-600 font-semibold uppercase tracking-wide mt-1">Saved</div>
             </div>
-            
-            <div id="personal-timeline-container">
-                <p class="text-slate-500 italic">Checking your saved items...</p>
+            <div class="bg-white rounded-xl border border-slate-200 p-4 text-center">
+                <div id="stat-hot" class="text-3xl font-black text-orange-600">0</div>
+                <div class="text-xs text-slate-600 font-semibold uppercase tracking-wide mt-1">Urgent</div>
+            </div>
+            <div class="bg-white rounded-xl border border-slate-200 p-4 text-center">
+                <div id="stat-rolling" class="text-3xl font-black text-blue-600">0</div>
+                <div class="text-xs text-slate-600 font-semibold uppercase tracking-wide mt-1">Rolling</div>
+            </div>
+            <div class="bg-white rounded-xl border border-slate-200 p-4 text-center">
+                <div id="stat-closed" class="text-3xl font-black text-red-600">0</div>
+                <div class="text-xs text-slate-600 font-semibold uppercase tracking-wide mt-1">Closed</div>
+            </div>
+        </div>
+
+        <!-- Saved Opportunities Section -->
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900">My Saved Opportunities</h2>
+                    <p class="text-slate-600 text-sm mt-1">Sorted by deadline urgency</p>
+                </div>
+                <a href="opportunities.html" class="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition">
+                    <i class="fa-solid fa-plus"></i> Add More
+                </a>
+            </div>
+
+            <div id="timeline-container" class="space-y-3">
+                <div class="text-center py-12 bg-white rounded-xl border border-dashed border-slate-300">
+                    <i class="fa-regular fa-calendar text-4xl text-slate-300 mb-3 block"></i>
+                    <p class="text-slate-600 font-semibold">No saved opportunities yet</p>
+                    <p class="text-slate-500 text-sm mt-1">Visit the opportunities page and click "Save" to add to your timeline</p>
+                </div>
             </div>
         </section>
 
-        <div class="w-full h-px bg-slate-200 mb-16"></div>
-
+        <!-- Master STEM Roadmap -->
         <section>
-            <div class="flex items-center gap-3 mb-10">
-                <i class="fa-solid fa-map-location-dot text-slate-900 text-2xl"></i>
-                <h2 class="text-2xl font-bold text-slate-900">The Master STEM Roadmap</h2>
-            </div>
-
-            <div class="relative border-l-4 border-slate-200 ml-4 md:ml-8">
-
-                <div class="mb-10 relative">
-                    <div class="absolute -left-5 md:-left-9 mt-1 w-10 h-10 md:w-14 md:h-14 bg-emerald-600 text-white rounded-full flex items-center justify-center font-black text-lg md:text-xl border-4 border-slate-50 shadow-sm z-10">
-                        Y11
+            <h2 class="text-2xl font-black text-slate-900 mb-8">The Master STEM Roadmap</h2>
+            
+            <div class="space-y-8">
+                <!-- Year 11 -->
+                <div class="bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl p-8 border border-blue-200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-black text-lg">11</div>
+                        <div>
+                            <h3 class="text-2xl font-black text-slate-900">Year 11: Foundation Phase</h3>
+                            <p class="text-slate-600 text-sm">Explore your interests and prepare for A-Level/Apprenticeships</p>
+                        </div>
                     </div>
-                    <div class="ml-10 md:ml-12 pt-2 md:pt-3">
-                        <h2 class="text-2xl md:text-3xl font-black text-slate-900">Year 11 / GCSE Level</h2>
-                        <p class="text-slate-500 font-semibold mt-1">Laying the foundation and exploring your options.</p>
-                    </div>
-                </div>
 
-                <div class="mb-10 relative group">
-                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-emerald-500 transition-colors z-10"></div>
-                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Autumn Term (Sep - Dec)</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Research & Discovery</h3>
-                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Start attending virtual open days for major engineering hubs and universities.</li>
-                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Look into post-16 options: Sixth Form vs. College vs. Level 3 Apprenticeships.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mb-16 relative group">
-                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-emerald-500 transition-colors z-10"></div>
-                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="bg-amber-50 text-amber-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Spring Term (Jan - Apr)</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Apply for Summer Insights</h3>
-                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Corporate "Insight Weeks" for 15-16 year olds often close applications in February/March.</li>
-                            <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Draft your first basic CV. Focus on school projects, UKMT scores, and personal skills.</li>
-                        </ul>
+                    <div class="space-y-3">
+                        <div class="timeline-marker">
+                            <div class="bg-white rounded-lg p-4 border border-blue-200">
+                                <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full mb-2">Sep - Dec</span>
+                                <h4 class="font-bold text-slate-900 mb-1">Research & Discovery</h4>
+                                <p class="text-sm text-slate-600">Attend university open days. Research apprenticeships. Join STEM clubs.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-marker">
+                            <div class="bg-white rounded-lg p-4 border border-blue-200">
+                                <span class="inline-block bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full mb-2">Jan - Apr</span>
+                                <h4 class="font-bold text-slate-900 mb-1">Summer Plans</h4>
+                                <p class="text-sm text-slate-600">Apply for insight weeks. Start building your first CV.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mb-10 relative">
-                    <div class="absolute -left-5 md:-left-9 mt-1 w-10 h-10 md:w-14 md:h-14 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-lg md:text-xl border-4 border-slate-50 shadow-sm z-10">
-                        Y12
+                <!-- Year 12 -->
+                <div class="bg-gradient-to-r from-emerald-50 to-emerald-100/50 rounded-2xl p-8 border border-emerald-200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center font-black text-lg">12</div>
+                        <div>
+                            <h3 class="text-2xl font-black text-slate-900">Year 12: Applications Year</h3>
+                            <p class="text-slate-600 text-sm">The most critical year for degree apprenticeships and early applications</p>
+                        </div>
                     </div>
-                    <div class="ml-10 md:ml-12 pt-2 md:pt-3">
-                        <h2 class="text-2xl md:text-3xl font-black text-slate-900">Year 12 / First Year A-Level</h2>
-                        <p class="text-slate-500 font-semibold mt-1">The critical year for Degree Apprenticeships, Exams, & Bursaries.</p>
+
+                    <div class="space-y-3">
+                        <div class="timeline-marker">
+                            <div class="bg-white rounded-lg p-4 border border-emerald-200">
+                                <span class="inline-block bg-purple-100 text-purple-700 text-xs font-bold px-2.5 py-1 rounded-full mb-2">Sep - Dec</span>
+                                <h4 class="font-bold text-slate-900 mb-1">Early Applications</h4>
+                                <p class="text-sm text-slate-600">Top-tier degree apprenticeships open. Register for university admissions tests (ESAT, MAT).</p>
+                            </div>
+                        </div>
+                        <div class="timeline-marker">
+                            <div class="bg-white rounded-lg p-4 border border-red-200 border-l-4 border-l-red-500">
+                                <span class="inline-block bg-red-100 text-red-700 text-xs font-bold px-2.5 py-1 rounded-full mb-2">🔥 Jan - Feb</span>
+                                <h4 class="font-bold text-slate-900 mb-1">Deadline Crunch</h4>
+                                <p class="text-sm text-slate-600">80% of major schemes close during this period. Check your saved timeline regularly!</p>
+                            </div>
+                        </div>
+                        <div class="timeline-marker">
+                            <div class="bg-white rounded-lg p-4 border border-emerald-200">
+                                <span class="inline-block bg-teal-100 text-teal-700 text-xs font-bold px-2.5 py-1 rounded-full mb-2">May - Jul</span>
+                                <h4 class="font-bold text-slate-900 mb-1">Secure Your Summer</h4>
+                                <p class="text-sm text-slate-600">Book work experience placements. Prepare for assessment centres.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mb-10 relative group">
-                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
-                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="bg-purple-50 text-purple-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Autumn Term (Sep - Dec)</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Early Applications & Olympiads</h3>
-                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Top-tier Degree Apprenticeships (like BBC, Airbus) open now.</li>
-                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Keep an eye on registration dates for Senior Maths Challenges and Olympiads.</li>
-                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Register for Nuffield Research Placements (crucial for Welsh students).</li>
-                        </ul>
+                <!-- Year 13 -->
+                <div class="bg-gradient-to-r from-purple-50 to-purple-100/50 rounded-2xl p-8 border border-purple-200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-black text-lg">13</div>
+                        <div>
+                            <h3 class="text-2xl font-black text-slate-900">Year 13: Final Stretch</h3>
+                            <p class="text-slate-600 text-sm">Finalize decisions and prepare for university</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="timeline-marker">
+                            <div class="bg-white rounded-lg p-4 border border-purple-200">
+                                <span class="inline-block bg-purple-100 text-purple-700 text-xs font-bold px-2.5 py-1 rounded-full mb-2">Sep - Dec</span>
+                                <h4 class="font-bold text-slate-900 mb-1">University Applications</h4>
+                                <p class="text-sm text-slate-600">UCAS deadlines. Prepare personal statements. Attend interviews.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-marker">
+                            <div class="bg-white rounded-lg p-4 border border-purple-200">
+                                <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-full mb-2">Jan - May</span>
+                                <h4 class="font-bold text-slate-900 mb-1">Interviews & Results</h4>
+                                <p class="text-sm text-slate-600">University interviews. UCAS decisions. Celebrate acceptances!</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="mb-10 relative group">
-                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
-                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-red-500">
-                        <span class="bg-red-50 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Winter (Jan - Feb)</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">The Deadline Crunch</h3>
-                        <p class="text-slate-600 text-sm md:text-base mb-3">This is when 80% of major corporate schemes close. Do not leave applications to the last minute!</p>
-                        <a href="opportunities.html" class="inline-flex items-center text-sm font-bold text-emerald-600 hover:text-emerald-700 transition">
-                            Save Live Deadlines to your Dashboard <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="mb-4 relative group">
-                    <div class="absolute -left-2.5 mt-5 w-4 h-4 bg-white border-4 border-slate-300 rounded-full group-hover:border-slate-900 transition-colors z-10"></div>
-                    <div class="ml-8 md:ml-12 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="bg-teal-50 text-teal-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Summer Term (May - Jul)</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">University Admissions Tests</h3>
-                        <ul class="text-slate-600 space-y-2 text-sm md:text-base">
-                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Book your spot for specific university admissions tests (like ESAT or MAT) if required.</li>
-                            <li><i class="fa-solid fa-arrow-right text-slate-400 mr-2"></i> Secure your Year 12 summer work experience placement.</li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
         </section>
+    </div>
 
-    </main>
-
- <script>
-        // Calculates how many days are left and returns a styled badge
-        function calculateUrgency(deadlineStr) {
-            if (!deadlineStr || deadlineStr.toUpperCase() === 'TBC') {
-                return '<span class="text-slate-500 font-bold text-xs bg-slate-100 px-2 py-1 rounded-md ml-2">TBC</span>';
-            }
-            if (deadlineStr.toLowerCase() === 'rolling') {
-                return '<span class="text-blue-600 font-bold text-xs bg-blue-50 px-2 py-1 rounded-md ml-2 border border-blue-200 shadow-sm">Rolling</span>';
-            }
-
-            // Parse DD/MM/YYYY
-            const parts = deadlineStr.split('/');
-            let dateObj;
-            if (parts.length === 3) {
-                dateObj = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
-            } else {
-                dateObj = new Date(deadlineStr);
-            }
-
-            if (isNaN(dateObj.getTime())) return ''; // Fallback if the date is weird
-
-            const today = new Date();
-            today.setHours(0, 0, 0, 0); // Reset time to midnight for accurate counting
-            
-            const daysLeft = Math.ceil((dateObj - today) / (1000 * 60 * 60 * 24));
-
-            if (daysLeft < 0) {
-                return '<span class="text-red-600 font-bold text-xs bg-red-50 px-2 py-1 rounded-md ml-2 border border-red-200 shadow-sm">Closed</span>';
-            }
-            if (daysLeft === 0) {
-                return '<span class="text-red-600 font-bold text-xs bg-red-50 px-2 py-1 rounded-md ml-2 border border-red-200 animate-pulse shadow-sm">🔥 Closes Today!</span>';
-            }
-            if (daysLeft <= 14) {
-                return `<span class="text-orange-600 font-bold text-xs bg-orange-50 px-2 py-1 rounded-md ml-2 border border-orange-200 shadow-sm">🔥 ${daysLeft} Days Left</span>`;
-            }
-            
-            return `<span class="text-emerald-600 font-bold text-xs bg-emerald-50 px-2 py-1 rounded-md ml-2 border border-emerald-200 shadow-sm">${daysLeft} Days Left</span>`;
-        }
-
-        function renderPersonalTimeline() {
-            const container = document.getElementById('personal-timeline-container');
+    <script>
+        // ==================== LOAD & RENDER TIMELINE ====================
+        function renderTimeline() {
+            const container = document.getElementById('timeline-container');
             const savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
+
+            // Update stats
+            const stats = {
+                total: savedItems.length,
+                hot: 0,
+                rolling: 0,
+                closed: 0
+            };
+
+            savedItems.forEach(item => {
+                const urgency = calculateUrgency(item.deadline);
+                if (urgency.text.includes('days') && !urgency.text.includes('Closed')) {
+                    const days = parseInt(urgency.text);
+                    if (days <= 14) stats.hot++;
+                } else if (urgency.text === 'Rolling') {
+                    stats.rolling++;
+                } else if (urgency.text === 'Closed') {
+                    stats.closed++;
+                }
+            });
+
+            document.getElementById('stat-total').textContent = stats.total;
+            document.getElementById('stat-hot').textContent = stats.hot;
+            document.getElementById('stat-rolling').textContent = stats.rolling;
+            document.getElementById('stat-closed').textContent = stats.closed;
 
             if (savedItems.length === 0) {
                 container.innerHTML = `
-                    <div class="text-center py-12 px-6 bg-white rounded-3xl border border-slate-200 border-dashed">
-                        <div class="text-4xl mb-4 text-slate-300"><i class="fa-regular fa-calendar-xmark"></i></div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Your schedule is empty</h3>
-                        <p class="text-slate-500 mb-6 max-w-md mx-auto">Head over to the Opportunities page and click "Save" on exams, bursaries, or apprenticeships to build your custom timeline.</p>
-                        <a href="opportunities.html" class="inline-flex bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm hover:bg-emerald-700 transition shadow-sm">Browse Opportunities</a>
+                    <div class="text-center py-12 bg-white rounded-xl border border-dashed border-slate-300">
+                        <i class="fa-regular fa-calendar text-4xl text-slate-300 mb-3 block"></i>
+                        <p class="text-slate-600 font-semibold">No saved opportunities yet</p>
+                        <p class="text-slate-500 text-sm mt-1">Visit the opportunities page and click "Save" to add to your timeline</p>
+                        <a href="opportunities.html" class="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition">
+                            <i class="fa-solid fa-arrow-right"></i> Browse Opportunities
+                        </a>
                     </div>
                 `;
                 return;
             }
 
-            let html = '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">';
-            savedItems.forEach((item, index) => {
-                
-                // Get the smart badge based on the deadline
-                const urgencyBadge = calculateUrgency(item.deadline);
+            // Sort by urgency
+            const sorted = [...savedItems].sort((a, b) => {
+                const urgencyA = calculateDaysLeft(a.deadline);
+                const urgencyB = calculateDaysLeft(b.deadline);
+                return urgencyA - urgencyB;
+            });
 
-                html += `
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
-                        <div>
-                            <span class="text-[10px] font-extrabold text-emerald-600 uppercase tracking-widest mb-2 block bg-emerald-50 inline-block px-2 py-1 rounded-md border border-emerald-100">${item.category}</span>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2 leading-tight">${item.title}</h4>
-                            <p class="text-sm font-semibold text-slate-600 mb-5 flex items-center flex-wrap gap-y-2">
-                                <i class="fa-regular fa-clock mr-1.5 text-slate-400"></i> 
-                                Deadline: <span class="text-slate-800 ml-1">${item.deadline}</span>
-                                ${urgencyBadge}
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-3 mt-auto pt-4 border-t border-slate-100">
-                            <a href="${item.link}" target="_blank" class="flex-1 text-center bg-slate-50 hover:bg-slate-900 text-slate-700 hover:text-white border border-slate-200 hover:border-slate-900 text-xs font-bold py-2 rounded-lg transition">View Details</a>
-                            <button onclick="removeSavedItem(${index})" class="text-slate-400 hover:text-red-500 transition px-3 py-2 rounded-lg hover:bg-red-50" title="Remove from timeline">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
+            container.innerHTML = sorted.map((item, idx) => {
+                const urgency = calculateUrgency(item.deadline);
+                return `
+                    <div class="bg-white rounded-xl border border-slate-200 hover:shadow-lg transition-shadow p-5">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                    <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full uppercase">${item.category}</span>
+                                    <span class="urgency-badge ${urgency.class} text-xs font-bold px-2.5 py-1 rounded-full">${urgency.text}</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-1">${item.title}</h3>
+                                <p class="text-sm text-slate-600">Deadline: <span class="font-semibold">${item.deadline}</span></p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <a href="${item.link}" target="_blank" class="px-4 py-2.5 bg-slate-900 hover:bg-emerald-600 text-white font-bold rounded-lg transition text-sm flex items-center gap-2">
+                                    Apply Now <i class="fa-solid fa-arrow-up-right text-xs"></i>
+                                </a>
+                                <button onclick="removeItem(${idx})" class="px-3 py-2.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition" title="Remove">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
-            });
-            html += '</div>';
-            container.innerHTML = html;
+            }).join('');
         }
 
-        function removeSavedItem(index) {
+        function calculateDaysLeft(deadline) {
+            if (!deadline || deadline.toUpperCase() === 'TBC') return Infinity;
+            if (deadline.toLowerCase() === 'rolling') return 9999;
+            
+            const parts = deadline.split('/');
+            let dateObj;
+            if (parts.length === 3) {
+                dateObj = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+            } else {
+                dateObj = new Date(deadline);
+            }
+            
+            if (isNaN(dateObj.getTime())) return Infinity;
+            
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return Math.ceil((dateObj - today) / (1000 * 60 * 60 * 24));
+        }
+
+        function calculateUrgency(deadline) {
+            if (!deadline || deadline.toUpperCase() === 'TBC') return { text: 'TBC', class: 'bg-slate-100 text-slate-600' };
+            if (deadline.toLowerCase() === 'rolling') return { text: 'Rolling', class: 'bg-blue-100 text-blue-600' };
+            
+            const daysLeft = calculateDaysLeft(deadline);
+            
+            if (daysLeft < 0) return { text: 'Closed', class: 'urgency-closed' };
+            if (daysLeft <= 14) return { text: `${daysLeft} days left`, class: 'urgency-hot' };
+            if (daysLeft <= 60) return { text: `${daysLeft} days left`, class: 'urgency-ok' };
+            return { text: `${daysLeft} days left`, class: 'bg-slate-100 text-slate-600' };
+        }
+
+        function removeItem(index) {
             let savedItems = JSON.parse(localStorage.getItem('mySTEMTimeline')) || [];
             savedItems.splice(index, 1);
             localStorage.setItem('mySTEMTimeline', JSON.stringify(savedItems));
-            renderPersonalTimeline(); 
+            renderTimeline();
         }
 
-        document.addEventListener("DOMContentLoaded", renderPersonalTimeline);
-    </script>
-
-    <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.classList.remove('fa-xmark');
-                menuIcon.classList.add('fa-bars');
-            } else {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-xmark');
-            }
+        // ==================== MOBILE MENU ====================
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            document.getElementById('menu-icon').classList.toggle('fa-bars');
+            document.getElementById('menu-icon').classList.toggle('fa-xmark');
         });
-    </script>
 
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', renderTimeline);
+    </script>
 </body>
 </html>
