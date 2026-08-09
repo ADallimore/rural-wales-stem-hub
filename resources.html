@@ -2,30 +2,55 @@
 <html lang="en">
 <head>
     <link rel="icon" type="image/png" href="favicon.png">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="ee36f12b-5655-4069-9c58-aa452b479645"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Resources - Rural Wales STEM Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
+        * { box-sizing: border-box; }
         .tail-container { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-        html { scroll-behavior: smooth; }
         
-        /* Hide scrollbar for the horizontal pill menu but keep functionality */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .resource-card {
+            position: relative;
+            overflow: hidden;
+        }
         
-        /* Active Pill styling */
-        .pill-active {
-            background-color: #0f172a;
-            color: white !important;
-            border-color: #0f172a;
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, currentColor, transparent);
+        }
+        
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .sticky-nav { position: sticky; top: 80px; z-index: 30; }
+        
+        @media (max-width: 768px) {
+            .sticky-nav { position: relative; top: auto; }
         }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen flex flex-col tail-container text-slate-900">
 
-  <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm font-sans relative">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center flex-shrink-0 z-20">
@@ -35,225 +60,213 @@
                     </a>
                 </div>
                 <div class="hidden xl:flex flex-1 justify-center items-center px-4">
-                    <div class="flex items-center space-x-5 lg:space-x-7 h-full">
-                        <a href="index.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Home</a>
-                        <a href="opportunities.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Opportunities</a>
-                        <a href="timeline.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Timeline</a>
-                        <a href="resources.html" class="text-emerald-600 font-bold text-base h-20 flex items-center border-b-2 border-emerald-600">Resources</a>
-                        <a href="guides.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Guides</a>
-                        <a href="suggest.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">Suggest</a>
-                        <a href="about.html" class="text-slate-600 hover:text-slate-900 font-semibold text-base h-20 flex items-center border-b-2 border-transparent hover:border-slate-200 transition">About</a>
+                    <div class="flex items-center space-x-5 lg:space-x-7 h-full text-sm">
+                        <a href="index.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Home</a>
+                        <a href="opportunities.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Opportunities</a>
+                        <a href="timeline.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Timeline</a>
+                        <a href="resources.html" class="text-emerald-600 font-bold border-b-2 border-emerald-600">Resources</a>
+                        <a href="guides.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Guides</a>
+                        <a href="suggest.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">Suggest</a>
+                        <a href="about.html" class="text-slate-600 hover:text-emerald-600 font-semibold transition">About</a>
                     </div>
                 </div>
                 <div class="flex items-center justify-end flex-shrink-0 gap-4 z-20">
-                    <a href="contact.html" class="hidden xl:inline-flex bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Contact</a>
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-xl hover:bg-slate-50 transition xl:hidden z-30">
+                    <a href="contact.html" class="hidden xl:inline-flex bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm transition">Contact</a>
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-emerald-600 p-2 rounded-lg xl:hidden">
                         <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-inner w-full">
-            <a href="index.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Home</a>
-            <a href="opportunities.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Opportunities</a>
-            <a href="timeline.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Timeline</a>
-            <a href="resources.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-emerald-50 text-emerald-700">Resources</a>
-            <a href="guides.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Guides</a>
-            <a href="suggest.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">Suggest</a>
-            <a href="about.html" class="block px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:bg-slate-50">About</a>
-            <a href="contact.html" class="block px-4 py-3 rounded-xl text-base font-bold bg-slate-100 text-slate-900 mt-2 text-center">Contact Hub</a>
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-100 px-4 py-3 space-y-1">
+            <a href="index.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50 hover:text-emerald-600">Home</a>
+            <a href="opportunities.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Opportunities</a>
+            <a href="timeline.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Timeline</a>
+            <a href="resources.html" class="block px-4 py-2 rounded-lg font-bold bg-emerald-50 text-emerald-600">Resources</a>
+            <a href="guides.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Guides</a>
+            <a href="suggest.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">Suggest</a>
+            <a href="about.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50">About</a>
+            <a href="contact.html" class="block px-4 py-2 rounded-lg text-slate-600 hover:bg-emerald-50 mt-2 border-t border-slate-200">Contact</a>
         </div>
     </nav>
-    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+    <!-- Main Content -->
+    <div class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <div class="mb-8 md:mb-12 text-center lg:text-left bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 md:p-12 shadow-xl relative overflow-hidden text-white">
-            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-emerald-500/10 blur-3xl rounded-full"></div>
-            <h1 class="text-3xl md:text-5xl font-black tracking-tighter mb-4 relative z-10">The STEM Resource Bank</h1>
-            <p class="text-slate-300 text-base md:text-xl font-medium max-w-2xl leading-relaxed relative z-10">Premium study toolkits and admissions diagnostic materials curated for ambitious Welsh students.</p>
+        <!-- Hero -->
+        <div class="mb-12" data-aos="fade-down">
+            <h1 class="text-5xl md:text-6xl font-black text-slate-900 mb-4">Study Toolkit</h1>
+            <p class="text-lg text-slate-600 max-w-2xl">World-class resources for STEM mastery. From physics challenges to coding bootcamps. Everything you need to excel.</p>
         </div>
 
-        <div class="sticky top-20 z-40 bg-slate-50/95 backdrop-blur-md py-4 border-b border-slate-200 mb-8 md:mb-12 -mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
-            <div class="flex whitespace-nowrap gap-2 sm:justify-center lg:justify-start min-w-max">
-                <a href="#science" class="px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition shadow-sm flex items-center gap-2">
-                    <i class="fa-solid fa-flask text-emerald-500"></i> Science
+        <!-- Category Navigation -->
+        <div class="sticky-nav mb-12 bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <div class="flex flex-wrap gap-2 sm:gap-3">
+                <button onclick="filterResources('all')" class="filter-btn active px-4 py-2 rounded-lg font-bold text-sm transition bg-emerald-600 text-white hover:bg-emerald-700" data-category="all">
+                    <i class="fa-solid fa-star"></i> All Resources
+                </button>
+                <button onclick="filterResources('physics')" class="filter-btn px-4 py-2 rounded-lg font-bold text-sm transition bg-slate-100 text-slate-600 hover:bg-slate-200" data-category="physics">
+                    <i class="fa-solid fa-flask"></i> Physics
+                </button>
+                <button onclick="filterResources('computing')" class="filter-btn px-4 py-2 rounded-lg font-bold text-sm transition bg-slate-100 text-slate-600 hover:bg-slate-200" data-category="computing">
+                    <i class="fa-solid fa-code"></i> Computing
+                </button>
+                <button onclick="filterResources('engineering')" class="filter-btn px-4 py-2 rounded-lg font-bold text-sm transition bg-slate-100 text-slate-600 hover:bg-slate-200" data-category="engineering">
+                    <i class="fa-solid fa-gears"></i> Engineering
+                </button>
+                <button onclick="filterResources('mathematics')" class="filter-btn px-4 py-2 rounded-lg font-bold text-sm transition bg-slate-100 text-slate-600 hover:bg-slate-200" data-category="mathematics">
+                    <i class="fa-solid fa-calculator"></i> Mathematics
+                </button>
+                <button onclick="filterResources('admissions')" class="filter-btn px-4 py-2 rounded-lg font-bold text-sm transition bg-slate-100 text-slate-600 hover:bg-slate-200" data-category="admissions">
+                    <i class="fa-solid fa-graduation-cap"></i> Admissions
+                </button>
+            </div>
+        </div>
+
+        <!-- Resources Grid -->
+        <div id="resources-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <!-- Physics Resources -->
+            <div class="resource-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-emerald-300 transition-all group p-6" data-category="physics" data-aos="fade-up">
+                <div class="text-emerald-600 text-3xl mb-4"><i class="fa-solid fa-flask"></i></div>
+                <span class="category-badge bg-emerald-50 text-emerald-700 mb-3">Physics</span>
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition">Isaac Physics</h3>
+                <p class="text-slate-600 text-sm mb-6">Cambridge-backed conceptual problem-solving. Build deep mathematical intuition through interactive challenges.</p>
+                <a href="https://isaacphysics.org/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-emerald-600 text-white font-bold rounded-lg transition text-sm">
+                    Practice Now <i class="fa-solid fa-arrow-up-right text-xs"></i>
                 </a>
-                <a href="#technology" class="px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-cyan-600 hover:text-cyan-600 transition shadow-sm flex items-center gap-2">
-                    <i class="fa-solid fa-code text-cyan-500"></i> Technology
+            </div>
+
+            <div class="resource-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-emerald-300 transition-all group p-6" data-category="physics" data-aos="fade-up" data-aos-delay="50">
+                <div class="text-emerald-600 text-3xl mb-4"><i class="fa-solid fa-medal"></i></div>
+                <span class="category-badge bg-emerald-50 text-emerald-700 mb-3">Physics</span>
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition">British Physics Olympiad</h3>
+                <p class="text-slate-600 text-sm mb-6">Rigorous past challenges designed to stretch advanced theoretical understanding beyond school limits.</p>
+                <a href="https://www.bpho.org.uk/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-emerald-600 text-white font-bold rounded-lg transition text-sm">
+                    Access Papers <i class="fa-solid fa-arrow-up-right text-xs"></i>
                 </a>
-                <a href="#engineering" class="px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-amber-600 hover:text-amber-600 transition shadow-sm flex items-center gap-2">
-                    <i class="fa-solid fa-gears text-amber-500"></i> Engineering
+            </div>
+
+            <!-- Computing Resources -->
+            <div class="resource-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-cyan-300 transition-all group p-6" data-category="computing" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-cyan-600 text-3xl mb-4"><i class="fa-solid fa-shield"></i></div>
+                <span class="category-badge bg-cyan-50 text-cyan-700 mb-3">Computing</span>
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-cyan-600 transition">NCSC CyberFirst</h3>
+                <p class="text-slate-600 text-sm mb-6">Interactive cyber security challenges from the National Cyber Security Centre. Build defensive thinking skills.</p>
+                <a href="https://www.ncsc.gov.uk/cyberfirst/overview" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-cyan-600 text-white font-bold rounded-lg transition text-sm">
+                    Explore CyberFirst <i class="fa-solid fa-arrow-up-right text-xs"></i>
                 </a>
-                <a href="#math" class="px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-600 hover:text-blue-600 transition shadow-sm flex items-center gap-2">
-                    <i class="fa-solid fa-calculator text-blue-500"></i> Mathematics
+            </div>
+
+            <div class="resource-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-cyan-300 transition-all group p-6" data-category="computing" data-aos="fade-up" data-aos-delay="150">
+                <div class="text-cyan-600 text-3xl mb-4"><i class="fa-solid fa-code"></i></div>
+                <span class="category-badge bg-cyan-50 text-cyan-700 mb-3">Computing</span>
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-cyan-600 transition">Harvard CS50</h3>
+                <p class="text-slate-600 text-sm mb-6">The world's premier introduction to algorithmic analysis and programming. The gold standard for coding education.</p>
+                <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-cyan-600 text-white font-bold rounded-lg transition text-sm">
+                    Enroll Now <i class="fa-solid fa-arrow-up-right text-xs"></i>
                 </a>
-                <a href="#admissions" class="px-5 py-2.5 rounded-full text-xs md:text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:border-purple-600 hover:text-purple-600 transition shadow-sm flex items-center gap-2">
-                    <i class="fa-solid fa-graduation-cap text-purple-500"></i> Admissions
+            </div>
+
+            <!-- Engineering Resources -->
+            <div class="resource-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-amber-300 transition-all group p-6" data-category="engineering" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-amber-600 text-3xl mb-4"><i class="fa-solid fa-gears"></i></div>
+                <span class="category-badge bg-amber-50 text-amber-700 mb-3">Engineering</span>
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition">Tomorrow's Engineers</h3>
+                <p class="text-slate-600 text-sm mb-6">Specialized hub mapping engineering pathways and real industry blueprints. Direct insights into elite employers.</p>
+                <a href="https://www.tomorrowsengineers.org.uk/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-amber-600 text-white font-bold rounded-lg transition text-sm">
+                    Explore Hub <i class="fa-solid fa-arrow-up-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Mathematics Resources -->
+            <div class="resource-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-blue-300 transition-all group p-6" data-category="mathematics" data-aos="fade-up" data-aos-delay="250">
+                <div class="text-blue-600 text-3xl mb-4"><i class="fa-solid fa-calculator"></i></div>
+                <span class="category-badge bg-blue-50 text-blue-700 mb-3">Mathematics</span>
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition">UKMT Challenges</h3>
+                <p class="text-slate-600 text-sm mb-6">Official UK Mathematical Trust challenges focusing on logic, deduction, and elegant proofs for advanced students.</p>
+                <a href="https://www.ukmt.org.uk/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-lg transition text-sm">
+                    Access Vault <i class="fa-solid fa-arrow-up-right text-xs"></i>
+                </a>
+            </div>
+
+            <div class="resource-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-blue-300 transition-all group p-6" data-category="mathematics" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-blue-600 text-3xl mb-4"><i class="fa-solid fa-graduation-cap"></i></div>
+                <span class="category-badge bg-blue-50 text-blue-700 mb-3">Mathematics</span>
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition">STEP Support</h3>
+                <p class="text-slate-600 text-sm mb-6">Cambridge's advanced analytical problem-solving syllabus. Prepare for university entrance into elite mathematics programs.</p>
+                <a href="https://www.maths.org/step/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-lg transition text-sm">
+                    Open Portal <i class="fa-solid fa-arrow-up-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Admissions Resources -->
+            <div class="resource-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-purple-300 transition-all group p-6" data-category="admissions" data-aos="fade-up" data-aos-delay="350">
+                <div class="text-purple-600 text-3xl mb-4"><i class="fa-solid fa-pen-fancy"></i></div>
+                <span class="category-badge bg-purple-50 text-purple-700 mb-3">Admissions</span>
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition">ESAT Portal</h3>
+                <p class="text-slate-600 text-sm mb-6">Official Engineering and Science Admissions Test hub. Used by top-tier universities for student assessment.</p>
+                <a href="https://esat-test.org/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-purple-600 text-white font-bold rounded-lg transition text-sm">
+                    Go to Website <i class="fa-solid fa-arrow-up-right text-xs"></i>
+                </a>
+            </div>
+
+            <div class="resource-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-purple-300 transition-all group p-6" data-category="admissions" data-aos="fade-up" data-aos-delay="400">
+                <div class="text-purple-600 text-3xl mb-4"><i class="fa-solid fa-book"></i></div>
+                <span class="category-badge bg-purple-50 text-purple-700 mb-3">Admissions</span>
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition">WJEC STEM Papers</h3>
+                <p class="text-slate-600 text-sm mb-6">Direct access to past curriculum materials and exam papers from the Welsh GCSE & A-Level board.</p>
+                <a href="https://www.wjec.co.uk/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-purple-600 text-white font-bold rounded-lg transition text-sm">
+                    WJEC Portal <i class="fa-solid fa-arrow-up-right text-xs"></i>
                 </a>
             </div>
         </div>
 
-        <section id="science" class="mb-12 md:mb-20 scroll-mt-48 md:scroll-mt-40">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-emerald-600/20">
-                    <i class="fa-solid fa-flask"></i>
-                </div>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Science Vault</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
-                <div class="bg-white border-t-4 border-t-emerald-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
-                    <div class="flex-grow">
-                        <span class="inline-block px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase tracking-widest mb-3">Physics</span>
-                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">Isaac Physics Deep-Dive</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Conceptual problem-solving tasks from Cambridge University to build deep mathematical intuition.</p>
-                    </div>
-                    <a href="https://isaacphysics.org/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
-                        Start Practicing <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-                <div class="bg-white border-t-4 border-t-emerald-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
-                    <div class="flex-grow">
-                        <span class="inline-block px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase tracking-widest mb-3">Olympiad</span>
-                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">British Physics Olympiad</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Rigorous past challenges designed to stretch advanced theoretical understanding past school limits.</p>
-                    </div>
-                    <a href="https://www.bpho.org.uk/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
-                        Access Papers <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Info Section -->
+        <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-8 text-center">
+            <i class="fa-solid fa-lightbulb text-emerald-600 text-3xl mb-3 block"></i>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Want to suggest a resource?</h3>
+            <p class="text-slate-600 mb-4">Found an amazing STEM platform that should be here? We'd love to hear about it.</p>
+            <a href="suggest.html" class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition">
+                Suggest a Resource <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
 
-        <section id="technology" class="mb-12 md:mb-20 scroll-mt-48 md:scroll-mt-40">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 bg-cyan-600 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-cyan-600/20">
-                    <i class="fa-solid fa-code"></i>
-                </div>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Technology & Computing</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
-                <div class="bg-white border-t-4 border-t-cyan-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
-                    <div class="flex-grow">
-                        <span class="inline-block px-3 py-1 rounded-lg bg-cyan-50 text-cyan-700 text-[10px] font-black uppercase tracking-widest mb-3">Cyber Security</span>
-                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-cyan-600 transition-colors">NCSC CyberFirst</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Interactive student path development and defenses from the National Cyber Security Centre.</p>
-                    </div>
-                    <a href="https://www.ncsc.gov.uk/cyberfirst/overview" target="_blank" class="w-full text-center bg-slate-950 hover:bg-cyan-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
-                        Explore CyberFirst <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-                <div class="bg-white border-t-4 border-t-cyan-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
-                    <div class="flex-grow">
-                        <span class="inline-block px-3 py-1 rounded-lg bg-cyan-50 text-cyan-700 text-[10px] font-black uppercase tracking-widest mb-3">Software</span>
-                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-cyan-600 transition-colors">Harvard CS50 Course</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">The premier introduction to algorithmic analysis and programming. The gold standard for coding.</p>
-                    </div>
-                    <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank" class="w-full text-center bg-slate-950 hover:bg-cyan-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
-                        View Course <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="engineering" class="mb-12 md:mb-20 scroll-mt-48 md:scroll-mt-40">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 bg-amber-600 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-amber-600/20">
-                    <i class="fa-solid fa-gears"></i>
-                </div>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Engineering</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
-                <div class="bg-white border-t-4 border-t-amber-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-amber-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
-                    <div class="flex-grow">
-                        <span class="inline-block px-3 py-1 rounded-lg bg-amber-50 text-amber-700 text-[10px] font-black uppercase tracking-widest mb-3">Industrial Insights</span>
-                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">Tomorrow's Engineers</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">A specialized hub mapping out engineering pathways and direct industry blueprints for students.</p>
-                    </div>
-                    <a href="https://www.tomorrowsengineers.org.uk/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
-                        Open Hub <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="math" class="mb-12 md:mb-20 scroll-mt-48 md:scroll-mt-40">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-blue-600/20">
-                    <i class="fa-solid fa-calculator"></i>
-                </div>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Advanced Mathematics</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
-                <div class="bg-white border-t-4 border-t-blue-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
-                    <div class="flex-grow">
-                        <span class="inline-block px-3 py-1 rounded-lg bg-blue-50 text-blue-700 text-[10px] font-black uppercase tracking-widest mb-3">Logic Challenge</span>
-                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">UKMT Challenge Vault</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Official past challenges focused on logic deduction and mathematical proofs for advanced students.</p>
-                    </div>
-                    <a href="https://www.ukmt.org.uk/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-blue-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
-                        Access Vault <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-                <div class="bg-white border-t-4 border-t-blue-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
-                    <div class="flex-grow">
-                        <span class="inline-block px-3 py-1 rounded-lg bg-blue-50 text-blue-700 text-[10px] font-black uppercase tracking-widest mb-3">Preparation</span>
-                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">STEP Support Programme</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Cambridge's advanced analytical problem-solving syllabus to prepare students for university entrance.</p>
-                    </div>
-                    <a href="https://www.maths.org/step/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-blue-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
-                        Open Portal <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="admissions" class="mb-12 md:mb-20 scroll-mt-48 md:scroll-mt-40">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 bg-purple-600 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-purple-600/20">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight">University Admissions</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
-                <div class="bg-white border-t-4 border-t-purple-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
-                    <div class="flex-grow">
-                        <span class="inline-block px-3 py-1 rounded-lg bg-purple-50 text-purple-700 text-[10px] font-black uppercase tracking-widest mb-3">Test Hub</span>
-                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">Official ESAT Portal</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Central hub for the Engineering and Science Admissions Test used by top-tier universities.</p>
-                    </div>
-                    <a href="https://esat-test.org/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-purple-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
-                        Go to Website <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-                <div class="bg-white border-t-4 border-t-purple-500 border-x border-b border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
-                    <div class="flex-grow">
-                        <span class="inline-block px-3 py-1 rounded-lg bg-purple-50 text-purple-700 text-[10px] font-black uppercase tracking-widest mb-3">Board Portal</span>
-                        <h3 class="font-bold text-xl text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">WJEC STEM Papers</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Direct shortcuts to past curriculum materials for Welsh secondary school systems.</p>
-                    </div>
-                    <a href="https://www.wjec.co.uk/" target="_blank" class="w-full text-center bg-slate-950 hover:bg-purple-600 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 flex items-center justify-center gap-2">
-                        WJEC Portal <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Mobile Menu Logic
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
+        AOS.init({ once: true, offset: 50 });
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.classList.remove('fa-xmark');
-                menuIcon.classList.add('fa-bars');
-            } else {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-xmark');
-            }
+        // ==================== FILTER LOGIC ====================
+        function filterResources(category) {
+            const cards = document.querySelectorAll('[data-category]');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.classList.add('bg-emerald-600', 'text-white');
+                    btn.classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+                } else {
+                    btn.classList.remove('bg-emerald-600', 'text-white');
+                    btn.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => card.classList.add('animate-fade-in'), 10);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // ==================== MOBILE MENU ====================
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            document.getElementById('menu-icon').classList.toggle('fa-bars');
+            document.getElementById('menu-icon').classList.toggle('fa-xmark');
         });
     </script>
 </body>
